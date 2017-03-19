@@ -40,7 +40,7 @@
               <a class="navbar-brand" href="index.html"></a>
             </div>
 
-            <div class="collapse navbar-collapse navbar1">
+            <div class="collapse navbar-collapse" id="navbar1">
               <ul class="nav navbar-nav" id="registroOFR">
                 <li class="dropdown singleDrop">
                   <a href="#">Oferta tus propias actividades</a>
