@@ -28,10 +28,9 @@
       <header>
         <nav class="navbar navbar-default navbar-main headerPrincipal" role="navigation">
           <div class="container-fluid">
-
             <!-- Logo y menu minimizado -->
             <div class="navbar-header">
-              <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar1">
+              <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar1">
                 <span class="sr-only">Menu</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -39,8 +38,8 @@
               </button>
               <a class="navbar-brand" href="index.html"></a>
             </div>
-
-            <div class="collapse navbar-collapse navbar1">
+            <!-- Iniciación de menu-->
+            <div class="collapse navbar-collapse " id="navbar1">
               <ul class="nav navbar-nav" id="registroOFR">
                 <li class="dropdown singleDrop">
                   <a href="#">Oferta tus propias actividades</a>

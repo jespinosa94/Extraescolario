@@ -40,7 +40,7 @@
               <a class="navbar-brand" href="index.html"></a>
             </div>
 
-            <div class="collapse navbar-collapse navbar1">
+            <div class="collapse navbar-collapse" id="navbar1">
               <ul class="nav navbar-nav" id="registroOFR">
                 <li class="dropdown singleDrop">
                   <a href="#">Oferta tus propias actividades</a>
@@ -63,31 +63,38 @@
       </header>
 
       <!--Cuerpo -->
-      <div class="container">
+      <div class="actividad container">
         <div class="row">
           <div class="col-md-9">
-            <h1> Los 4 fantásticos </h1>
-            <p>
-            Los 4 Fantásticos es un equipo ficticio de superhéroes que aparece en cómics
-            estadounidenses publicados por Marvel Comics. El grupo debutó en The Fantastic
-            Four #1 (Noviembre de 1961), el cual ayudó a marcar el comienzo de un nuevo
-            nivel de realismo en el medio. Los 4 Fantásticos fue el primer equipo de
-            superhéroes creado por el escritor-editor Stan Lee y el artista Jack Kirby,
-            quienes desarrollaron un enfoque de colaboración al crear cómics con este
-            título que usarían a partir de entonces.
-            </p>
+            <div class="datosAct">
+              <h1 style="color:black">Título de la actividad</h1>
+              <div class="tagLine">
+                <h4><span style="color:black">Localidad </span> · resumen en 5 palabras</h4>
+                <ul class="list-inline">
+                  <li><a href="#">Tag1</a></li>
+                  <li><a href="#">Tag2</a></li>
+                  <li><a href="#">Tag3</a></li>
+                  <li><a href="#">Tag4</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="horarioAct">
+
+            </div>
           </div>
           <div class="col-md-3">
-            <h1> Los 4 fantásticos </h1>
-            <p>
-            Los 4 Fantásticos es un equipo ficticio de superhéroes que aparece en cómics
-            estadounidenses publicados por Marvel Comics. El grupo debutó en The Fantastic
-            Four #1 (Noviembre de 1961), el cual ayudó a marcar el comienzo de un nuevo
-            nivel de realismo en el medio. Los 4 Fantásticos fue el primer equipo de
-            superhéroes creado por el escritor-editor Stan Lee y el artista Jack Kirby,
-            quienes desarrollaron un enfoque de colaboración al crear cómics con este
-            título que usarían a partir de entonces.
-            </p>
+            <div class="affix">
+              <h1> Esto es un titulaco </h1>
+              <p>
+              Los 4 Fantásticos es un equipo ficticio de superhéroes que aparece en cómics
+              estadounidenses publicados por Marvel Comics. El grupo debutó en The Fantastic
+              Four #1 (Noviembre de 1961), el cual ayudó a marcar el comienzo de un nuevo
+              nivel de realismo en el medio. Los 4 Fantásticos fue el primer equipo de
+              superhéroes creado por el escritor-editor Stan Lee y el artista Jack Kirby,
+              quienes desarrollaron un enfoque de colaboración al crear cómics con este
+              título que usarían a partir de entonces.
+              </p>
+            </div>
           </div>
         </div>
       </div>
