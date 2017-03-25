@@ -12,6 +12,7 @@ body {
 header {
   position: relative;
   z-index: 999;
+  margin-bottom: 25px;
 }
 
 .headerPrincipal {

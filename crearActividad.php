@@ -8,7 +8,7 @@
     <meta name="author" content="Extraescolario Team">
     <link rel="icon" href="http://www.iconj.com/ico/n/q/nqjqtckys4.ico">
 
-    <title>Plantilla Extraescolario</title>
+    <title>Crear actividad</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -20,6 +20,9 @@
     <link href="css/estilos.css" rel="stylesheet">
     <link href="css//font-awesome/css/font-awesome.min.css" rel="stylesheet">
   </head>
+  <body>
+
+
   <!-- Header de la página -->
   <header>
     <nav class="navbar navbar-default navbar-main headerPrincipal" role="navigation">
@@ -58,101 +61,45 @@
     </nav>
   </header>
 
-  <body>
-      <div id ="formIzqCrearActividad" class="container-fluid">
-        <div class="row">
-          <div class="col-md-12">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">
           <form class="form-horizontal">
-            <fieldset>
-
-                <!-- Form Name -->
-                <legend></legend>
-
-                  <!-- Input Nombre Actividad-->
-                  <div class="form-group">
-                    <label class="col-md-4 control-label" for="inputActividad">Nombre de la actividad</label>
-                    <div class="col-md-4">
-                    <input id="inputActividad" name="inputActividad" type="text" placeholder="" class="form-control input-md" required="">
-                    <span class="help-block">*Introduce el nombre de la actividad</span>
-                    </div>
-                  </div>
-
-                  <!-- Selector Provincia -->
-                  <div class="form-group">
-                    <label class="col-md-4 control-label" for="selectorProvincia">Provincia</label>
-                    <div class="col-md-4">
-                      <select id="selectorProvincia" name="selectorProvincia" class="form-control">
-                        <option value="1">Alicante</option>
-                        <option value="2">Murcia</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <!-- Selector Localidad -->
-                  <div class="form-group">
-                    <label class="col-md-4 control-label" for="selectorLocalidad">Localidad</label>
-                    <div class="col-md-4">
-                      <select id="selectorLocalidad" name="selectorLocalidad" class="form-control">
-                        <option value="1">San Vicente del Raspeig</option>
-                        <option value="2">Ibi</option>
-                        <option value="">Option two</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <!-- Boton Cargar datos del perfil -->
-                  <div class="form-group">
-                    <label class="col-md-4 control-label" for="botonCargarPerfil"></label>
-                    <div class="col-md-4">
-                      <button id="botonCargarPerfil" name="botonCargarPerfil" class="btn btn-primary">Cargar datos del perfil</button>
-                    </div>
-                  </div>
-
-            </fieldset>
-            </form>
-
-            <!-- Checkboxes Dias semana -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="checkboxes"></label>
-              <div class="col-md-4">
-                <label class="checkbox-inline" for="checkboxes-0">
-                  <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1">
-                  L
-                </label>
-                <label class="checkbox-inline" for="checkboxes-1">
-                  <input type="checkbox" name="checkboxes" id="checkboxes-1" value="2">
-                  M
-                </label>
-                <label class="checkbox-inline" for="checkboxes-2">
-                  <input type="checkbox" name="checkboxes" id="checkboxes-2" value="3">
-                  X
-                </label>
-                <label class="checkbox-inline" for="checkboxes-3">
-                  <input type="checkbox" name="checkboxes" id="checkboxes-3" value="4">
-                  J
-                </label>
-                <label class="checkbox-inline" for="checkboxes-4">
-                  <input type="checkbox" name="checkboxes" id="checkboxes-4" value="5">
-                  V
-                </label>
-                <label class="checkbox-inline" for="checkboxes-5">
-                  <input type="checkbox" name="checkboxes" id="checkboxes-5" value="6">
-                  S
-                </label>
-                <label class="checkbox-inline" for="checkboxes-6">
-                  <input type="checkbox" name="checkboxes" id="checkboxes-6" value="7">
-                  D
-                </label>
+              <div class="form-group">
+                <label class="control-label col-sm-3" for="nombreActividad">Nombre Actividad:</label>
+                <div class="col-sm-9">
+                  <input class="form-control" id="nombreActividad" placeholder="Zumba" />
+                </div>
               </div>
-            </div>
-
-            </fieldset>
-          </form>
+            </form>
+          </div>
+        <div class="col-md-4">
+          <h1> Esto es un titulaco </h1>
+          <p>
+          Los 4 Fantásticos es un equipo ficticio de superhéroes que aparece en cómics
+          estadounidenses publicados por Marvel Comics. El grupo debutó en The Fantastic
+          Four #1 (Noviembre de 1961), el cual ayudó a marcar el comienzo de un nuevo
+          nivel de realismo en el medio. Los 4 Fantásticos fue el primer equipo de
+          superhéroes creado por el escritor-editor Stan Lee y el artista Jack Kirby,
+          quienes desarrollaron un enfoque de colaboración al crear cómics con este
+          título que usarían a partir de entonces.
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h1> Esto es un titulaco </h1>
+          <p>
+          Los 4 Fantásticos es un equipo ficticio de superhéroes que aparece en cómics
+          estadounidenses publicados por Marvel Comics. El grupo debutó en The Fantastic
+          Four #1 (Noviembre de 1961), el cual ayudó a marcar el comienzo de un nuevo
+          nivel de realismo en el medio. Los 4 Fantásticos fue el primer equipo de
+          superhéroes creado por el escritor-editor Stan Lee y el artista Jack Kirby,
+          quienes desarrollaron un enfoque de colaboración al crear cómics con este
+          título que usarían a partir de entonces.
+          </p>
         </div>
       </div>
     </div>
-    <br>
-  </body>
+
 
 
       <!-- FOOTER -->
