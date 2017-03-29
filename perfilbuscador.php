@@ -19,6 +19,7 @@
     <!-- Estilos custom -->
     <link href="css/estilos.css" rel="stylesheet">
     <link href="css//font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="stylesheet" type="text/css" href="">
   </head>
 
   <body>
@@ -89,19 +90,19 @@
              	<div class = "row">
 		            <label class="col-xs-6 col-md-4 control-label text-left" for="correo">Email:</label>
 		            <p class="col-xs-6 col-md-8 control-label text-left" for="correo">petanca@petanca.com</p>
-			    </div>
+			        </div>
 
-			    <div class = "row">
-	                <label class="col-xs-6 col-md-4 control-label text-left" for="nombre">Nombre:</label>
-		            <p class="con-xs-6 col-md-8 control-label text-left" for="nombre">Alfredo</p>
-			    </div>
+    			    <div class = "row">
+    	                <label class="col-xs-6 col-md-4 control-label text-left" for="nombre">Nombre:</label>
+    		            <p class="con-xs-6 col-md-8 control-label text-left" for="nombre">Alfredo</p>
+    			    </div>
 
-			    <div class = "row">
-	                <label class="col-xs-6 col-md-4 control-label text-left" for="apellidos">Apellidos:</label>
-		            <p class="con-xs-6 col-md-8 control-label text-left" for="apellidos">Perales Gutiérrez</p> 
-			    </div>
+    			    <div class = "row">
+    	                <label class="col-xs-6 col-md-4 control-label text-left" for="apellidos">Apellidos:</label>
+    		            <p class="con-xs-6 col-md-8 control-label text-left" for="apellidos">Perales Gutiérrez</p> 
+    			    </div>
 
-			    <div class = "row">
+			        <div class = "row">
 	                <label class="col-xs-4 control-label text-left" for="sexo">Sexo:</label>
 	                <div class="col-xs-8"> 
 	                  <label class="radio-inline" for="radios-0">
@@ -109,87 +110,107 @@
 	                  <label class="radio-inline" for="radios-1">
 	                    <input type="radio" name="radios" id="sMujer" value="2">Mujer</label>
 	                </div>
-			    </div>
+    			    </div>
+    			    <div class = "row">
+    	                <label class="col-xs-6 col-md-4 control-label text-left" for="fecnac">Fecha de Nacimiento:</label>
+    		            <p class="con-xs-6 col-md-8 control-label text-left" for="fecnac">24/09/1981</p> 
+    			    </div>
 
-			    <div class = "row">
-	                <label class="col-xs-6 col-md-4 control-label text-left" for="fecnac">Fecha de Nacimiento:</label>
-		            <p class="con-xs-6 col-md-8 control-label text-left" for="fecnac">24/09/1981</p> 
-			    </div>
+    			    <div class = "row">
+    	                <label class="col-xs-6 col-md-4 control-label text-left" for="telf">Teléfono:</label>
+    		            <p class="con-xs-6 col-md-8 control-label text-left" for="telf">678996332</p> 
+    			    </div>
 
-			    <div class = "row">
-	                <label class="col-xs-6 col-md-4 control-label text-left" for="telf">Teléfono:</label>
-		            <p class="con-xs-6 col-md-8 control-label text-left" for="telf">678996332</p> 
-			    </div>
+    			    <div class = "row">
+    	                <label class="col-xs-6 col-md-4 control-label text-left" for="prov">Provincia:</label>
+    		            <p class="con-xs-6 col-md-8 control-label text-left" for="prov">Alicante</p> 
+    			    </div>
 
-			    <div class = "row">
-	                <label class="col-xs-6 col-md-4 control-label text-left" for="prov">Provincia:</label>
-		            <p class="con-xs-6 col-md-8 control-label text-left" for="prov">Alicante</p> 
-			    </div>
+    			    <div class = "row">
+    	                <label class="col-xs-6 col-md-4 control-label text-left" for="loc">Localidad:</label>
+    		            <p class="con-xs-6 col-md-8 control-label text-left" for="loc">Benidorm</p> 
+    			    </div>
 
-			    <div class = "row">
-	                <label class="col-xs-6 col-md-4 control-label text-left" for="loc">Localidad:</label>
-		            <p class="con-xs-6 col-md-8 control-label text-left" for="loc">Benidorm</p> 
-			    </div>
-
-			    <div class = "row">
-	                <label class="col-xs-6 col-md-4 control-label text-left" for="dir">Dirección:</label>
-		            <p class="con-xs-6 col-md-8 control-label text-left" for="dir">C/ Zarrapastroso Nº 13</p> 
-			    </div>
+    			    <div class = "row">
+    	                <label class="col-xs-6 col-md-4 control-label text-left" for="dir">Dirección:</label>
+    		            <p class="con-xs-6 col-md-8 control-label text-left" for="dir">C/ Zarrapastroso Nº 13</p> 
+    			    </div>
         	</div>
         	<!-- Segunda gran columna-->
         	<div class ="col-md-4">
         		<div class = "row text-left">
-					<label>
-						<h3>Actividades y suscripciones</h3>
-					</label>
-				</div>
+    					<label>
+    						<h3>Actividades y suscripciones</h3>
+    					</label>
+				    </div>
 				<div class="row col-xs-12">
 					<label>
 						<h3>Mis actividades</h3>
 					</label>
 				</div>
 				<div class="row col-xs-12">
-					<div class="container col-xs-12 col-sm-12">
-		                <ul class="nav nav-tabs">
-		                  <li class="active"><a href="#">Actividad</a></li>
-		                  <li><a href="#">Actividad 1</a></li>
-		                  <li><a href="#">Actividad 1</a></li>
-		                  <li><a href="#">Actividad 3</a></li>
-	                	</ul>
-              		</div>
+          <div class="panel with-nav-tabs panel-default">
+                <div class="panel-heading">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab1default" data-toggle="tab">Default 1</a></li>
+                            <li><a href="#tab2default" data-toggle="tab">Default 2</a></li>
+                            <li><a href="#tab3default" data-toggle="tab">Default 3</a></li>
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#tab4default" data-toggle="tab">Default 4</a></li>
+                                    <li><a href="#tab5default" data-toggle="tab">Default 5</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="tab1default">Default 1</div>
+                        <div class="tab-pane fade" id="tab2default">Default 2</div>
+                        <div class="tab-pane fade" id="tab3default">Default 3</div>
+                        <div class="tab-pane fade" id="tab4default">Default 4</div>
+                        <div class="tab-pane fade" id="tab5default">Default 5</div>
+                    </div>
+                </div>
+            </div>
 				</div>
 				<div class="row col-xs-12">
 					<h3 href="" class="btn">Mis suscripciones</h3>
 				</div>
 				<div class="row col-xs-12">
 					<label>
-						<h3>Mi calendario</h3>
+						<h3>Actividades para la próxima semana</h3>
 					</label>
 				</div>
 				<div class="row col-xs-12">
-					<!-- Aquí iría el calendario to guapo-->
+					<img src="img/calendario.jpg" width="300px" height="300px"></img>
 				</div>
-				<div class="row col-xs-12">
-					<h3 href="" class="btn">Sincronizar calendario</h3>
-				</div>
-
         	</div>
         	<div class ="col-md-4">
         		<div class = "row text-left">
-					<label>
-						<h3>Foto de perfil y aficiones</h3>
-					</label>
-				</div>
-				<div class = "row text-left">
-					<img src="img/maleavatar.jpg"></img>
-				</div>
-				<div class= "row text-left">
-					<div>
-						
-					</div>
-				</div>
+    					<label>
+    						<h3>Foto de perfil y aficiones</h3>
+    					</label>
+				    </div>
+    				<div class = "row text-left">
+    					<img src="img/maleavatar.jpg" width="300px" height="300px"></img>
+    				</div>
+    				<div class= "row text-left">
+    					<div>
+                <label>
+                  <p>Petanca, Furbo, Samba</p>
+                </label>
+					   </div>
+				    </div>
         	</div>
-
+        </div>
+                <!-- Row con los botones-->
+        <div class= "row col-xs-12">
+          <div class="span4 offset4 text-center">
+            <button class="btn btn-primary">Editar Perfil</button>
+            <button class="btn btn-default">Volver</button>
+          </div>
         </div>
       </div>
         <br>
@@ -287,5 +308,6 @@
     <script src="js/jquery.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="js/bootstrap.js"></script>
+    <script src="js/calendario.js"></script>
   </body>
 </html>
