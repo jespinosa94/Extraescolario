@@ -9,49 +9,25 @@ body {
   padding-bottom: 20px;
 }
 
-header {
-  position: relative;
-  z-index: 999;
-  margin-bottom: 25px;
-}
-
-.headerPrincipal {
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
-  height: 95px;
-}
-
-.navbar-default {
-  background-color: transparent;
-  border: none;
-  border-radius: 0;
-  margin-bottom: 0;
-  position: relative;
-}
-
 .navbar-brand {
-  float:left;
-  width: 235px;
-  height: 95px;
-  background-color: transparent;
-  padding: 24px 15px 24px 15px;
-}
-
-.headerPrincipal .navbar-brand {
   background-image: url("http://i67.tinypic.com/2e2iays.jpg");
   background-position: 0px 19px;
   background-repeat: no-repeat;
-  background-size: cover;
   background-size: 203px 54px;
-  height: 95px;
+  height: 80px;
+  width: 210px;
 }
 
-.navbar-nav > li > a {
-  margin: 38px 15px 29px 15px;
+.navbar {
+  margin-bottom: 25px;
 }
-
-#registroOFR > li > a {
-  margin: 38px 15px 29px 50%;
+/*Se corresponde con el div que lleva "Oferta tus propias actividades"*/
+#header1 {
+  margin-top: 45px;
+}
+/*Se corresponde con el div que lleva los botones de inicio de sesión*/
+#header2 {
+  margin-top: 20px;
 }
 
 /*=====================================================FOOTER=================================================*/
