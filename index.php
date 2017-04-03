@@ -1,3 +1,20 @@
+<?php
+session_start();
+
+$logeado = isset($_SESSION['usuario']);
+ ?>
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="es"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -24,43 +41,52 @@
   <body>
     <div class="principal">
       <!-- Header de la página -->
-      <header>
-        <nav class="navbar navbar-default">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Barra de navegación</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="index.php"></a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-              <div class="row">
-                <div class="col-md-3">
-                  <div id="header1" class="pull-right">
-                    <a href="#">Oferta tus propias actividades</a>
+      <?php
+      if ($logeado) {
+        require 'header.registered.php';
+      } else {
+        ?>
+        <header>
+          <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="sr-only">Barra de navegación</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.php"></a>
+              </div>
+              <div id="navbar" class="navbar-collapse collapse">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div id="header1" class="pull-right">
+                      <a href="#">Oferta tus propias actividades</a>
+                    </div>
                   </div>
-                </div>
-                <div id="header2" class="col-md-offset-5 col-md-2 pull-right">
-                  <ul class="nav navbar-nav">
-                    <li class="active dropdown singleDrop">
-                      <a href="index.html">Inicio</a>
-                    </li>
-                    <li class="dropdown singleDrop">
-                      <a href="#">Ayuda</a>
-                    </li>
-                    <li class="dropdown singleDrop">
-                      <a href="login.php">Iniciar sesión</a>
-                    </li>
-                  </ul>
+                  <div id="header2" class="col-md-offset-5 col-md-2 pull-right">
+                    <ul class="nav navbar-nav">
+                      <li class="active dropdown singleDrop">
+                        <a href="index.html">Inicio</a>
+                      </li>
+                      <li class="dropdown singleDrop">
+                        <a href="#">Ayuda</a>
+                      </li>
+                      <li class="dropdown singleDrop">
+                        <a href="login.php">Iniciar sesión</a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </nav>
-      </header>
+          </nav>
+        </header>
+        <?php
+      }
+       ?>
+
 
       <!--Cuerpo -->
       <div id="cuerpo">
