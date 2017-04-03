@@ -1,4 +1,29 @@
 <!DOCTYPE html>
+<?php
+
+  /* Incluimos la conexión predefinida*/
+  require_once ("conexion.php");
+
+  /*HACEMOS UNA LLAMADA A LA BASE DE DATOS PARA EXTRAER INFORMACION*/
+          
+    $conUser = "SELECT OFR.empresa, nick, email, contrasenya, telefono, foto, PROVINCIA.nombre as pNombre,LOCALIDAD.nombre as lNombre, OFR.direccion, OFR.nif from USR,OFR,LOCALIDAD,PROVINCIA where USR.cod=17 AND USR.cod=OFR.cod AND USR.rLocalidad=LOCALIDAD.cod AND PROVINCIA.cod=LOCALIDAD.rProvincia";
+    $resultado = mysqli_query($conexion,$conUser);
+
+    while ($datosUsuario = mysqli_fetch_array($resultado)) {
+      $empresaUser = $datosUsuario["empresa"];
+      $nickUser = $datosUsuario["nick"];
+      $emailUser = $datosUsuario["email"];
+      $passUser = $datosUsuario["contrasenya"];
+      $telefUser = $datosUsuario["telefono"];
+      $fotoUser= $datosUsuario["foto"];
+      $provinciaUser = $datosUsuario["pNombre"];
+      $localidadUser = $datosUsuario["lNombre"];
+      $direccionUser = $datosUsuario["direccion"];
+      $nifUser = $datosUsuario["nif"];
+    }
+?>
+
+
 <html lang="es"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -66,68 +91,68 @@
       <!--Cuerpo -->
       <div id="perfilbuscador" class = "container-fluid">
         <div class = "row text-center">
-          <h2 class="col-xs-12"> Página personal de PetancaSA </h2>
+          <h2 class="col-xs-12"> Página personal de <?php echo $nickUser; ?> </h2>
         </div>
         <!--Row tocho que tiene las 3 columnas dentro -->
         <div class= "row">
-        	<!--Primera gran columna -->
-        	<div class ="col-md-4">
-        		<div class = "col-xs-12 row text-left">
-					<label>
-						<h3>Datos personales</h3>
-					</label>
-        		</div>
-        		<!--Nick-->
+          <!--Primera gran columna -->
+          <div class ="col-md-4">
+            <div class = "col-xs-12 row text-left">
+          <label>
+            <h3>Datos personales</h3>
+          </label>
+            </div>
+            <!--Nick-->
                 <div class= "row">
                   <label class="col-xs-6 col-md-4 control-label text-left" for="nick">Nombre de la empresa:</label>
-                <p class="con-xs-6 col-md-8 control-label text-left" type="password" for="pass">PetancaSA</p>
+                <p class="con-xs-6 col-md-8 control-label text-left" type="password" for="pass"><?php echo $empresaUser; ?></p>
               </div>
-        		  <div class= "row">
-	                <label class="col-xs-6 col-md-4 control-label text-left" for="nick">Nick:</label>
-		            <p class="con-xs-6 col-md-8 control-label text-left" type="password" for="pass">PetancaSA</p>
-             	</div>
+              <div class= "row">
+                  <label class="col-xs-6 col-md-4 control-label text-left" for="nick">Nick:</label>
+                <p class="con-xs-6 col-md-8 control-label text-left" type="password" for="pass"><?php echo $nickUser; ?></p>
+              </div>
               <div class = "row">
                 <label class="col-xs-6 col-md-4 control-label text-left" for="correo">Email:</label>
-                <p class="col-xs-6 col-md-8 control-label text-left" for="correo">petancasa@petancasa.com</p>
+                <p class="col-xs-6 col-md-8 control-label text-left" for="correo"><?php echo $emailUser; ?></p>
               </div>
-             	<div class ="row">
-	                <label class="col-xs-6 col-md-4 control-label text-left" for="cont">Contraseña:</label>
-		            <p class="con-xs-6 col-md-8 control-label text-left" for="cont">12345</p>
-             	</div>
-    			    <div class = "row">
-    	                <label class="col-xs-6 col-md-4 control-label text-left" for="telf">Teléfono:</label>
-    		            <p class="con-xs-6 col-md-8 control-label text-left" for="telf">678996332</p> 
-    			    </div>
-    			    <div class = "row">
-    	                <label class="col-xs-6 col-md-4 control-label text-left" for="prov">Provincia:</label>
-    		            <p class="con-xs-6 col-md-8 control-label text-left" for="prov">Alicante</p> 
-    			    </div>
-    			    <div class = "row">
-    	                <label class="col-xs-6 col-md-4 control-label text-left" for="loc">Localidad:</label>
-    		            <p class="con-xs-6 col-md-8 control-label text-left" for="loc">Benidorm</p> 
-    			    </div>
-    			    <div class = "row">
-    	                <label class="col-xs-6 col-md-4 control-label text-left" for="dir">Dirección:</label>
-    		            <p class="con-xs-6 col-md-8 control-label text-left" for="dir">C/ Zarrapastroso Nº 13</p> 
-    			    </div>
+              <div class ="row">
+                  <label class="col-xs-6 col-md-4 control-label text-left" for="cont">Contraseña:</label>
+                <p class="con-xs-6 col-md-8 control-label text-left" for="cont"><?php echo $passUser; ?></p>
+              </div>
+              <div class = "row">
+                      <label class="col-xs-6 col-md-4 control-label text-left" for="telf">Teléfono:</label>
+                    <p class="con-xs-6 col-md-8 control-label text-left" for="telf"><?php echo $telefUser; ?></p> 
+              </div>
+              <div class = "row">
+                      <label class="col-xs-6 col-md-4 control-label text-left" for="prov">Provincia:</label>
+                    <p class="con-xs-6 col-md-8 control-label text-left" for="prov"><?php echo $provinciaUser; ?></p> 
+              </div>
+              <div class = "row">
+                      <label class="col-xs-6 col-md-4 control-label text-left" for="loc">Localidad:</label>
+                    <p class="con-xs-6 col-md-8 control-label text-left" for="loc"><?php echo $localidadUser; ?></p> 
+              </div>
+              <div class = "row">
+                      <label class="col-xs-6 col-md-4 control-label text-left" for="dir">Dirección:</label>
+                    <p class="con-xs-6 col-md-8 control-label text-left" for="dir"><?php echo $direccionUser; ?></p> 
+              </div>
               <div class = "row">
                       <label class="col-xs-6 col-md-4 control-label text-left" for="dir">NIF:</label>
-                    <p class="con-xs-6 col-md-8 control-label text-left" for="dir">B96130521</p> 
+                    <p class="con-xs-6 col-md-8 control-label text-left" for="dir"><?php echo $nifUser; ?></p> 
               </div>
-        	</div>
-        	<!-- Segunda gran columna-->
-        	<div class ="col-md-4">
-        		<div class = "row text-left">
-    					<label>
-    						<h3>Actividades</h3>
-    					</label>
-				    </div>
+          </div>
+          <!-- Segunda gran columna-->
+          <div class ="col-md-4">
+            <div class = "row text-left">
+              <label>
+                <h3>Actividades</h3>
+              </label>
+            </div>
             <div class="row col-xs-12">
               <label>
                 <h3>Publicadas</h3>
               </label>
             </div>
-    				<div class="row col-xs-12">
+            <div class="row col-xs-12">
               <div class="panel with-nav-tabs panel-default">
                     <div class="panel-heading">
                             <ul class="nav nav-tabs">
@@ -153,7 +178,7 @@
                         </div>
                     </div>
               </div>
-				    </div>
+            </div>
             <div class="row col-xs-12">
               <label>
                 <h3>Pendientes de verificación</h3>
@@ -186,18 +211,18 @@
                     </div>
               </div>
             </div>
-        	</div>
-        	<div class ="col-md-4">
-        		<div class = "row text-left">
-    					<label>
-    						<h3>Foto de perfil</h3>
-    					</label>
-				    </div>
-    				<div class = "row text-left">
-    					<img src="img/maleavatar.jpg" width="300px" height="300px"></img>
-    				</div>
-				    </div>
-        	</div>
+          </div>
+          <div class ="col-md-4">
+            <div class = "row text-left">
+              <label>
+                <h3>Foto de perfil</h3>
+              </label>
+            </div>
+            <div class = "row text-left">
+              <img src="img/maleavatar.jpg" width="300px" height="300px"></img>
+            </div>
+            </div>
+          </div>
         </div>
                 <!-- Row con los botones-->
         <div class= "row col-xs-12">
