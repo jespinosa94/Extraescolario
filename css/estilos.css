@@ -166,3 +166,17 @@ body {
 .buscadorArriba {
   margin-bottom: 30px;
 }
+
+.buscadorArriba .label.radio-inline .checkbox {
+  padding-left: 0px;
+}
+
+.label-header {
+  color: black;
+  font-size: 12px;
+  padding-left: 15px;
+}
+
+#miCuenta {
+  padding-top: 0px;
+}

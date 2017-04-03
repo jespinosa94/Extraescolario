@@ -38,7 +38,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <div class="row">
-                <div id="header2" class="col-md-offset-5 col-md-2 ">
+                <div id="header2" class="col-md-offset-5 col-md-2 pull-right">
                   <ul class="nav navbar-nav">
                     <li class="active dropdown singleDrop">
                       <a href="index.html">Inicio</a>
@@ -46,8 +46,14 @@
                     <li class="dropdown singleDrop">
                       <a href="#">Ayuda</a>
                     </li>
-                    <li class="dropdown singleDrop">
-                      <a href="#">Iniciar sesión</a>
+                    <li class="dropdown">
+                      <span class="label-header">Hola Jorge</span>
+                      <a href="#" id="miCuenta" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Mi cuenta <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">Editar perfil</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Cerrar sesión</a></li>
+                      </ul>
                     </li>
                   </ul>
                 </div>
@@ -69,54 +75,42 @@
                 <h4><label for="tag">¿Cuándo estás libre?</label></h4>
                 <div class="col-md-5">
                   <div class="col-md-4">
-                    <label for="" class="radio-inline">
-                      <input type="radio" name="semana1" id="lunes" value="lunes"> lunes
-                    </label>
+
+                    <input type="checkbox" name="semana1" id="lunes" value="lunes"> lunes
+
                     <input type="text" class="form-control" id="inicioLunes" placeholder="inicio">
                     <input type="text" class="form-control" id="finLunes" placeholder="fin">
                   </div>
                   <div class="col-md-4">
-                    <label for="" class="radio-inline">
-                      <input type="radio" name="semana2" id="martes" value="martes"> martes
-                    </label>
+                    <input type="checkbox" name="semana2" id="martes" value="martes"> martes
                     <input type="text" class="form-control" id="inicioMartes" placeholder="inicio">
                     <input type="text" class="form-control" id="finMartes" placeholder="fin">
                   </div>
                   <div class="col-md-4">
-                    <label for="" class="radio-inline">
-                      <input type="radio" name="semana3" id="miercoles" value="miercoles"> miercoles
-                    </label>
+                    <input type="checkbox" name="semana3" id="miercoles" value="miercoles"> miercoles
                     <input type="text" class="form-control" id="inicioMiercoles" placeholder="inicio">
                     <input type="text" class="form-control" id="finMiercoles" placeholder="fin">
                   </div>
                 </div>
                 <div class="col-md-5">
                   <div class="col-md-4">
-                    <label for="" class="radio-inline">
-                      <input type="radio" name="semana4" id="jueves" value="jueves"> jueves
-                    </label>
+                    <input type="checkbox" name="semana4" id="jueves" value="jueves"> jueves
                     <input type="text" class="form-control" id="inicioJueves" placeholder="inicio">
                     <input type="text" class="form-control" id="finJueves" placeholder="fin">
                   </div>
                   <div class="col-md-4">
-                    <label for="" class="radio-inline">
-                      <input type="radio" name="semana5" id="viernes" value="viernes"> viernes
-                    </label>
+                    <input type="checkbox" name="semana5" id="viernes" value="viernes"> viernes
                     <input type="text" class="form-control" id="inicioViernes" placeholder="inicio">
                     <input type="text" class="form-control" id="finViernes" placeholder="fin">
                   </div>
                   <div class="col-md-4">
-                    <label for="" class="radio-inline">
-                      <input type="radio" name="semana6" id="sábado" value="sábado"> sábado
-                    </label>
+                    <input type="checkbox" name="semana6" id="sábado" value="sábado"> sábado
                     <input type="text" class="form-control" id="inicioSabado" placeholder="inicio">
                     <input type="text" class="form-control" id="finSabado" placeholder="fin">
                   </div>
                 </div>
                 <div class="col-md-2">
-                  <label for="" class="radio-inline">
-                    <input type="radio" name="semana7" id="domingo" value="domingo"> domingo
-                  </label>
+                  <input type="checkbox" name="semana7" id="domingo" value="domingo"> domingo
                   <input type="text" class="form-control" id="inicioDomingo" placeholder="inicio">
                   <input type="text" class="form-control" id="finDomingo" placeholder="fin">
                 </div>
@@ -132,7 +126,7 @@
                 <input class="form-control input-lg" type="text" id="tag" placeholder="fútbol, inglés, natación...">
               </div>
               <div class="col-md-4">
-                <button id="botonBuscar" type="submit" class="btn btn-primary btn-lg btn-block" name="button">Buscar</button>
+                <button id="botonBuscar" type="submit" class="btn btn-primary btn-lg btn-block" name="button"><i class="fa fa-search" aria-hidden="true"></i> Buscar</button>
               </div>
             </div>
           </form>
