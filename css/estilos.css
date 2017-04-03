@@ -156,3 +156,27 @@ body {
 #login .checkbox label {
   margin-top: 7px;
 }
+
+/*=====================================================Index=================================================*/
+#botonBuscar {
+  margin-top: 43px;
+  padding-left: 0px;
+}
+
+.buscadorArriba {
+  margin-bottom: 30px;
+}
+
+.buscadorArriba .label.radio-inline .checkbox {
+  padding-left: 0px;
+}
+
+.label-header {
+  color: black;
+  font-size: 12px;
+  padding-left: 15px;
+}
+
+#miCuenta {
+  padding-top: 0px;
+}

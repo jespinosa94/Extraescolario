@@ -118,7 +118,7 @@
             <div class="row">
               <div class="col-sm-3 col-xs-12">
                 <div class="footerContent">
-                  <a class="footer-logo" href="index.html">
+                  <a class="footer-logo" href="index.php">
                     <img src="http://i66.tinypic.com/103ap8k.jpg" alt="Extraescolario" width="177" height="47" />
                   </a>
                   <p>
