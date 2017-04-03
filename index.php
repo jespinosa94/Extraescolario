@@ -69,26 +69,76 @@
             <h1><span style="color:black">Elige la actividad ideal para ti entre miles de opciones</span></h1>
           </div>
           <form class="row well" action="index.html" method="post">
-            <div class="col-md-4">
-              <h4><label for="localizacion">Dónde</label></h4>
-              <input class="form-control input-lg" type="text" id="localizacion" placeholder="ciudad, provincia">
-            </div>
-            <div class="col-md-4">
-              <h4><label for="tag">Actividad</label></h4>
-              <input class="form-control input-lg" type="text" id="tag" placeholder="fútbol, inglés, natación...">
-            </div>
-            <div class="col-md-4">
-                <div class="col-md-9">
-                  <h4><label for="franjaHoraria">¿Cuándo estás libre?</label></h4>
-                  <select id="franjaHoraria" class="form-control input-lg">
-                    <option value="">Todo el día</option>
-                    <option value="">Por la mañana</option>
-                    <option value="">Por la tarde</option>
-                  </select>
+            <div class="row buscadorArriba">
+              <div class="col-md-12">
+                <h4><label for="tag">¿Cuándo estás libre?</label></h4>
+                <div class="col-md-5">
+                  <div class="col-md-4">
+                    <label for="" class="radio-inline">
+                      <input type="radio" name="semana1" id="lunes" value="lunes"> lunes
+                    </label>
+                    <input type="text" class="form-control" id="inicioLunes" placeholder="inicio">
+                    <input type="text" class="form-control" id="finLunes" placeholder="fin">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="" class="radio-inline">
+                      <input type="radio" name="semana2" id="martes" value="martes"> martes
+                    </label>
+                    <input type="text" class="form-control" id="inicioMartes" placeholder="inicio">
+                    <input type="text" class="form-control" id="finMartes" placeholder="fin">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="" class="radio-inline">
+                      <input type="radio" name="semana3" id="miercoles" value="miercoles"> miercoles
+                    </label>
+                    <input type="text" class="form-control" id="inicioMiercoles" placeholder="inicio">
+                    <input type="text" class="form-control" id="finMiercoles" placeholder="fin">
+                  </div>
                 </div>
-                <div id="botonBuscar" class="col-md-3">
-                  <button type="submit" class="btn btn-primary btn-lg">Buscar</button>
+                <div class="col-md-5">
+                  <div class="col-md-4">
+                    <label for="" class="radio-inline">
+                      <input type="radio" name="semana4" id="jueves" value="jueves"> jueves
+                    </label>
+                    <input type="text" class="form-control" id="inicioJueves" placeholder="inicio">
+                    <input type="text" class="form-control" id="finJueves" placeholder="fin">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="" class="radio-inline">
+                      <input type="radio" name="semana5" id="viernes" value="viernes"> viernes
+                    </label>
+                    <input type="text" class="form-control" id="inicioViernes" placeholder="inicio">
+                    <input type="text" class="form-control" id="finViernes" placeholder="fin">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="" class="radio-inline">
+                      <input type="radio" name="semana6" id="sábado" value="sábado"> sábado
+                    </label>
+                    <input type="text" class="form-control" id="inicioSabado" placeholder="inicio">
+                    <input type="text" class="form-control" id="finSabado" placeholder="fin">
+                  </div>
                 </div>
+                <div class="col-md-2">
+                  <label for="" class="radio-inline">
+                    <input type="radio" name="semana7" id="domingo" value="domingo"> domingo
+                  </label>
+                  <input type="text" class="form-control" id="inicioDomingo" placeholder="inicio">
+                  <input type="text" class="form-control" id="finDomingo" placeholder="fin">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <h4><label for="localizacion">Dónde</label></h4>
+                <input class="form-control input-lg" type="text" id="localizacion" placeholder="ciudad, provincia">
+              </div>
+              <div class="col-md-4 buscadorArriba">
+                <h4><label for="tag">Actividad</label></h4>
+                <input class="form-control input-lg" type="text" id="tag" placeholder="fútbol, inglés, natación...">
+              </div>
+              <div class="col-md-4">
+                <button id="botonBuscar" type="submit" class="btn btn-primary btn-lg btn-block" name="button">Buscar</button>
+              </div>
             </div>
           </form>
         </div>
