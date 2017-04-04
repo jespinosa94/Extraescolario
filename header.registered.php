@@ -42,7 +42,15 @@
                       <!-- <span class="label-header">Hola Jorge </span> -->
                       <a href="#" id="miCuenta" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Mi cuenta <span class="caret"></span></a>
                       <ul class="dropdown-menu">
-                        <li><a href="#">Editar perfil</a></li>
+                        <?php
+                        $linkPerfil = '';
+                        if ($esOFR) {
+                          $linkPerfil = 'perfilofertador.php';
+                        } else {
+                          $linkPerfil = 'perfilbuscador.php';
+                        }
+                         ?>
+                        <li><a href=<?php echo $linkPerfil ?>>Editar perfil</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="cerrarSesion.php">Cerrar sesión</a></li>
                       </ul>

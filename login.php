@@ -1,8 +1,7 @@
 <?php
 session_start();
 require 'funciones.php';
-compruebaSesionIniciada(); //si la sesión ya está iniciada, automáticamente va al index
-
+//compruebaSesionIniciada();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $email = filter_var(strtolower($_POST['email']), FILTER_SANITIZE_STRING); //El filter comprueba que no tenga caracteres raros tipo <h1></h1>
   $password = $_POST['password'];
@@ -14,10 +13,10 @@ $contrasenya = "WG0JJZUI";
   try {
     $conexion = new PDO('mysql:host=bbdd.dlsi.ua.es;dbname=gi_extraescol', $user, $contrasenya);
   } catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();;
+    echo "Error: " . $e->getMessage();
   }
 
-    $statement = $conexion->prepare('SELECT nick , email, contrasenya FROM USR where email = :email and contrasenya = :password');
+    $statement = $conexion->prepare('SELECT id, nick FROM BUS where email = :email and contrasenya = :password');
     $statement->execute(array(
       ':email' => $email,
       ':password' => $password
@@ -26,8 +25,9 @@ $contrasenya = "WG0JJZUI";
     $resultado = $statement->fetch();
     //var_dump($resultado);
     if ($resultado != false) {
+
       $_SESSION['usuario'] = $resultado[0];  //A la sesión solo le doy en nombre de la variable nick que es lo que necesito para mostrar en index
-                                          //Se podría asignar el id de la base de datos para despues acceder cuando buenamente se quiera, olé!
+                  echo usuario                        //Se podría asignar el id de la base de datos para despues acceder cuando buenamente se quiera, olé!
       header('Location: index.php');
     } else {
       $errores .= '<li>Datos incorrectos</li>';

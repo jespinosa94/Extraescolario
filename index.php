@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 $logeado = isset($_SESSION['usuario']);
  ?>
 <!DOCTYPE html>
