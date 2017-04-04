@@ -23,41 +23,41 @@
 
   <body>
     <div class="principal">
-
       <!-- Header de la página -->
       <header>
-        <nav class="navbar navbar-default navbar-main headerPrincipal" role="navigation">
+        <nav class="navbar navbar-default">
           <div class="container-fluid">
-
-            <!-- Logo y menu minimizado -->
             <div class="navbar-header">
-              <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar1">
-                <span class="sr-only">Menu</span>
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Barra de navegación</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="index.html"></a>
+              <a class="navbar-brand" href="#"></a>
             </div>
-
-            <div class="collapse navbar-collapse" id="navbar1">
-              <ul class="nav navbar-nav" id="registroOFR">
-                <li class="dropdown singleDrop">
-                  <a href="#">Oferta tus propias actividades</a>
-                </li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li class="active dropdown singleDrop">
-                  <a href="index.html">Inicio</a>
-                </li>
-                <li class="dropdown singleDrop">
-                  <a href="#">Ayuda</a>
-                </li>
-                <li class="dropdown singleDrop">
-                  <a href="#">Iniciar sesión</a>
-                </li>
-              </ul>
-            </div> <!-- Fin collapse navbar1-->
+            <div id="navbar" class="navbar-collapse collapse">
+              <div class="row">
+                <div class="col-md-3">
+                  <div id="header1" class="pull-right">
+                    <a href="#">Oferta tus propias actividades</a>
+                  </div>
+                </div>
+                <div id="header2" class="col-md-offset-5 col-md-2 pull-right">
+                  <ul class="nav navbar-nav">
+                    <li class="active dropdown singleDrop">
+                      <a href="index.html">Inicio</a>
+                    </li>
+                    <li class="dropdown singleDrop">
+                      <a href="#">Ayuda</a>
+                    </li>
+                    <li class="dropdown singleDrop">
+                      <a href="#">Iniciar sesión</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </nav>
       </header>
@@ -118,7 +118,7 @@
             <div class="row">
               <div class="col-sm-3 col-xs-12">
                 <div class="footerContent">
-                  <a class="footer-logo" href="index.html">
+                  <a class="footer-logo" href="index.php">
                     <img src="http://i66.tinypic.com/103ap8k.jpg" alt="Extraescolario" width="177" height="47" />
                   </a>
                   <p>

@@ -1,3 +1,45 @@
+<?php
+session_start();
+require 'funciones.php';
+compruebaSesionIniciada(); //si la sesión ya está iniciada, automáticamente va al index
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $email = filter_var(strtolower($_POST['email']), FILTER_SANITIZE_STRING); //El filter comprueba que no tenga caracteres raros tipo <h1></h1>
+  $password = $_POST['password'];
+    /**Hay que hashear la password**/
+  $errores = '';
+
+$user = "gi_jec21";
+$contrasenya = "WG0JJZUI";
+  try {
+    $conexion = new PDO('mysql:host=bbdd.dlsi.ua.es;dbname=gi_extraescol', $user, $contrasenya);
+  } catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();;
+  }
+
+    $statement = $conexion->prepare('SELECT nick , email, contrasenya FROM USR where email = :email and contrasenya = :password');
+    $statement->execute(array(
+      ':email' => $email,
+      ':password' => $password
+    ));
+
+    $resultado = $statement->fetch();
+    //var_dump($resultado);
+    if ($resultado != false) {
+      $_SESSION['usuario'] = $resultado[0];  //A la sesión solo le doy en nombre de la variable nick que es lo que necesito para mostrar en index
+                                          //Se podría asignar el id de la base de datos para despues acceder cuando buenamente se quiera, olé!
+      header('Location: index.php');
+    } else {
+      $errores .= '<li>Datos incorrectos</li>';
+    }
+
+
+
+
+}
+ ?>
+
+
 <!DOCTYPE html>
 <html lang="es"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -31,8 +73,8 @@
       <!--Cuerpo -->
       <div id="login" class="container">
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-          <form class="form-signin" action="index.html" method="post" role="form">
-            <h2 class="logo">Iniciar sesión en tu cuenta Extraescolario</h2>
+          <form class="form-signin" method="post" role="form">
+            <a href="index.php"><h2 class="logo">Iniciar sesión en tu cuenta Extraescolario</h2></a>
             <hr class= "colorgraph">
             <div class="form-group">
               <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email de Extraescolario">
@@ -47,13 +89,24 @@
             <hr class="colorgraph" />
             <div class="row">
               <div class="col-xs-6 col-sm-6 col-md-6">
-                <input type="submit" class="btn btn-lg btn-success btn-block" value="Iniciar sesión" />
+                <button type="submit" class="btn btn-lg btn-success btn-block" name="button">Iniciar sesión</button>
               </div>
               <div class="col-xs-6 col-sm-6 col-md-6">
                 <a href="registroBUS.html" class="btn btn-lg btn-primary btn-block">Crear cuenta gratuita</a>
               </div>
             </div>
           </form>
+          <?php
+          if(!empty($errores)) {
+            ?>
+            <div>
+              <ul>
+                <?php echo $errores; ?>
+              </ul>
+            </div>
+            <?php
+          }
+           ?>
         </div>
       </div>
 
@@ -64,7 +117,7 @@
             <div class="row">
               <div class="col-sm-3 col-xs-12">
                 <div class="footerContent">
-                  <a class="footer-logo" href="index.html">
+                  <a class="footer-logo" href="index.php">
                     <img src="http://i66.tinypic.com/103ap8k.jpg" alt="Extraescolario" width="177" height="47" />
                   </a>
                   <p>
