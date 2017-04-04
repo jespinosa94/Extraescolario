@@ -36,12 +36,15 @@
                       <a href="#">Ayuda</a>
                     </li>
                     <li class="dropdown">
-                      <span class="label-header">Hola Jorge</span>
+                      <?php
+                      echo '<span class="label-header">Hola ' . $_SESSION['usuario'] . '</span>'
+                       ?>
+                      <!-- <span class="label-header">Hola Jorge </span> -->
                       <a href="#" id="miCuenta" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Mi cuenta <span class="caret"></span></a>
                       <ul class="dropdown-menu">
                         <li><a href="#">Editar perfil</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">Cerrar sesión</a></li>
+                        <li><a href="cerrarSesion.php">Cerrar sesión</a></li>
                       </ul>
                     </li>
                   </ul>

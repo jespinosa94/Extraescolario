@@ -3,18 +3,6 @@ session_start();
 
 $logeado = isset($_SESSION['usuario']);
  ?>
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="es"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
