@@ -3,7 +3,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
   line-height: 21px;
-  color: #969696;
+  color: black;
   font-weight: 400;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -179,4 +179,24 @@ header {
 
 #login .checkbox label {
   margin-top: 7px;
+}
+
+
+/*=====================================================FormOFR=================================================*/
+
+
+
+#formOFR h2
+{
+  font-size: 48px;
+  font-style: oblique;
+
+
+}
+
+/*=====================================================Java script=================================================*/
+.imagenperfil {
+  height: 300px;
+  border: 1px solid #000;
+  margin: 10px 5px 0 0;
 }
