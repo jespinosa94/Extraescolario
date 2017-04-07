@@ -3,6 +3,7 @@ session_start();
 require 'funciones.php';
 
 $logeado = isset($_SESSION['cod']);
+$cod = $_SESSION['cod'];
  ?>
 
 
