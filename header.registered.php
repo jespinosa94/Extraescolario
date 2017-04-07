@@ -37,9 +37,9 @@
                     </li>
                     <li class="dropdown">
                       <?php
-                      echo '<span class="label-header">Hola ' . $_SESSION['usuario'] . '</span>'
+                      $nick = obtenerNickUsuario($_SESSION['cod']);
+                      echo '<span class="label-header">Hola ' . $nick . '</span>'
                        ?>
-                      <!-- <span class="label-header">Hola Jorge </span> -->
                       <a href="#" id="miCuenta" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Mi cuenta <span class="caret"></span></a>
                       <ul class="dropdown-menu">
                         <?php

@@ -1,7 +1,8 @@
 <?php
 session_start();
+require 'funciones.php';
 
-$logeado = isset($_SESSION['usuario']);
+$logeado = isset($_SESSION['cod']);
  ?>
 
 
