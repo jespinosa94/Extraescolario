@@ -1,8 +1,11 @@
 <?php
 session_start();
+require 'funciones.php';
 
-$logeado = isset($_SESSION['usuario']);
+$logeado = isset($_SESSION['cod']);
  ?>
+
+
 <!DOCTYPE html>
 <html lang="es"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
