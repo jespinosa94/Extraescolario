@@ -8,8 +8,7 @@
 
   /*HACEMOS UNA LLAMADA A LA BASE DE DATOS PARA EXTRAER INFORMACION*/
           
-    $conUser = "call datosBUS("+ $_SESSION['cod'] +")";
-    echo $conUser;
+    $conUser = "call datosBUS(".$_SESSION['cod'].")";
     $resultado = mysqli_query ($conexion, $conUser);
 
     while ($datosUsuario = mysqli_fetch_array($resultado)) {
@@ -24,7 +23,7 @@
       $nombreUser = $datosUsuario["nombre"];
       $apellidosUser = $datosUsuario["apellidos"];
       $fechaNacUser = $datosUsuario["fechaNacimiento"];
-      $sexoUser = $datosUSuario["sexo"];
+      $sexoUser = $datosUsuario["sexo"];
     }
 ?>
 

@@ -8,8 +8,7 @@
 
   /*HACEMOS UNA LLAMADA A LA BASE DE DATOS PARA EXTRAER INFORMACION*/
           
-    $conUser = "call datosOFR("+ $_SESSION['cod'] +")";
-    echo $conUser;
+    $conUser = "call datosOFR(".$_SESSION['cod'].")";
     $resultado = mysqli_query ($conexion, $conUser);
 
     while ($datosUsuario = mysqli_fetch_array($resultado)) {
