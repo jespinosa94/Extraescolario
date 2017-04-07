@@ -8,15 +8,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     /**Hay que hashear la password**/
   $errores = '';
 
-$user = "gi_jec21";
-$contrasenya = "WG0JJZUI";
+$servidor = "bbdd.dlsi.ua.es";
+$usuario = "gi_jec21";
+$contrasenya = ".gi_jec21.";
+$BD = "gi_extraescol";
+
   try {
     $conexion = new PDO('mysql:host=bbdd.dlsi.ua.es;dbname=gi_extraescol', $user, $contrasenya);
   } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
   }
 
-    $statement = $conexion->prepare('SELECT id, nick FROM BUS where email = :email and contrasenya = :password');
+    $statement = $conexion->prepare('SELECT u.cod, nick , email, contrasenya FROM BUS b join USR u on b.cod=u.cod where email = :email and contrasenya = :password');
     $statement->execute(array(
       ':email' => $email,
       ':password' => $password
@@ -24,18 +27,15 @@ $contrasenya = "WG0JJZUI";
 
     $resultado = $statement->fetch();
     //var_dump($resultado);
+
     if ($resultado != false) {
 
       $_SESSION['usuario'] = $resultado[0];  //A la sesión solo le doy en nombre de la variable nick que es lo que necesito para mostrar en index
-                  echo usuario                        //Se podría asignar el id de la base de datos para despues acceder cuando buenamente se quiera, olé!
+                  echo usuario;                        //Se podría asignar el id de la base de datos para despues acceder cuando buenamente se quiera, olé!
       header('Location: index.php');
     } else {
       $errores .= '<li>Datos incorrectos</li>';
     }
-
-
-
-
 }
  ?>
 
