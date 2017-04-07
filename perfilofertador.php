@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <?php
+  session_start();
 
   /* Incluimos la conexión predefinida*/
   require_once ("conexion.php");
+  require_once ("funciones.php");
 
   /*HACEMOS UNA LLAMADA A LA BASE DE DATOS PARA EXTRAER INFORMACION*/
           
-    $conUser = "SELECT OFR.empresa, nick, email, contrasenya, telefono, foto, PROVINCIA.nombre as pNombre,LOCALIDAD.nombre as lNombre, OFR.direccion, OFR.nif from USR,OFR,LOCALIDAD,PROVINCIA where USR.cod=17 AND USR.cod=OFR.cod AND USR.rLocalidad=LOCALIDAD.cod AND PROVINCIA.cod=LOCALIDAD.rProvincia";
-    $resultado = mysqli_query($conexion,$conUser);
+    $conUser = "call datosOFR("+ $_SESSION['cod'] +")";
+    echo $conUser;
+    $resultado = mysqli_query ($conexion, $conUser);
 
     while ($datosUsuario = mysqli_fetch_array($resultado)) {
       $empresaUser = $datosUsuario["empresa"];
@@ -20,6 +23,7 @@
       $localidadUser = $datosUsuario["lNombre"];
       $direccionUser = $datosUsuario["direccion"];
       $nifUser = $datosUsuario["nif"];
+      // $fotoUser = $datosUsuario["foto"];
     }
 ?>
 
