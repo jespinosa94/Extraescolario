@@ -1,4 +1,36 @@
 <!DOCTYPE html>
+<?php
+  session_start();
+
+  /* Incluimos la conexión predefinida*/
+  require_once ("conexion.php");
+  require_once ("funciones.php");
+
+  /*HACEMOS UNA LLAMADA A LA BASE DE DATOS PARA EXTRAER INFORMACION*/
+          
+    $conUser = "call datosBUS("+ $_SESSION['cod'] +")";
+    echo $conUser;
+    $resultado = mysqli_query ($conexion, $conUser);
+
+    while ($datosUsuario = mysqli_fetch_array($resultado)) {
+      $nickUser = $datosUsuario["nick"];
+      $emailUser = $datosUsuario["email"];
+      $passUser = $datosUsuario["contrasenya"];
+      $telefUser = $datosUsuario["telefono"];
+      $fotoUser= $datosUsuario["foto"];
+      $provinciaUser = $datosUsuario["pNombre"];
+      $localidadUser = $datosUsuario["lNombre"];
+      $direccionUser = $datosUsuario["direccion"];
+      $nombreUser = $datosUsuario["nombre"];
+      $apellidosUser = $datosUsuario["apellidos"];
+      $fechaNacUser = $datosUsuario["fechaNacimiento"];
+      $sexoUser = $datosUSuario["sexo"];
+    }
+?>
+
+
+
+
 <html lang="es"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -66,7 +98,7 @@
       <!--Cuerpo -->
       <div id="perfilbuscador" class = "container-fluid">
         <div class = "row text-center">
-          <h2 class="col-xs-12"> Página personal de AmadorDePetanca </h2>
+          <h2 class="col-xs-12"> Página personal de <?php echo $nickUser; ?> </h2>
         </div>
         <!--Row tocho que tiene las 3 columnas dentro -->
         <div class= "row">
@@ -80,26 +112,26 @@
         		<!--Nick-->
         		<div class= "row">
 	                <label class="col-xs-6 col-md-4 control-label text-left" for="nick">Nick:</label>
-		            <p class="con-xs-6 col-md-8 control-label text-left" type="password" for="pass">AmadorDePetanca</p>
+		            <p class="con-xs-6 col-md-8 control-label text-left" type="password" for="pass"><?php echo $nickUser?></p>
              	</div>
              	<div class ="row">
 	                <label class="col-xs-6 col-md-4 control-label text-left" for="cont">Contraseña:</label>
-		            <p class="con-xs-6 col-md-8 control-label text-left" for="cont">12345</p>
+		            <p class="con-xs-6 col-md-8 control-label text-left" for="cont"><?php echo $passUser?></p>
              	</div>
 
              	<div class = "row">
 		            <label class="col-xs-6 col-md-4 control-label text-left" for="correo">Email:</label>
-		            <p class="col-xs-6 col-md-8 control-label text-left" for="correo">petanca@petanca.com</p>
+		            <p class="col-xs-6 col-md-8 control-label text-left" for="correo"><?php echo $emailUser?></p>
 			        </div>
 
     			    <div class = "row">
     	                <label class="col-xs-6 col-md-4 control-label text-left" for="nombre">Nombre:</label>
-    		            <p class="con-xs-6 col-md-8 control-label text-left" for="nombre">Alfredo</p>
+    		            <p class="con-xs-6 col-md-8 control-label text-left" for="nombre"><?php echo $nombreUser?></p>
     			    </div>
 
     			    <div class = "row">
     	                <label class="col-xs-6 col-md-4 control-label text-left" for="apellidos">Apellidos:</label>
-    		            <p class="con-xs-6 col-md-8 control-label text-left" for="apellidos">Perales Gutiérrez</p> 
+    		            <p class="con-xs-6 col-md-8 control-label text-left" for="apellidos"><?php echo $apellidosUser?></p> 
     			    </div>
 
 			        <div class = "row">
@@ -113,27 +145,27 @@
     			    </div>
     			    <div class = "row">
     	                <label class="col-xs-6 col-md-4 control-label text-left" for="fecnac">Fecha de Nacimiento:</label>
-    		            <p class="con-xs-6 col-md-8 control-label text-left" for="fecnac">24/09/1981</p> 
+    		            <p class="con-xs-6 col-md-8 control-label text-left" for="fecnac"><?php echo $fechaNacUser?></p> 
     			    </div>
 
     			    <div class = "row">
     	                <label class="col-xs-6 col-md-4 control-label text-left" for="telf">Teléfono:</label>
-    		            <p class="con-xs-6 col-md-8 control-label text-left" for="telf">678996332</p> 
+    		            <p class="con-xs-6 col-md-8 control-label text-left" for="telf"><?php echo $telefUser?></p> 
     			    </div>
 
     			    <div class = "row">
     	                <label class="col-xs-6 col-md-4 control-label text-left" for="prov">Provincia:</label>
-    		            <p class="con-xs-6 col-md-8 control-label text-left" for="prov">Alicante</p> 
+    		            <p class="con-xs-6 col-md-8 control-label text-left" for="prov"><?php echo $provinciaUser?></p> 
     			    </div>
 
     			    <div class = "row">
     	                <label class="col-xs-6 col-md-4 control-label text-left" for="loc">Localidad:</label>
-    		            <p class="con-xs-6 col-md-8 control-label text-left" for="loc">Benidorm</p> 
+    		            <p class="con-xs-6 col-md-8 control-label text-left" for="loc"><?php echo $localidadUser ?></p> 
     			    </div>
 
     			    <div class = "row">
     	                <label class="col-xs-6 col-md-4 control-label text-left" for="dir">Dirección:</label>
-    		            <p class="con-xs-6 col-md-8 control-label text-left" for="dir">C/ Zarrapastroso Nº 13</p> 
+    		            <p class="con-xs-6 col-md-8 control-label text-left" for="dir"><?php echo $direccionUser?></p> 
     			    </div>
         	</div>
         	<!-- Segunda gran columna-->
