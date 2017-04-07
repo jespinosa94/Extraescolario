@@ -37,14 +37,14 @@
                     </li>
                     <li class="dropdown">
                       <?php
-                      $nick = obtenerNickUsuario($_SESSION['cod']);
+                      $nick = obtenerNickUsuario($cod);
                       echo '<span class="label-header">Hola ' . $nick . '</span>'
                        ?>
                       <a href="#" id="miCuenta" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Mi cuenta <span class="caret"></span></a>
                       <ul class="dropdown-menu">
                         <?php
                         $linkPerfil = '';
-                        if ($esOFR) {
+                        if (!esBUS($cod)) {
                           $linkPerfil = 'perfilofertador.php';
                         } else {
                           $linkPerfil = 'perfilbuscador.php';

@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once ("conexion.php");
 require 'funciones.php';
 //compruebaSesionIniciada();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -7,7 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $password = $_POST['password'];
     /**Hay que hashear la password**/
   $errores = '';
-
+/*
+@Deprecated es mejor usar mysqli
 $usuariobd = "gi_jec21";
 $contrasenya = ".gi_jec21.";
 
@@ -23,11 +25,18 @@ $contrasenya = ".gi_jec21.";
       ':password' => $password
     ));
 
-    $resultado = $sql->fetch();
+    $resultado = $sql->fetch();*/
+
+    $sql = $conexion->prepare('SELECT cod FROM USR where email = ? and contrasenya = ?');
+    /*(i=int, d=double, s=string, b=blob)*/
+    $sql->bind_param('ss', $email, $password);
+    $sql->execute();
+    $sql->bind_result($resultado);  //asocio el resultado a una variable, pero no le doy valor
+    $sql->fetch();  //Doy valor a la variable que he asociado
 
     if ($resultado) {  //Se comprueba si es BUS
-      $_SESSION['cod'] = $resultado[0];
-      header('Location: index.php');
+      $_SESSION['cod'] = $resultado;
+      header('Location: index.php');  //Se redirige al usuario a index.php
     } else {  //Se prepara query para OFR
       $errores .= '<li>Datos incorrectos</li>';
     }
