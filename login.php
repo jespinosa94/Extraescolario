@@ -11,30 +11,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $errores = '';
 $servidor = "bbdd.dlsi.ua.es";
 $usuario = "gi_jec21";
-$contrasenya = "WG0JJZUI";
+$contrasenya = ".gi_jec21.";
 $BD = "gi_extraescol";
   try {
     $conexion = new PDO('mysql:host=bbdd.dlsi.ua.es;dbname=gi_extraescol', $usuario, $contrasenya);
   } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();;
   }
-    $statement = $conexion->prepare('SELECT nick , email, contrasenya FROM USR where email = :email and contrasenya = :password');
+    $statement = $conexion->prepare('SELECT u.cod, nick , email, contrasenya FROM BUS b join USR u on b.cod=u.cod where email = :email and contrasenya = :password');
     $statement->execute(array(
       ':email' => $email,
       ':password' => $password
     ));
     $resultado = $statement->fetch();
-    var_dump($resultado);
-    if ($resultado != false) {
+    //var_dump($resultado);
+    if ($resultado) {
       $_SESSION['usuario'] = $email;
       header('Location: index.php');
     } else {
       $errores .= '<li>Datos incorrectos</li>';
     }
-
-
-
-
 }
  ?>
 
