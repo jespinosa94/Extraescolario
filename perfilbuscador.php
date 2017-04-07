@@ -6,6 +6,10 @@
   require_once ("conexion.php");
   require_once ("funciones.php");
 
+  /*Directorio en el que se encuentras las imágenes: OJO, se tiene que usar esa barra, si
+  pones la otra, no se queja pero no hace nada*/
+    $dir = "img/";
+
   /*HACEMOS UNA LLAMADA A LA BASE DE DATOS PARA EXTRAER INFORMACION*/
           
     $conUser = "call datosBUS(".$_SESSION['cod'].")";
@@ -16,7 +20,7 @@
       $emailUser = $datosUsuario["email"];
       $passUser = $datosUsuario["contrasenya"];
       $telefUser = $datosUsuario["telefono"];
-      $fotoUser= $datosUsuario["foto"];
+      $fotoUser= $dir.$datosUsuario["foto"];
       $provinciaUser = $datosUsuario["pNombre"];
       $localidadUser = $datosUsuario["lNombre"];
       $direccionUser = $datosUsuario["direccion"];
@@ -225,7 +229,7 @@
     					</label>
 				    </div>
     				<div class = "row text-left">
-    					<img src="img/maleavatar.jpg" width="300px" height="300px"></img>
+    					<img src="<?php echo $fotoUser; ?>" width="300px" height="300px"></img>
     				</div>
     				<div class= "row text-left">
     					<div>
