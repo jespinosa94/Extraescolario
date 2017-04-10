@@ -7,5 +7,4 @@
 
   $conexion = mysqli_connect($servidor, $usuario, $contrasenya,$BD);
   mysqli_set_charset($conexion, 'utf8');
-
 ?>

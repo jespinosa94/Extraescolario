@@ -11,18 +11,21 @@
     $conUser = "call datosOFR(".$_SESSION['cod'].")";
     $resultado = mysqli_query ($conexion, $conUser);
 
+  /*Directorio en el que se encuentras las imágenes: OJO, se tiene que usar esa barra, si
+  pones la otra, no se queja pero no hace nada*/
+    $dir = "img/";
+
     while ($datosUsuario = mysqli_fetch_array($resultado)) {
       $empresaUser = $datosUsuario["empresa"];
       $nickUser = $datosUsuario["nick"];
       $emailUser = $datosUsuario["email"];
       $passUser = $datosUsuario["contrasenya"];
       $telefUser = $datosUsuario["telefono"];
-      $fotoUser= $datosUsuario["foto"];
+      $fotoUser= $dir.$datosUsuario["foto"];
       $provinciaUser = $datosUsuario["pNombre"];
       $localidadUser = $datosUsuario["lNombre"];
       $direccionUser = $datosUsuario["direccion"];
       $nifUser = $datosUsuario["nif"];
-      // $fotoUser = $datosUsuario["foto"];
     }
 ?>
 
@@ -222,8 +225,7 @@
               </label>
             </div>
             <div class = "row text-left">
-              <?php $var='img/calendario.jpg' ?>
-              <img src="<?php echo $var; ?>" height="300" width="300"/>
+              <img src="<?php echo $fotoUser; ?>" width="300px" height="300px"></img>
             </div>
             </div>
           </div>
