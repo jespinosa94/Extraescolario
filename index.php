@@ -8,6 +8,8 @@ if($logeado) {
 }
 
  ?>
+
+
 <!DOCTYPE html>
 <html lang="es"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -18,7 +20,7 @@ if($logeado) {
     <meta name="author" content="Extraescolario Team">
     <link rel="icon" href="http://www.iconj.com/ico/n/q/nqjqtckys4.ico">
 
-    <title>Plantilla Extraescolario</title>
+    <title>Página principal</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -80,54 +82,83 @@ if($logeado) {
       }
        ?>
 
+
       <!--Cuerpo -->
       <div id="cuerpo">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <div class="container">
+          <div class="row">
+            <h1><span style="color:black">Elige la actividad ideal para ti entre miles de opciones</span></h1>
+          </div>
+          <form class="row well" action="index.html" method="post">
+            <div class="row buscadorArriba">
+              <div class="col-md-12">
+                <h4><label for="tag">¿Cuándo estás libre?</label></h4>
+                <div class="col-md-5">
+                  <div class="col-md-4">
+
+                    <input type="checkbox" name="semana1" id="lunes" value="lunes"> lunes
+
+                    <input type="text" class="form-control" id="inicioLunes" placeholder="inicio">
+                    <input type="text" class="form-control" id="finLunes" placeholder="fin">
+                  </div>
+                  <div class="col-md-4">
+                    <input type="checkbox" name="semana2" id="martes" value="martes"> martes
+                    <input type="text" class="form-control" id="inicioMartes" placeholder="inicio">
+                    <input type="text" class="form-control" id="finMartes" placeholder="fin">
+                  </div>
+                  <div class="col-md-4">
+                    <input type="checkbox" name="semana3" id="miercoles" value="miercoles"> miercoles
+                    <input type="text" class="form-control" id="inicioMiercoles" placeholder="inicio">
+                    <input type="text" class="form-control" id="finMiercoles" placeholder="fin">
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="col-md-4">
+                    <input type="checkbox" name="semana4" id="jueves" value="jueves"> jueves
+                    <input type="text" class="form-control" id="inicioJueves" placeholder="inicio">
+                    <input type="text" class="form-control" id="finJueves" placeholder="fin">
+                  </div>
+                  <div class="col-md-4">
+                    <input type="checkbox" name="semana5" id="viernes" value="viernes"> viernes
+                    <input type="text" class="form-control" id="inicioViernes" placeholder="inicio">
+                    <input type="text" class="form-control" id="finViernes" placeholder="fin">
+                  </div>
+                  <div class="col-md-4">
+                    <input type="checkbox" name="semana6" id="sábado" value="sábado"> sábado
+                    <input type="text" class="form-control" id="inicioSabado" placeholder="inicio">
+                    <input type="text" class="form-control" id="finSabado" placeholder="fin">
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <input type="checkbox" name="semana7" id="domingo" value="domingo"> domingo
+                  <input type="text" class="form-control" id="inicioDomingo" placeholder="inicio">
+                  <input type="text" class="form-control" id="finDomingo" placeholder="fin">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <h4><label for="localizacion">Dónde</label></h4>
+                <input class="form-control input-lg" type="text" id="localizacion" placeholder="ciudad, provincia">
+              </div>
+              <div class="col-md-4 buscadorArriba">
+                <h4><label for="tag">Actividad</label></h4>
+                <input class="form-control input-lg" type="text" id="tag" placeholder="fútbol, inglés, natación...">
+              </div>
+              <div class="col-md-4">
+                <button id="botonBuscar" type="submit" class="btn btn-primary btn-lg btn-block" name="button"><i class="fa fa-search" aria-hidden="true"></i> Buscar</button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
+
+
+
+
+
+<span style="display:block; height: 1000px;"></span>
+
 
       <!-- FOOTER -->
       <footer>

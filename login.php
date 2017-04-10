@@ -1,13 +1,49 @@
 <?php
 session_start();
+require_once ("conexion.php");
 require 'funciones.php';
+//compruebaSesionIniciada();
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $email = filter_var(strtolower($_POST['email']), FILTER_SANITIZE_STRING); //El filter comprueba que no tenga caracteres raros tipo <h1></h1>
+  $password = $_POST['password'];
+    /**Hay que hashear la password**/
+  $errores = '';
+/*
+@Deprecated es mejor usar mysqli
+$usuariobd = "gi_jec21";
+$contrasenya = ".gi_jec21.";
 
-$logeado = isset($_SESSION['cod']);
-if($logeado) {
-  $cod = $_SESSION['cod'];
+  try {
+    $conexion = new PDO('mysql:host=bbdd.dlsi.ua.es;dbname=gi_extraescol', $usuariobd, $contrasenya);
+  } catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+  }
+
+    $sql = $conexion->prepare('SELECT u.cod FROM BUS b join USR u on b.cod=u.cod where email = :email and contrasenya = :password');
+    $sql->execute(array(
+      ':email' => $email,
+      ':password' => $password
+    ));
+
+    $resultado = $sql->fetch();*/
+
+    $sql = $conexion->prepare('SELECT cod FROM USR where email = ? and contrasenya = ?');
+    /*(i=int, d=double, s=string, b=blob)*/
+    $sql->bind_param('ss', $email, $password);
+    $sql->execute();
+    $sql->bind_result($resultado);  //asocio el resultado a una variable, pero no le doy valor
+    $sql->fetch();  //Doy valor a la variable que he asociado
+
+    if ($resultado) {  //Se comprueba si es BUS
+      $_SESSION['cod'] = $resultado;
+      header('Location: index.php');  //Se redirige al usuario a index.php
+    } else {  //Se prepara query para OFR
+      $errores .= '<li>Datos incorrectos</li>';
+    }
 }
-
  ?>
+
+
 <!DOCTYPE html>
 <html lang="es"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -18,7 +54,7 @@ if($logeado) {
     <meta name="author" content="Extraescolario Team">
     <link rel="icon" href="http://www.iconj.com/ico/n/q/nqjqtckys4.ico">
 
-    <title>Plantilla Extraescolario</title>
+    <title>login</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -33,100 +69,49 @@ if($logeado) {
 
   <body>
     <div class="principal">
+
       <!-- Header de la página -->
-      <?php
-      if ($logeado) {
-        require 'header.registered.php';
-      } else {
-        ?>
-        <header>
-          <nav class="navbar navbar-default">
-            <div class="container-fluid">
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                  <span class="sr-only">Barra de navegación</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.php"></a>
-              </div>
-              <div id="navbar" class="navbar-collapse collapse">
-                <div class="row">
-                  <div class="col-md-3">
-                    <div id="header1" class="pull-right">
-                      <a href="#">Oferta tus propias actividades</a>
-                    </div>
-                  </div>
-                  <div id="header2" class="col-md-offset-5 col-md-2 pull-right">
-                    <ul class="nav navbar-nav">
-                      <li class="active dropdown singleDrop">
-                        <a href="index.html">Inicio</a>
-                      </li>
-                      <li class="dropdown singleDrop">
-                        <a href="#">Ayuda</a>
-                      </li>
-                      <li class="dropdown singleDrop">
-                        <a href="login.php">Iniciar sesión</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </nav>
-        </header>
-        <?php
-      }
-       ?>
+      <header>
+      </header>
 
       <!--Cuerpo -->
-      <div id="cuerpo">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+      <div id="login" class="container">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+          <form class="form-signin" method="post" role="form">
+            <a href="index.php"><h2 class="logo">Iniciar sesión en tu cuenta Extraescolario</h2></a>
+            <hr class= "colorgraph">
+            <div class="form-group">
+              <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email de Extraescolario">
+            </div>
+            <div class="form-group">
+              <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Contraseña">
+				    </div>
+            <div class="checkbox">
+              <label><input type="checkbox" value="">Recordar email</label>
+              <a href="recuperar_pass.html" class="btn btn-link pull-right">¿No puedes iniciar sesión?</a>
+            </div>
+            <hr class="colorgraph" />
+            <div class="row">
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <button type="submit" class="btn btn-lg btn-success btn-block" name="button">Iniciar sesión</button>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <a href="registroBUS.html" class="btn btn-lg btn-primary btn-block">Crear cuenta gratuita</a>
+              </div>
+            </div>
+          </form>
+          <?php
+          if(!empty($errores)) {
+            ?>
+            <div>
+              <ul>
+                <?php echo $errores; ?>
+              </ul>
+            </div>
+            <?php
+          }
+           ?>
+        </div>
       </div>
 
       <!-- FOOTER -->
