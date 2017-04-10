@@ -3,7 +3,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
   line-height: 21px;
-  color: #969696;
+  color: black;
   font-weight: 400;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -28,30 +28,25 @@ header {
   margin-bottom: 0;
   position: relative;
 }
-
 .navbar-brand {
-  float:left;
-  width: 235px;
-  height: 95px;
-  background-color: transparent;
-  padding: 24px 15px 24px 15px;
-}
-
-.headerPrincipal .navbar-brand {
   background-image: url("http://i67.tinypic.com/2e2iays.jpg");
   background-position: 0px 19px;
   background-repeat: no-repeat;
-  background-size: cover;
   background-size: 203px 54px;
-  height: 95px;
+  height: 80px;
+  width: 210px;
 }
 
-.navbar-nav > li > a {
-  margin: 38px 15px 29px 15px;
+.navbar {
+  margin-bottom: 25px;
 }
-
-#registroOFR > li > a {
-  margin: 38px 15px 29px 50%;
+/*Se corresponde con el div que lleva "Oferta tus propias actividades"*/
+#header1 {
+  margin-top: 45px;
+}
+/*Se corresponde con el div que lleva los botones de inicio de sesión*/
+#header2 {
+  margin-top: 20px;
 }
 
 /*=====================================================FOOTER=================================================*/
@@ -180,4 +175,42 @@ header {
 #login .checkbox label {
   margin-top: 7px;
 }
+
 /*=====================================================perfilActividad=================================================*/
+
+
+/*=====================================================Index=================================================*/
+#botonBuscar {
+  margin-top: 43px;
+  padding-left: 0px;
+}
+
+.buscadorArriba {
+  margin-bottom: 30px;
+}
+
+.buscadorArriba .label.radio-inline .checkbox {
+  padding-left: 0px;
+}
+
+.label-header {
+  color: black;
+  font-size: 12px;
+  padding-left: 15px;
+}
+
+#miCuenta {
+  padding-top: 0px;
+
+/*===========================================perfilbuscador==================================================*/
+#perfilbuscador .btnLink {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    background-image: url(../img/maleavatar.jpg);
+    background-color: #cccccc;
+}
