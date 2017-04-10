@@ -62,106 +62,147 @@
   </header>
 
     <div class="container-fluid">
+      <!--Fila donde estaran las 3 columnas del form -->
       <div class="row">
+            <!--Primera columna del form -->
         <div class="col-md-4">
           <form class="form-horizontal">
+              <!-- InputNombreActividad -->
               <div class="form-group">
                 <label class="control-label col-sm-3" for="nombreActividad">Nombre Actividad:</label>
                 <div class="col-sm-9">
                   <input class="form-control" id="nombreActividad" placeholder="Zumba" />
                 </div>
               </div>
-              <div>
-                <div class="container">
-	<div class="row">
-        <div class="span12">
-    		<table class="table-condensed table-bordered table-striped">
-                <thead>
-                    <tr>
-                      <th colspan="7">
-                        <span class="btn-group">
-                            <a class="btn"><i class="icon-chevron-left"></i></a>
-                        	<a class="btn active">February 2012</a>
-                        	<a class="btn"><i class="icon-chevron-right"></i></a>
-                        </span>
-                      </th>
-                    </tr>
-                    <tr>
-                        <th>Su</th>
-                        <th>Mo</th>
-                        <th>Tu</th>
-                        <th>We</th>
-                        <th>Th</th>
-                        <th>Fr</th>
-                        <th>Sa</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="muted">29</td>
-                        <td class="muted">30</td>
-                        <td class="muted">31</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
-                        <td>4</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>6</td>
-                        <td>7</td>
-                        <td>8</td>
-                        <td>9</td>
-                        <td>10</td>
-                        <td>11</td>
-                    </tr>
-                    <tr>
-                        <td>12</td>
-                        <td>13</td>
-                        <td>14</td>
-                        <td>15</td>
-                        <td>16</td>
-                        <td>17</td>
-                        <td>18</td>
-                    </tr>
-                    <tr>
-                        <td>19</td>
-                        <td class="btn-primary"><strong>20</strong></td>
-                        <td>21</td>
-                        <td>22</td>
-                        <td>23</td>
-                        <td>24</td>
-                        <td>25</td>
-                    </tr>
-                    <tr>
-                        <td>26</td>
-                        <td>27</td>
-                        <td>28</td>
-                        <td>29</td>
-                        <td class="muted">1</td>
-                        <td class="muted">2</td>
-                        <td class="muted">3</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-	</div>
-</div>
+              <!-- Selector Provincia -->
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="getProvincia">Provincia</label>
+                <div class="col-md-4">
+                  <select id="getProvincia" name="getProvincia" class="form-control">
+                    <option value="1">Alicante</option>
+                    <option value="2">Murcia</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Selector Localidad -->
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="getLocalidad">Localidad</label>
+                <div class="col-md-4">
+                  <select id="getLocalidad" name="getLocalidad" class="form-control">
+                    <option value="1">Ibi</option>
+                    <option value="2">Yecla</option>
+                    <option value="">San Vicentel del Raspeig</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Input Direccion-->
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="getDireccion">Direccion</label>
+                <div class="col-md-4">
+                <input id="getDireccion" name="getDireccion" type="text" placeholder="Ej: C/ Alicante nº50" class="form-control input-md">
+
+                </div>
+              </div>
+
+              <!-- Cargar Datos del Perfil -->
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="getPerfil"></label>
+                <div class="col-md-4">
+                  <button id="getPerfil" name="getPerfil" class="btn btn-primary">Cargar datos del perfil</button>
+                </div>
+              </div>
+
+              <!-- Multiple Checkbox dia semana -->
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="getDiaSemana"></label>
+                <div class="col-md-4">
+                  <label class="checkbox-inline" for="getDiaSemana-0">
+                    <input type="checkbox" name="getDiaSemana" id="getDiaSemana-0" value="1">
+                    Lunes
+                  </label>
+                  <label class="checkbox-inline" for="getDiaSemana-1">
+                    <input type="checkbox" name="getDiaSemana" id="getDiaSemana-1" value="2">
+                    Martes
+                  </label>
+                  <label class="checkbox-inline" for="getDiaSemana-2">
+                    <input type="checkbox" name="getDiaSemana" id="getDiaSemana-2" value="3">
+                    Miercoles
+                  </label>
+                  <label class="checkbox-inline" for="getDiaSemana-3">
+                    <input type="checkbox" name="getDiaSemana" id="getDiaSemana-3" value="4">
+                    Jueves
+                  </label>
+                  <label class="checkbox-inline" for="getDiaSemana-4">
+                    <input type="checkbox" name="getDiaSemana" id="getDiaSemana-4" value="">
+                    Viernes
+                  </label>
+                  <label class="checkbox-inline" for="getDiaSemana-5">
+                    <input type="checkbox" name="getDiaSemana" id="getDiaSemana-5" value="">
+                    Sabado
+                  </label>
+                  <label class="checkbox-inline" for="getDiaSemana-6">
+                    <input type="checkbox" name="getDiaSemana" id="getDiaSemana-6" value="">
+                    Domingo
+                  </label>
+                </div>
+              </div>
+
+              <!-- Input precio actividad-->
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="getPrecio">Precio</label>
+                <div class="col-md-4">
+                <input id="getPrecio" name="getPrecio" type="text" placeholder="Ej: 100" class="form-control input-md">
+
+                </div>
+              </div>
+
+              <!-- Selector Multiple Forma de pago -->
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="getFormaPago">Forma de Pago</label>
+                <div class="col-md-4">
+                  <select id="getFormaPago" name="getFormaPago" class="form-control" multiple="multiple">
+                    <option value="1">Paypal</option>
+                    <option value="2">Efectivo</option>
+                    <option value="">Tarjeta</option>
+                    <option value="">Transferencia</option>
+                  </select>
+                </div>
               </div>
           </form>
         </div>
+          <!--Segunda columna del form -->
         <div class="col-md-4">
-          <h1> Esto es un titulaco </h1>
-          <p>
-          Los 4 Fantásticos es un equipo ficticio de superhéroes que aparece en cómics
-          estadounidenses publicados por Marvel Comics. El grupo debutó en The Fantastic
-          Four #1 (Noviembre de 1961), el cual ayudó a marcar el comienzo de un nuevo
-          nivel de realismo en el medio. Los 4 Fantásticos fue el primer equipo de
-          superhéroes creado por el escritor-editor Stan Lee y el artista Jack Kirby,
-          quienes desarrollaron un enfoque de colaboración al crear cómics con este
-          título que usarían a partir de entonces.
-          </p>
+          <form class="form-horizontal">
+            <p><b> Describe eso que hace a tu actividad tan especial</b></p>
+            <!-- Input Descripcion actividad-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" </label>
+              <div class="col-md-4">
+              <input id="getDescripcion" name="getDescripcion" type="text" style="width:380px; height:300px" placeholder="Ej: Clases intensivas con profesor especializado..." class="form-control input-md">
+              </div>
+            </div>
+
+            <!-- Input Organización de pagos-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" </label>
+              <div class="col-md-4">
+              <input id="getOrganizacion" name="getOrganizacion" type="text" style="width: 380px; height:150px" placeholder="Organizacion de pagos" class="form-control input-md">
+              </div>
+            </div>
+
+            <!-- Boton Publicar Actividad -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="publicarActividad"></label>
+              <div class="col-md-4">
+                <button id="publicarActividad" name="publicarActividad" class="btn btn-primary">Publicar Actividad</button>
+              </div>
+            </div>
+          </form>
         </div>
+
+            <!--Tercera columna del form -->
         <div class="col-md-4">
           <h1> Esto es un titulaco </h1>
           <p>
