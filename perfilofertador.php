@@ -7,7 +7,7 @@
   require_once ("funciones.php");
 
   /*HACEMOS UNA LLAMADA A LA BASE DE DATOS PARA EXTRAER INFORMACION*/
-          
+
     $conUser = "call datosOFR(".$_SESSION['cod'].")";
     $resultado = mysqli_query ($conexion, $conUser);
 
@@ -127,23 +127,23 @@
               </div>
               <div class = "row">
                       <label class="col-xs-6 col-md-4 control-label text-left" for="telf">Teléfono:</label>
-                    <p class="con-xs-6 col-md-8 control-label text-left" for="telf"><?php echo $telefUser; ?></p> 
+                    <p class="con-xs-6 col-md-8 control-label text-left" for="telf"><?php echo $telefUser; ?></p>
               </div>
               <div class = "row">
                       <label class="col-xs-6 col-md-4 control-label text-left" for="prov">Provincia:</label>
-                    <p class="con-xs-6 col-md-8 control-label text-left" for="prov"><?php echo $provinciaUser; ?></p> 
+                    <p class="con-xs-6 col-md-8 control-label text-left" for="prov"><?php echo $provinciaUser; ?></p>
               </div>
               <div class = "row">
                       <label class="col-xs-6 col-md-4 control-label text-left" for="loc">Localidad:</label>
-                    <p class="con-xs-6 col-md-8 control-label text-left" for="loc"><?php echo $localidadUser; ?></p> 
+                    <p class="con-xs-6 col-md-8 control-label text-left" for="loc"><?php echo $localidadUser; ?></p>
               </div>
               <div class = "row">
                       <label class="col-xs-6 col-md-4 control-label text-left" for="dir">Dirección:</label>
-                    <p class="con-xs-6 col-md-8 control-label text-left" for="dir"><?php echo $direccionUser; ?></p> 
+                    <p class="con-xs-6 col-md-8 control-label text-left" for="dir"><?php echo $direccionUser; ?></p>
               </div>
               <div class = "row">
                       <label class="col-xs-6 col-md-4 control-label text-left" for="dir">NIF:</label>
-                    <p class="con-xs-6 col-md-8 control-label text-left" for="dir"><?php echo $nifUser; ?></p> 
+                    <p class="con-xs-6 col-md-8 control-label text-left" for="dir"><?php echo $nifUser; ?></p>
               </div>
           </div>
           <!-- Segunda gran columna-->
@@ -225,7 +225,6 @@
               </label>
             </div>
             <div class = "row text-left">
-
               <img src="<?php echo $fotoUser; ?>" width="300px" height="300px"></img>
             </div>
             </div>
