@@ -9,25 +9,6 @@ body {
   padding-bottom: 20px;
 }
 
-header {
-  position: relative;
-  z-index: 999;
-  margin-bottom: 25px;
-}
-
-.headerPrincipal {
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
-  height: 95px;
-}
-
-.navbar-default {
-  background-color: transparent;
-  border: none;
-  border-radius: 0;
-  margin-bottom: 0;
-  position: relative;
-}
 .navbar-brand {
   background-image: url("http://i67.tinypic.com/2e2iays.jpg");
   background-position: 0px 19px;
@@ -176,9 +157,6 @@ header {
   margin-top: 7px;
 }
 
-/*=====================================================perfilActividad=================================================*/
-
-
 /*=====================================================Index=================================================*/
 #botonBuscar {
   margin-top: 43px;
@@ -214,3 +192,5 @@ header {
     background-image: url(../img/maleavatar.jpg);
     background-color: #cccccc;
 }
+
+/*===========================================perfilActividad==================================================*/

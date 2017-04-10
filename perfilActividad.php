@@ -34,8 +34,6 @@ if($logeado) {
 
   <body>
     <div class="principal">
-
-      <!-- Header de la página -->
       <!-- Header de la página -->
       <?php
       if ($logeado) {

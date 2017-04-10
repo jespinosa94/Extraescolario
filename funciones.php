@@ -47,4 +47,15 @@ function obtenerNickUsuario($cod) {
 
   return $resultado;
 }
+
+//Recibe una query en formato string tipo: "Select nombre from Buscador where nombre="PEPE"
+//y devuelve un resultado con la ejecución de la query
+function consulta($query) {
+  require_once ("conexion.php");
+  $sql = $conexion->prepare($query);
+  $sql->execute();
+  $sql->bind_result($resultado);  //asocio el resultado a una variable, pero no le doy valor
+  $sql->fetch();  //Doy valor a la variable que he asociado
+  return $resultado;
+}
  ?>
