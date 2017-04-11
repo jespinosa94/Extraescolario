@@ -1,4 +1,32 @@
 <!DOCTYPE html>
+<?php
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+  try
+  {
+    require_once ("conexion.php");
+  } catch (PDOException $e)
+  {
+    echo "Error: " . $e->getMessage();;
+  }
+
+
+  $nombree=$_POST['nombreempresa'];
+  $correo=$_POST['direccioncemresa'];
+  $pass=$_POST['passwordempresa'];
+  $telefono=$_POST['telefonoempresa'];
+  $imagen=$_POST['files'];
+  $cif=$_POST['cifo'];
+  $localidad=$_POST['slo'];
+  $provincia=$_POST['spo'];
+
+  mysqli_query($conexion, "INSERT INTO USR VALUES ('nick', '$correo', '$pass', '$telefono', '$imagen', '$localidad')");
+
+
+}
+
+ ?>
 <html lang="es"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -68,16 +96,75 @@
         <div class = "row text-center">
           <h2 class="col-xs-12"> Primero necesitamos algunos datos </h2>
         </div>
-        <div class="row">
+        <div class="row margen">
+
+          <form method="post">
+
 
           <div class="col-xs-12 col-md-6">
 <!--// 1a columna ===============================================================================================================-->
+
+
               <!-- Text input-->
               <div class="form-group row">
-                <label class="col-xs-6 control-label text-center" for="ne">Nombre de la empresa:</label>
+                <label class="col-xs-6 control-label text-center" for=nombreempresa>Nombre de la empresa:</label>
                 <div class="col-xs-6 ">
-                <input id="ne" name="ne" placeholder="Ejemplo: Fontaneria Mario y Luigi" class="form-control input-md" required="" type="text">
+                <input id=nombreempresa name=nombreempresa placeholder="Ejemplo: Fontaneria Mario y Luigi" class="form-control input-md" required="" type="text">
                 <span class="help-block">Inserta el nombre de tu empresa aquí</span>
+                </div>
+              </div>
+
+              <!-- Text input-->
+              <div class="form-group row">
+                <label class="col-xs-6 control-label text-center" for=direccioncemresa>Dirección de correo electrónico:</label>
+                <div class="col-xs-6 ">
+                <input id=direccioncemresa name=direccioncemresa placeholder="Ejemplo: mariolovespeach@gmail.com" class="form-control input-md" required="" type="text">
+                <span class="help-block">Inserta tu dirección de correo electrónico</span>
+                </div>
+              </div>
+
+              <!-- Password input-->
+              <div class="form-group row">
+                <label class="col-xs-6 control-label text-center" for=passwordempresa>Introduce la contraseña:</label>
+                <div class="col-xs-6">
+                  <input id=passwordempresa name=passwordempresa placeholder="" class="form-control input-md" required="" type="password">
+                  <span class="help-block">Introduce tu password</span>
+                </div>
+              </div>
+
+              <!-- Password input-->
+              <div class="form-group row">
+                <label class="col-xs-6 control-label text-center" for="passwordempresar">Introduce la contraseña de verificación:</label>
+                <div class="col-xs-6">
+                  <input id="passwordempresar" name="passwordempresar" placeholder="" class="form-control input-md" required="" type="password">
+                  <span class="help-block">Introduce tu password ppara verificar que es correcta</span>
+                </div>
+              </div>
+
+              <!-- Text input-->
+              <div class="form-group row">
+                <label class="col-xs-6 control-label text-center" for="telefonoempresa">Nº teléfono:</label>
+                <div class="col-xs-6 ">
+                <input id="telefonoempresa" name="telefonoempresa" placeholder="Ejemplo: 652987431" class="form-control input-md" required="" type="text">
+                <span class="help-block">Introduce tu número de teléfono</span>
+                </div>
+              </div>
+
+              <!-- Text input-->
+              <div class="form-group row">
+                <label class="col-xs-6 control-label text-center" for="direccionempresa">Dirección:</label>
+                <div class="col-xs-6 ">
+                <input id="direccionempresa" name="direccionempresa" placeholder="Ejemplo: Castillo Bowser nº2" class="form-control input-md" required="" type="text">
+                <span class="help-block">Introduce la deirección dende se sitúa tu empresa</span>
+                </div>
+              </div>
+
+              <!-- Text input-->
+              <div class="form-group row">
+                <label class="col-xs-6 control-label text-center" for="cifo"> NIF/CIF:</label>
+                <div class="col-xs-6">
+                  <input id="cifo" name="cifo" placeholder="" class="form-control input-md" required="" type="text">
+                  <span class="help-block">Introduce tu tu Nº de identificación fiscal (NIF/CIF)</span>
                 </div>
               </div>
 
@@ -87,7 +174,7 @@
 <!-- fin 1a columna ===============================================================================================================-->
           </div>
 
-          <div class="col-xs-12 col-md-6">
+          <div class="col-xs-12 col-md-6 ">
 <!-- 2a columna ===============================================================================================================-->
             <div class="form-group row">
               <center>
@@ -95,40 +182,63 @@
                 <div class="row">
                   <div class="col-xs-12">
 
-                    <output id="img"> <img class="imagenperfil" src="src/fontaneria.jpg" > </output>
+                    <output id="img" class="margenimagen"> <img class="imagenperfil" src="img/fontaneria.jpg" > </output>
                   </div>
                 </div>
 
               </center>
-              <label class="col-xs-6 control-label text-center" for="fpo">Foto de perfil:</label>
+              <label class="col-xs-6 control-label text-center" for="files">Foto de perfil:</label>
               <div class="col-xs-6">
                 <input id="files" name="files" class="input-file" type="file">
                 <span class="help-block">Sube tu foto de perfil aquí</span>
               </div>
             </div>
-            <script src="lib/showimg.js"></script>
+            <script src="js/showimg.js"></script>
+
+
+            <!-- Select Basic -->
+            <div class="form-group row">
+            <label class="col-xs-6 control-label text-center" for="slo">Localidad:</label>
+            <div class="col-xs-6">
+              <select id="slo" name="slo" class="form-control">
+                <option value="1">Option one</option>
+                <option value="2">Option two</option>
+              </select>
+            </div>
+            </div>
+
+            <!-- Select Basic -->
+            <div class="form-group row">
+            <label class="col-xs-6 control-label text-center" for="spo">Provincia:</label>
+            <div class="col-xs-6">
+              <select id="spo" name="spo" class="form-control">
+                <option value="1">Option one</option>
+                <option value="2">Option two</option>
+              </select>
+            </div>
+            </div>
+
 <!--// fin 2a columna ===============================================================================================================-->
           </div>
 
         </div>
 
+        <div class="row">
+          <center>
+          <!-- Button (Double) -->
+          <div class="form-group col-xs-12" >
+              <button id="fao" name="formaceptar" class="btn btn-success" type="submit">Aceptar</button>
+              <button id="fro" name="formrechazar" class="btn btn-danger" type="reset">Rechazar</button>
+
+          </div>
+        </center>
+        </div>
+        </form>
+
+
         <br>
         <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+
       </div>
 
       <!-- FOOTER -->
