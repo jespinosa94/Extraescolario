@@ -20,8 +20,7 @@
     <link href="css/estilos.css" rel="stylesheet">
     <link href="css//font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- Referencias para el calendario -->
-  	<link rel="stylesheet" type="text/css" href="tcal.css" />
-  	<script type="text/javascript" src="tcal.js"></script>
+
   </head>
   <body>
 
@@ -116,6 +115,9 @@
                   <button id="getPerfil" name="getPerfil" class="btn btn-primary">Cargar datos del perfil</button>
                 </div>
               </div>
+
+              <!-- CALENDARIO -->
+
 
               <!-- Multiple Checkbox dia semana -->
               <div class="form-group">
