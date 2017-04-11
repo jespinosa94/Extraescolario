@@ -8,7 +8,7 @@
     <meta name="author" content="Extraescolario Team">
     <link rel="icon" href="http://www.iconj.com/ico/n/q/nqjqtckys4.ico">
 
-    <title>Plantilla Extraescolario</title>
+    <title>Perfil Actividad</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -23,47 +23,24 @@
 
   <body>
     <div class="principal">
+
       <!-- Header de la página -->
       <header>
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default navbar-main headerPrincipal" role="navigation">
           <div class="container-fluid">
 
             <!-- Logo y menu minimizado -->
             <div class="navbar-header">
-              <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar1">
+              <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar1">
                 <span class="sr-only">Menu</span>
-
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#"></a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-              <div class="row">
-                <div class="col-md-3">
-                  <div id="header1" class="pull-right">
-                    <a href="#">Oferta tus propias actividades</a>
-                  </div>
-                </div>
-                <div id="header2" class="col-md-offset-5 col-md-2 pull-right">
-                  <ul class="nav navbar-nav">
-                    <li class="active dropdown singleDrop">
-                      <a href="index.html">Inicio</a>
-                    </li>
-                    <li class="dropdown singleDrop">
-                      <a href="#">Ayuda</a>
-                    </li>
-                    <li class="dropdown singleDrop">
-                      <a href="#">Iniciar sesión</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              <a class="navbar-brand" href="index.html"></a>
             </div>
 
-            <!-- Iniciación de menu-->
-            <div class="collapse navbar-collapse " id="navbar1">
+            <div class="collapse navbar-collapse" id="navbar1">
               <ul class="nav navbar-nav" id="registroOFR">
                 <li class="dropdown singleDrop">
                   <a href="#">Oferta tus propias actividades</a>
@@ -81,58 +58,45 @@
                 </li>
               </ul>
             </div> <!-- Fin collapse navbar1-->
-
           </div>
         </nav>
       </header>
 
       <!--Cuerpo -->
-      <div id="cuerpo">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+      <div class="actividad container">
+        <div class="row">
+          <div class="col-md-9">
+            <div class="datosAct">
+              <h1 style="color:black">Título de la actividad</h1>
+              <div class="tagLine">
+                <h4><span style="color:black">Localidad </span> · resumen en 5 palabras</h4>
+                <ul class="list-inline">
+                  <li><a href="#">Tag1</a></li>
+                  <li><a href="#">Tag2</a></li>
+                  <li><a href="#">Tag3</a></li>
+                  <li><a href="#">Tag4</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="horarioAct">
+
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="affix">
+              <h1> Esto es un titulaco </h1>
+              <p>
+              Los 4 Fantásticos es un equipo ficticio de superhéroes que aparece en cómics
+              estadounidenses publicados por Marvel Comics. El grupo debutó en The Fantastic
+              Four #1 (Noviembre de 1961), el cual ayudó a marcar el comienzo de un nuevo
+              nivel de realismo en el medio. Los 4 Fantásticos fue el primer equipo de
+              superhéroes creado por el escritor-editor Stan Lee y el artista Jack Kirby,
+              quienes desarrollaron un enfoque de colaboración al crear cómics con este
+              título que usarían a partir de entonces.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- FOOTER -->
@@ -142,7 +106,7 @@
             <div class="row">
               <div class="col-sm-3 col-xs-12">
                 <div class="footerContent">
-                  <a class="footer-logo" href="index.php">
+                  <a class="footer-logo" href="index.html">
                     <img src="http://i66.tinypic.com/103ap8k.jpg" alt="Extraescolario" width="177" height="47" />
                   </a>
                   <p>
