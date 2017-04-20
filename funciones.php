@@ -51,11 +51,19 @@ function obtenerNickUsuario($cod) {
 //Recibe una query en formato string tipo: "Select nombre from Buscador where nombre="PEPE"
 //y devuelve un resultado con la ejecución de la query
 function consulta($query) {
-  require_once ("conexion.php");
-  $sql = $conexion->prepare($query);
-  $sql->execute();
-  $sql->bind_result($resultado);  //asocio el resultado a una variable, pero no le doy valor
-  $sql->fetch();  //Doy valor a la variable que he asociado
-  return $resultado;
+  $usuariobd = "gi_jec21";
+  $contrasenya = ".gi_jec21.";
+
+    try {
+      $conexion = new PDO('mysql:host=bbdd.dlsi.ua.es;dbname=gi_extraescol', $usuariobd, $contrasenya);
+    } catch (PDOException $e) {
+      echo "Error: " . $e->getMessage();
+    }
+    $stm = $conexion->prepare($query);
+    $stm->execute();
+    $data = $stm->fetchAll();
+    return $data;
+    /*Para ver el resultado de la consulta: */
+    //print_r(array_values($query));
 }
  ?>

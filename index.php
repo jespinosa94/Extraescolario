@@ -6,7 +6,6 @@ $logeado = isset($_SESSION['cod']);
 if($logeado) {
   $cod = $_SESSION['cod'];
 }
-
  ?>
 
 
