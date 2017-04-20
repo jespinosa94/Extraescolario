@@ -8,6 +8,7 @@ if($logeado) {
 }
 
  ?>
+
 <!DOCTYPE html>
 <html lang="es"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -18,7 +19,7 @@ if($logeado) {
     <meta name="author" content="Extraescolario Team">
     <link rel="icon" href="http://www.iconj.com/ico/n/q/nqjqtckys4.ico">
 
-    <title>Plantilla Extraescolario</title>
+    <title>Perfil Actividad</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -79,10 +80,45 @@ if($logeado) {
         <?php
       }
        ?>
+
       <!--Cuerpo -->
-      <div id="cuerpo">
-        <span style="display:block; height: 800px;"></span>
+      <div class="actividad container">
+        <div class="row">
+          <div class="col-md-9">
+            <div class="datosAct">
+              <h1 style="color:black">Título de la actividad</h1>
+              <div class="tagLine">
+                <h4><span style="color:black">Localidad </span> · resumen en 5 palabras</h4>
+                <ul class="list-inline">
+                  <li><a href="#">Tag1</a></li>
+                  <li><a href="#">Tag2</a></li>
+                  <li><a href="#">Tag3</a></li>
+                  <li><a href="#">Tag4</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="horarioAct">
+
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="affix">
+              <h1> Esto es un titulaco </h1>
+              <p>
+              Los 4 Fantásticos es un equipo ficticio de superhéroes que aparece en cómics
+              estadounidenses publicados por Marvel Comics. El grupo debutó en The Fantastic
+              Four #1 (Noviembre de 1961), el cual ayudó a marcar el comienzo de un nuevo
+              nivel de realismo en el medio. Los 4 Fantásticos fue el primer equipo de
+              superhéroes creado por el escritor-editor Stan Lee y el artista Jack Kirby,
+              quienes desarrollaron un enfoque de colaboración al crear cómics con este
+              título que usarían a partir de entonces.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
+
+<span style="display:block; height: 800px;"></span>
 
       <!-- FOOTER -->
       <footer>
@@ -91,7 +127,7 @@ if($logeado) {
             <div class="row">
               <div class="col-sm-3 col-xs-12">
                 <div class="footerContent">
-                  <a class="footer-logo" href="index.php">
+                  <a class="footer-logo" href="index.html">
                     <img src="http://i66.tinypic.com/103ap8k.jpg" alt="Extraescolario" width="177" height="47" />
                   </a>
                   <p>
