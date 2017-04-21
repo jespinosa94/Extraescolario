@@ -29,6 +29,7 @@
     $apellidosUser = $datosUsuario[0]["apellidos"];
     $fechaNacUser = $datosUsuario[0]["fechaNacimiento"];
     $sexoUser = $datosUsuario[0]["sexo"];
+    echo $sexoUser;
 
     /*while ($datosActiv = mysqli_fetch_array($resultado)) {
       $codAct = $datosActiv["cod"];
@@ -122,7 +123,7 @@
           <h2 class="col-xs-12"> Página personal de <?php echo $nickUser; ?> </h2>
         </div>
         <!--Row tocho que tiene las 3 columnas dentro -->
-        <div class= "row">
+        <div class= "row align-items-center">
         	<!--Primera gran columna -->
         	<div class ="col-md-4">
         		<div class = "col-xs-12 row text-left">
@@ -156,13 +157,16 @@
     			    </div>
 
 			        <div class = "row">
+                    <label class="col-xs-6 col-md-4 control-label text-left" for="apellidos">Sexo:</label>
+                    <p class="con-xs-6 col-md-8 control-label text-left" for="apellidos"><?php echo $sexoUser?></p> 
+                <!--
 	                <label class="col-xs-4 control-label text-left" for="sexo">Sexo:</label>
 	                <div class="col-xs-8"> 
 	                  <label class="radio-inline" for="radios-0">
-	                     <input type="radio" name="radios" id="sHombre" value="1" checked="checked">Hombre</label> 
+	                     <input type="radio" name="radios" id="sHombre" value="1" checked="<?php if ($sexoUser="Mujer") {echo false;}?>"       >Hombre</label> 
 	                  <label class="radio-inline" for="radios-1">
-	                    <input type="radio" name="radios" id="sMujer" value="2">Mujer</label>
-	                </div>
+	                    <input type="radio" name="radios" id="sMujer" value="2" checked="<?php if ($sexoUser="Mujer") {echo true;}?>"         >Mujer</label>
+	                </div> -->
     			    </div>
     			    <div class = "row">
     	                <label class="col-xs-6 col-md-4 control-label text-left" for="fecnac">Fecha de Nacimiento:</label>
@@ -225,7 +229,28 @@
                     <div class="tab-content">
                           <!--<div class="tab-pane fade in active" id="#tab1"><?php echo $datosAct[0]["descripcion"] ?></div>-->
                           <?php for($i = 0; $i< sizeof($datosAct); $i++)  { $actividad = $datosAct[$i]; ?>
-                            <div class="tab-pane fade" id="<?php echo $var="tab".$actividad["cod"]?>"><?php echo $actividad["descripcion"] ?> <b> </b>  </div>
+                            <div class="tab-pane fade" id="<?php echo $var="tab".$actividad["cod"]?>">
+                              <div class="row col-xs-12"> <?php echo $actividad["descripcion"] ?><br><br></div>
+                                <div class="row align-items-center">
+                                  <div class="col-md-6">
+                                    Horario:
+                                  </div>
+                                  <!-- Realizamos la consultad de los horarios-->
+                                  <?php
+                                  $buscahorarios = "call obtenHorario(".$_SESSION['cod'].",".$actividad["cod"].");";
+                                  $horarios = consulta($buscahorarios);
+
+                                  ?>
+                                  <div class="col-md-6"> <?php 
+                                    for ($y = 0; $y < sizeof($horarios); $y++) {
+                                      $diaHorario = $horarios[$y]; ?>
+                                      <div class="row col-xs-12"><?php echo $diaHorario["diaSemana"]?><br></div>
+                                      <div class="row col-xs-12"><?php echo $diaHorario["horaInicio"]?><br></div>
+                                      <div class="row col-xs-12"><?php echo $diaHorario["horaFin"]?><br><br></div>
+                                    <?php }
+                                  ?>:</div>
+                                </div>                             
+                            </div>
                           <!-- <div class="tab-pane fade" id="tab3default">Default 3</div> -->
                           <?php } ?>
                     </div>
@@ -251,12 +276,24 @@
     					</label>
 				    </div>
     				<div class = "row text-left">
-    					<img src="<?php echo $fotoUser; ?>" width="300px" height="300px"></img>
+    					<img src="<?php echo $fotoUser; ?>" width="300px" height="300px"><br><br></img>
     				</div>
     				<div class= "row text-left">
     					<div>
                 <label>
-                  <p>Petanca, Furbo, Samba</p>
+                  <?php
+                    // Preparamos las consultas de tags y categorías, y las realizamos
+                    $consultaTags ="call obtenTags(".$_SESSION['cod'].");";
+                    $consultaCategor ="call obtenCategs(".$_SESSION['cod'].");";
+                    $categorias = consulta($consultaCategor);
+                    $tags = consulta($consultaTags);
+
+                    for($z1=0; $z1<sizeof($categorias); $z1++) { ?>
+                      <p> <?php echo $categorias[$z1]["nombre"]?><br></p>
+                    <?php }
+                    for($z2=0; $z2<sizeof($tags); $z2++) { ?>
+                      <p> <?php echo $tags[$z2]["nombre"]?><br></p>
+                    <?php } ?>
                 </label>
 					   </div>
 				    </div>
