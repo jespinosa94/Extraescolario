@@ -71,10 +71,12 @@
           <form class="form-horizontal">
               <!-- InputNombreActividad -->
               <div class="form-group">
-                <label class="control-label col-sm-3" for="nombreActividad">Nombre Actividad:</label>
-                <div class="col-sm-9">
+
+                <label class="col-md-4 control-label" for="nombreActividad">Nombre Actividad:</label>
+                <div class="col-md-4">
                   <input class="form-control" id="nombreActividad" placeholder="Zumba" />
                 </div>
+
               </div>
               <!-- Selector Provincia -->
               <div class="form-group">
