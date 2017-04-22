@@ -1,4 +1,17 @@
 <!DOCTYPE html>
+<?php
+  session_start();
+
+  /* Incluimos la conexión predefinida*/
+  require_once ("conexion.php");
+  require_once ("funciones.php");
+
+  /*HACEMOS UNA LLAMADA A LA BASE DE DATOS PARA EXTRAER INFORMACION*/
+
+    $conUser = "call datosOFR(".$_SESSION['cod'].")";
+    $resultado = mysqli_query ($conexion, $conUser);
+
+?>
 <html lang="es"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -118,43 +131,165 @@
                 </div>
               </div>
 
-              <!-- CALENDARIO -->
+              <!-- Input Fecha Inicio -->
+              <div class="form-group ">
+                       <label class="col-md-4 control-label" for="fechaInicio">
+                         Fecha de inicio
+                       </label>
+                       <div class="col-md-4 input-group">
+                         <div class="input-group-addon">
+                           <i class="fa fa-calendar">
+                           </i>
+                         </div>
+                         <input class="form-control" id="fechaInicio" name="fechaInicio" placeholder="MM/DD/YYYY" type="text"/>
+                       </div>
+                     </div>
+              <!-- Input Fecha Fin -->
+              <div class="form-group ">
+                          <label class="col-md-4 control-label" for="fechaFin">
+                            Fecha de fin
+                          </label>
+                          <div class="col-md-4 input-group">
+                            <div class="input-group-addon">
+                              <i class="fa fa-calendar">
+                              </i>
+                            </div>
+                            <input class="form-control" id="fechaFin" name="fechaFin" placeholder="MM/DD/YYYY" type="text"/>
+                          </div>
+                        </div>
 
+              <div class row>
+                <label class="col-md-4 control-label" >Dia Semana</label>
+                <label class="col-md-4 control-label" >Hora Inicio</label>
+                <label class="col-md-4 control-label" >Hora Fin</label>
+              </div>
 
-              <!-- Multiple Checkbox dia semana -->
-              <div class="form-group">
-                <label class="col-md-4 control-label" for="getDiaSemana"></label>
+              <!-- Input horario lunes -->
+              <div class row>
                 <div class="col-md-4">
-                  <label class="checkbox-inline" for="getDiaSemana-0">
-                    <input type="checkbox" name="getDiaSemana" id="getDiaSemana-0" value="1">
+                  <label class="checkbox-inline" for="getLunes">
+                    <input type="checkbox" name="getLunes" id="getLunes" value="1">
                     Lunes
                   </label>
-                  <label class="checkbox-inline" for="getDiaSemana-1">
-                    <input type="checkbox" name="getDiaSemana" id="getDiaSemana-1" value="2">
+                </div>
+                <div class="col-md-4">
+                      <label class="col-md-4 control-label" for="lunesInicio"></label>
+                        <input id="lunesInicio" name="lunesInicio" type="text" placeholder="ej: 12:30" class="form-control input-md">
+                </div>
+                <div class="col-md-4">
+                      <label class="col-md-4 control-label" for="lunesFin"></label>
+                        <input id="lunesFin" name="lunesFin" type="text" placeholder="ej: 12:30" class="form-control input-md">
+                </div>
+              </div>
+
+              <!-- Input horario Martes -->
+              <div class row>
+                <div class="col-md-4">
+                  <label class="checkbox-inline" for="getMartes">
+                    <input type="checkbox" name="getMartes" id="getMartes" value="1">
                     Martes
                   </label>
-                  <label class="checkbox-inline" for="getDiaSemana-2">
-                    <input type="checkbox" name="getDiaSemana" id="getDiaSemana-2" value="3">
+                </div>
+                <div class="col-md-4">
+                      <label class="col-md-4 control-label" for="martesInicio"></label>
+                        <input id="martesInicio" name="martesInicio" type="text" placeholder="ej: 12:30" class="form-control input-md">
+                </div>
+                <div class="col-md-4">
+                      <label class="col-md-4 control-label" for="martesFin"></label>
+                        <input id="martesFin" name="martesFin" type="text" placeholder="ej: 12:30" class="form-control input-md">
+                </div>
+              </div>
+
+              <!-- Input horario Miercoles -->
+              <div class row>
+                <div class="col-md-4">
+                  <label class="checkbox-inline" for="getMiercoles">
+                    <input type="checkbox" name="getMiercoles" id="getMiercoles" value="1">
                     Miercoles
                   </label>
-                  <label class="checkbox-inline" for="getDiaSemana-3">
-                    <input type="checkbox" name="getDiaSemana" id="getDiaSemana-3" value="4">
+                </div>
+                <div class="col-md-4">
+                      <label class="col-md-4 control-label" for="miercolesInicio"></label>
+                        <input id="miercolesInicio" name="miercolesInicio" type="text" placeholder="ej: 12:30" class="form-control input-md">
+                </div>
+                <div class="col-md-4">
+                      <label class="col-md-4 control-label" for="miercolesFin"></label>
+                        <input id="miercolesFin" name="miercolesFin" type="text" placeholder="ej: 12:30" class="form-control input-md">
+                </div>
+              </div>
+
+              <!-- Input horario Jueves -->
+              <div class row>
+                <div class="col-md-4">
+                  <label class="checkbox-inline" for="getJueves">
+                    <input type="checkbox" name="getJueves" id="getJueves" value="1">
                     Jueves
                   </label>
-                  <label class="checkbox-inline" for="getDiaSemana-4">
-                    <input type="checkbox" name="getDiaSemana" id="getDiaSemana-4" value="">
+                </div>
+                <div class="col-md-4">
+                      <label class="col-md-4 control-label" for="juevesInicio"></label>
+                        <input id="juevesInicio" name="juevesInicio" type="text" placeholder="ej: 12:30" class="form-control input-md">
+                </div>
+                <div class="col-md-4">
+                      <label class="col-md-4 control-label" for="juevesFin"></label>
+                        <input id="juevesFin" name="juevesFin" type="text" placeholder="ej: 12:30" class="form-control input-md">
+                </div>
+              </div>
+
+              <!-- Input horario Viernes -->
+              <div class row>
+                <div class="col-md-4">
+                  <label class="checkbox-inline" for="getViernes">
+                    <input type="checkbox" name="getViernes" id="getViernes" value="1">
                     Viernes
                   </label>
-                  <label class="checkbox-inline" for="getDiaSemana-5">
-                    <input type="checkbox" name="getDiaSemana" id="getDiaSemana-5" value="">
+                </div>
+                <div class="col-md-4">
+                      <label class="col-md-4 control-label" for="viernesInicio"></label>
+                        <input id="viernesInicio" name="viernesInicio" type="text" placeholder="ej: 12:30" class="form-control input-md">
+                </div>
+                <div class="col-md-4">
+                      <label class="col-md-4 control-label" for="viernesFin"></label>
+                        <input id="viernesFin" name="viernesFin" type="text" placeholder="ej: 12:30" class="form-control input-md">
+                </div>
+              </div>
+
+              <!-- Input horario Sabado -->
+              <div class row>
+                <div class="col-md-4">
+                  <label class="checkbox-inline" for="getSabado">
+                    <input type="checkbox" name="getSabado" id="getSabado" value="1">
                     Sabado
                   </label>
-                  <label class="checkbox-inline" for="getDiaSemana-6">
-                    <input type="checkbox" name="getDiaSemana" id="getDiaSemana-6" value="">
+                </div>
+                <div class="col-md-4">
+                      <label class="col-md-4 control-label" for="sabadoInicio"></label>
+                        <input id="sabadoInicio" name="sabadoInicio" type="text" placeholder="ej: 12:30" class="form-control input-md">
+                </div>
+                <div class="col-md-4">
+                      <label class="col-md-4 control-label" for="sabadoFin"></label>
+                        <input id="sabadoFin" name="sabadoFin" type="text" placeholder="ej: 12:30" class="form-control input-md">
+                </div>
+              </div>
+
+              <!-- Input horario Domingo -->
+              <div class row>
+                <div class="col-md-4">
+                  <label class="checkbox-inline" for="getDomingo">
+                    <input type="checkbox" name="getDomingo" id="getDomingo" value="1">
                     Domingo
                   </label>
                 </div>
+                <div class="col-md-4">
+                      <label class="col-md-4 control-label" for="domingoInicio"></label>
+                        <input id="domingoInicio" name="domingoInicio" type="text" placeholder="ej: 12:30" class="form-control input-md">
+                </div>
+                <div class="col-md-4">
+                      <label class="col-md-4 control-label" for="domingoFin"></label>
+                        <input id="domingoFin" name="domingoFin" type="text" placeholder="ej: 12:30" class="form-control input-md">
+                </div>
               </div>
+
 
               <!-- Input precio actividad-->
               <div class="form-group">
@@ -210,18 +345,18 @@
         </div>
 
             <!--Tercera columna del form -->
-        <div class="col-md-4">
-          <h1> Esto es un titulaco </h1>
-          <p>
-          Los 4 Fantásticos es un equipo ficticio de superhéroes que aparece en cómics
-          estadounidenses publicados por Marvel Comics. El grupo debutó en The Fantastic
-          Four #1 (Noviembre de 1961), el cual ayudó a marcar el comienzo de un nuevo
-          nivel de realismo en el medio. Los 4 Fantásticos fue el primer equipo de
-          superhéroes creado por el escritor-editor Stan Lee y el artista Jack Kirby,
-          quienes desarrollaron un enfoque de colaboración al crear cómics con este
-          título que usarían a partir de entonces.
-          </p>
-        </div>
+              <div class="col-md-4">
+                  <output id="img" class="margenimagen"> <img class="imagenperfil" src="img/fontaneria.jpg" > </output>
+                  <div class="col-xs-6">
+                    <input id="files" name="files" class="input-file" type="file">
+                    <span class="help-block">Sube tu foto de la actividad aquí</span>
+                  </div>
+              </div>
+              
+
+
+            </div>
+            <script src="js/showimg.js"></script>
       </div>
     </div>
 
