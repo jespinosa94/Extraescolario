@@ -365,6 +365,7 @@
               <label class="col-md-4 control-label" for="publicarNewsletter"></label>
               <div class="col-md-4">
                 <button id="publicarNewsletter" name="publicarNewsletter" class="btn btn-primary">Publicar Newsletter</button>
+                <a href="index.html"></a>
               </div>
             </div>
           </form>

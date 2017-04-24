@@ -346,7 +346,7 @@
             <br>
             <br>
             <br>
-            
+
             <!-- Boton Publicar Actividad -->
             <div class="form-group">
               <label class="col-md-4 control-label" for="publicarActividad"></label>
@@ -364,12 +364,21 @@
                     <input id="files" name="files" class="input-file" type="file">
                     <span class="help-block">Sube tu foto de la actividad aquí</span>
                   </div>
+                  <script src="js/showimg.js"></script>
+              </div>
+              <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+              <br><br><br><br><br>
+              <!-- Link problemas con el formulario contactanos-->
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="publicarNewsletter"></label>
+                <div class="col-md-4">
+                  <button type="button" class="btn btn-link">¿Tienes problemas rellenando los campos? Contacta</button>
+                </div>
               </div>
 
 
-
             </div>
-            <script src="js/showimg.js"></script>
+
       </div>
     </div>
 
