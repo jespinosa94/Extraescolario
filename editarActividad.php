@@ -87,7 +87,7 @@
 
                 <label class="col-md-4 control-label" for="nombreActividad">Nombre Actividad:</label>
                 <div class="col-md-4">
-                  <input class="form-control" id="nombreActividad" placeholder="Zumba" />
+                  <input class="form-control" id="nombreActividad" style="width:280px" placeholder="Zumba" />
                 </div>
 
               </div>
@@ -118,16 +118,37 @@
               <div class="form-group">
                 <label class="col-md-4 control-label" for="getDireccion">Direccion</label>
                 <div class="col-md-4">
-                <input id="getDireccion" name="getDireccion" type="text" placeholder="Ej: C/ Alicante nº50" class="form-control input-md">
+                <input id="getDireccion" name="getDireccion" type="text" style="width:300px" placeholder="Ej: C/ Alicante nº50" class="form-control input-md">
 
                 </div>
               </div>
 
-              <!-- Cargar Datos del Perfil -->
+              <!-- Input precio actividad-->
               <div class="form-group">
-                <label class="col-md-4 control-label" for="getPerfil"></label>
+                <label class="col-md-4 control-label" for="getPrecio">Precio</label>
                 <div class="col-md-4">
-                  <button id="getPerfil" name="getPerfil" class="btn btn-primary">Cargar datos del perfil</button>
+                <input id="getPrecio" name="getPrecio" type="text" placeholder="Ej: 100" class="form-control input-md">
+                </div>
+              </div>
+
+              <!-- Formas de pago ya añadidas -->
+              <div class="form-group">
+                <label class="col-md-4 control-label">Forma de pagos aceptadas: </label>
+                <div class="col-md-4">
+                <input id="getDescripcion" name="getDescripcion" type="text" style="width:300px; height:75px" placeholder="Ej: Clases intensivas con profesor especializado..." class="form-control input-md" disabled>
+                </div>
+              </div>
+
+              <!-- Selector Multiple Forma de pago -->
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="addPago">Añadir forma de pago</label>
+                <div class="col-md-4">
+                  <select id="addPago" name="addPago" class="form-control" placeholder="Añadir forma de pago">
+                    <option value="1">Tarjeta</option>
+                    <option value="2">Transferencia</option>
+                    <option value="3">Paypal</option>
+                    <option value="4">Efectivo</option>
+                  </select>
                 </div>
               </div>
 
@@ -141,7 +162,7 @@
                            <i class="fa fa-calendar">
                            </i>
                          </div>
-                         <input class="form-control" id="fechaInicio" name="fechaInicio" placeholder="MM/DD/YYYY" type="text"/>
+                         <input class="form-control" id="fechaInicio" name="fechaInicio" style="width:120px" placeholder="MM/DD/YYYY" type="text"/>
                        </div>
                      </div>
               <!-- Input Fecha Fin -->
@@ -154,10 +175,11 @@
                               <i class="fa fa-calendar">
                               </i>
                             </div>
-                            <input class="form-control" id="fechaFin" name="fechaFin" placeholder="MM/DD/YYYY" type="text"/>
+                            <input class="form-control" id="fechaFin" name="fechaFin"style="width:120px"  placeholder="MM/DD/YYYY" type="text"/>
                           </div>
                         </div>
 
+              <!-- Row con labels para las etiquetas de los horarios-->
               <div class row>
                 <label class="col-md-4 control-label" >Dia Semana</label>
                 <label class="col-md-4 control-label" >Hora Inicio</label>
@@ -290,26 +312,15 @@
                 </div>
               </div>
 
-              <!-- Input precio actividad-->
-              <div class="form-group">
-                <label class="col-md-4 control-label" for="getPrecio">Precio</label>
-                <div class="col-md-4">
 
-                <input id="getPrecio" name="getPrecio" type="text" placeholder="Ej: 100" class="form-control input-md">
-
-                </div>
-              </div>
-
-              <!-- Selector Multiple Forma de pago -->
-              <div class="form-group">
-                <label class="col-md-4 control-label" for="getFormaPago">Forma de Pago</label>
-                <div class="col-md-4">
-                  <select id="getFormaPago" name="getFormaPago" class="form-control" multiple="multiple">
-                    <option value="1">Paypal</option>
-                    <option value="2">Efectivo</option>
-                    <option value="">Tarjeta</option>
-                    <option value="">Transferencia</option>
-                  </select>
+              <!-- Boton Confirmar cambios -->
+              <div class row>
+                <div class="form-group">
+                  <div class="col-md-4"></div>
+                  <div class="col-md-4">
+                    <label class="col-md-offset-4 control-label" for="botonConfirmar"></label>
+                    <button id="botonConfirmar" name="botonConfirmar" class="btn btn-success">Confirmar cambios</button>
+                  </div>
                 </div>
               </div>
           </form>
@@ -346,12 +357,14 @@
             <br>
             <br>
             <br>
-            
-            <!-- Boton Publicar Actividad -->
+            <br>
+            <br>
+
+            <!-- Boton Publicar Newsletter -->
             <div class="form-group">
-              <label class="col-md-4 control-label" for="publicarActividad"></label>
+              <label class="col-md-4 control-label" for="publicarNewsletter"></label>
               <div class="col-md-4">
-                <button id="publicarActividad" name="publicarActividad" class="btn btn-primary">Publicar Actividad</button>
+                <button id="publicarNewsletter" name="publicarNewsletter" class="btn btn-primary">Publicar Newsletter</button>
               </div>
             </div>
           </form>
@@ -364,12 +377,24 @@
                     <input id="files" name="files" class="input-file" type="file">
                     <span class="help-block">Sube tu foto de la actividad aquí</span>
                   </div>
+                  <script src="js/showimg.js"></script>
               </div>
+              <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+              <br><br><br><br><br><br><br><br><br><br><br><br><br>
+              <br><br><br><br><br><br><br><br>
 
-
-
+              <!-- Boton borrar actividad -->
+              <div class row>
+                <div class="form-group">
+                  <div class="col-md-4"></div>
+                  <div class="col-md-4">
+                    <label class="col-md-offset-4 control-label" for="botonBorrar"></label>
+                    <button id="botonBorrar" name="botonBorrar" class="btn btn-danger">Borrar actividad</button>
+                  </div>
+                </div>
+              </div>
             </div>
-            <script src="js/showimg.js"></script>
+
       </div>
     </div>
 
