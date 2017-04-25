@@ -55,7 +55,7 @@ function consulta($query) {
   $contrasenya = ".gi_jec21.";
 
     try {
-      $conexion = new PDO('mysql:host=bbdd.dlsi.ua.es;dbname=gi_extraescol', $usuariobd, $contrasenya);
+      $conexion = new PDO('mysql:host=bbdd.dlsi.ua.es;dbname=gi_extraescol;charset=utf8', $usuariobd, $contrasenya);
     } catch (PDOException $e) {
       echo "Error: " . $e->getMessage();
     }
