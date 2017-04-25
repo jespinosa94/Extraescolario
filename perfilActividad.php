@@ -82,13 +82,13 @@ if($logeado) {
        ?>
 
       <!--Cuerpo -->
-      <div class="actividad container">
+       <div class="actividad container">
         <div class="row">
           <div class="col-md-9">
-            <div class="datosAct">
+             <div id="datosAct">
               <h1 style="color:black">Título de la actividad</h1>
               <div class="tagLine">
-                <h4><span style="color:black">Localidad </span> · resumen en 5 palabras</h4>
+                <h4><span style="color:black">Localidad </span> · dirección actividad</h4>
                 <ul class="list-inline">
                   <li><a href="#">Tag1</a></li>
                   <li><a href="#">Tag2</a></li>
@@ -98,6 +98,7 @@ if($logeado) {
               </div>
             </div>
             <div class="horarioAct">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
 
             </div>
           </div>
