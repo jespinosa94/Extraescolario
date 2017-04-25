@@ -10,25 +10,44 @@
   pones la otra, no se queja pero no hace nada*/
     $dir = "img/";
 
-  /*HACEMOS UNA LLAMADA A LA BASE DE DATOS PARA EXTRAER INFORMACION*/
-          
-    $conUser = "call datosBUS(".$_SESSION['cod'].")";
-    $resultado = mysqli_query ($conexion, $conUser);
+  /*Realizamos una primera llamadaa la BBDD para extraer la información del usuario*/         
+    $conUser = "call datosBUS(".$_SESSION['cod'].");";
+    $obtenActiv= "call obtenACT(".$_SESSION['cod'].");";
 
-    while ($datosUsuario = mysqli_fetch_array($resultado)) {
-      $nickUser = $datosUsuario["nick"];
-      $emailUser = $datosUsuario["email"];
-      $passUser = $datosUsuario["contrasenya"];
-      $telefUser = $datosUsuario["telefono"];
-      $fotoUser= $dir.$datosUsuario["foto"];
-      $provinciaUser = $datosUsuario["pNombre"];
-      $localidadUser = $datosUsuario["lNombre"];
-      $direccionUser = $datosUsuario["direccion"];
-      $nombreUser = $datosUsuario["nombre"];
-      $apellidosUser = $datosUsuario["apellidos"];
-      $fechaNacUser = $datosUsuario["fechaNacimiento"];
-      $sexoUser = $datosUsuario["sexo"];
+    $datosUsuario = consulta($conUser);
+    $datosAct = consulta($obtenActiv);
+
+    $nickUser = $datosUsuario[0]["nick"];
+    $emailUser = $datosUsuario[0]["email"];
+    $passUser = $datosUsuario[0]["contrasenya"];
+    $telefUser = $datosUsuario[0]["telefono"];
+    $fotoUser= $dir.$datosUsuario[0]["foto"];
+    $provinciaUser = $datosUsuario[0]["pNombre"];
+    $localidadUser = $datosUsuario[0]["lNombre"];
+    $direccionUser = $datosUsuario[0]["direccion"];
+    $nombreUser = $datosUsuario[0]["nombre"];
+    $apellidosUser = $datosUsuario[0]["apellidos"];
+    $fechaNacUser = $datosUsuario[0]["fechaNacimiento"];
+    $sexoUser = $datosUsuario[0]["sexo"];
+    echo $sexoUser;
+
+    /*while ($datosActiv = mysqli_fetch_array($resultado)) {
+      $codAct = $datosActiv["cod"];
+      $nombreAct = $datosActiv["nombre"];
+      $direccionAct = $datosActiv["direccion"];
+      $descripcionAct = $datosActiv["descripcion"];
     }
+
+    /*$resultDatosACT = mysqli_query($conexion, $obtenActiv);
+
+    while ($datosActividad = mysqli_fetch_array($resultDatosACT)) {
+      $codAct = $datosActividad["cod"];
+      echo $codAct;
+      $nombreAct = $datosActividad["nombre"];
+      echo $nombreAct;
+      $direccionAct = $datosActividad["direccion"];
+      $descripcionAct = $datosActividad["descripcion"];
+    }*/
 ?>
 
 
@@ -104,7 +123,7 @@
           <h2 class="col-xs-12"> Página personal de <?php echo $nickUser; ?> </h2>
         </div>
         <!--Row tocho que tiene las 3 columnas dentro -->
-        <div class= "row">
+        <div class= "row align-items-center">
         	<!--Primera gran columna -->
         	<div class ="col-md-4">
         		<div class = "col-xs-12 row text-left">
@@ -138,13 +157,16 @@
     			    </div>
 
 			        <div class = "row">
+                    <label class="col-xs-6 col-md-4 control-label text-left" for="apellidos">Sexo:</label>
+                    <p class="con-xs-6 col-md-8 control-label text-left" for="apellidos"><?php echo $sexoUser?></p> 
+                <!--
 	                <label class="col-xs-4 control-label text-left" for="sexo">Sexo:</label>
 	                <div class="col-xs-8"> 
 	                  <label class="radio-inline" for="radios-0">
-	                     <input type="radio" name="radios" id="sHombre" value="1" checked="checked">Hombre</label> 
+	                     <input type="radio" name="radios" id="sHombre" value="1" checked="<?php if ($sexoUser="Mujer") {echo false;}?>"       >Hombre</label> 
 	                  <label class="radio-inline" for="radios-1">
-	                    <input type="radio" name="radios" id="sMujer" value="2">Mujer</label>
-	                </div>
+	                    <input type="radio" name="radios" id="sMujer" value="2" checked="<?php if ($sexoUser="Mujer") {echo true;}?>"         >Mujer</label>
+	                </div> -->
     			    </div>
     			    <div class = "row">
     	                <label class="col-xs-6 col-md-4 control-label text-left" for="fecnac">Fecha de Nacimiento:</label>
@@ -187,25 +209,50 @@
           <div class="panel with-nav-tabs panel-default">
                 <div class="panel-heading">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#tab1default" data-toggle="tab">Default 1</a></li>
-                            <li><a href="#tab2default" data-toggle="tab">Default 2</a></li>
-                            <li><a href="#tab3default" data-toggle="tab">Default 3</a></li>
+                            <!-- <li class="active"><a href="#tab1default" data-toggle="tab">Default 1</a></li>-->
+                            <?php for($i = 0; $i< sizeof($datosAct); $i++)  { $actividad = $datosAct[$i];?>
+                              <li><a href="<?php echo $var="#tab".$actividad["cod"]?>" data-toggle="tab"><?php echo $actividad["nombre"]?></a></li>
+                            <?php  } ?>
+                            <?php if (sizeof($datosAct) > 4) { ?>
                             <li class="dropdown">
                                 <a href="#" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#tab4default" data-toggle="tab">Default 4</a></li>
-                                    <li><a href="#tab5default" data-toggle="tab">Default 5</a></li>
+                                    <?php for($i = 5; $i< sizeof($datosAct); $i++)  { $actividad = $datosAct[$i];?>
+                                      <li><a href="<?php echo $var="#tab".$actividad["cod"]?>" data-toggle="tab"><?php echo $actividad["nombre"]?></a></li>
+                                    <?php  } ?>
                                 </ul>
                             </li>
+                            <?php } ?>
                         </ul>
                 </div>
                 <div class="panel-body">
                     <div class="tab-content">
-                        <div class="tab-pane fade in active" id="tab1default">Default 1</div>
-                        <div class="tab-pane fade" id="tab2default">Default 2</div>
-                        <div class="tab-pane fade" id="tab3default">Default 3</div>
-                        <div class="tab-pane fade" id="tab4default">Default 4</div>
-                        <div class="tab-pane fade" id="tab5default">Default 5</div>
+                          <!--<div class="tab-pane fade in active" id="#tab1"><?php echo $datosAct[0]["descripcion"] ?></div>-->
+                          <?php for($i = 0; $i< sizeof($datosAct); $i++)  { $actividad = $datosAct[$i]; ?>
+                            <div class="tab-pane fade" id="<?php echo $var="tab".$actividad["cod"]?>">
+                              <div class="row col-xs-12"> <?php echo $actividad["descripcion"] ?><br><br></div>
+                                <div class="row align-items-center">
+                                  <div class="col-md-6">
+                                    Horario:
+                                  </div>
+                                  <!-- Realizamos la consultad de los horarios-->
+                                  <?php
+                                  $buscahorarios = "call obtenHorario(".$_SESSION['cod'].",".$actividad["cod"].");";
+                                  $horarios = consulta($buscahorarios);
+
+                                  ?>
+                                  <div class="col-md-6"> <?php 
+                                    for ($y = 0; $y < sizeof($horarios); $y++) {
+                                      $diaHorario = $horarios[$y]; ?>
+                                      <div class="row col-xs-12"><?php echo $diaHorario["diaSemana"]?><br></div>
+                                      <div class="row col-xs-12"><?php echo $diaHorario["horaInicio"]?><br></div>
+                                      <div class="row col-xs-12"><?php echo $diaHorario["horaFin"]?><br><br></div>
+                                    <?php }
+                                  ?>:</div>
+                                </div>                             
+                            </div>
+                          <!-- <div class="tab-pane fade" id="tab3default">Default 3</div> -->
+                          <?php } ?>
                     </div>
                 </div>
             </div>
@@ -229,12 +276,24 @@
     					</label>
 				    </div>
     				<div class = "row text-left">
-    					<img src="<?php echo $fotoUser; ?>" width="300px" height="300px"></img>
+    					<img src="<?php echo $fotoUser; ?>" width="300px" height="300px"><br><br></img>
     				</div>
     				<div class= "row text-left">
     					<div>
                 <label>
-                  <p>Petanca, Furbo, Samba</p>
+                  <?php
+                    // Preparamos las consultas de tags y categorías, y las realizamos
+                    $consultaTags ="call obtenTags(".$_SESSION['cod'].");";
+                    $consultaCategor ="call obtenCategs(".$_SESSION['cod'].");";
+                    $categorias = consulta($consultaCategor);
+                    $tags = consulta($consultaTags);
+
+                    for($z1=0; $z1<sizeof($categorias); $z1++) { ?>
+                      <p> <?php echo $categorias[$z1]["nombre"]?><br></p>
+                    <?php }
+                    for($z2=0; $z2<sizeof($tags); $z2++) { ?>
+                      <p> <?php echo $tags[$z2]["nombre"]?><br></p>
+                    <?php } ?>
                 </label>
 					   </div>
 				    </div>
