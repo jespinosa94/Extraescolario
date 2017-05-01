@@ -97,9 +97,33 @@ if($logeado) {
                 </ul>
               </div>
             </div>
-            <div class="horarioAct">
-              <i class="fa fa-calendar" aria-hidden="true"></i>
+            <div id="horarioAct">
+              <h4>Fecha de inicio: 23/04/2017 <i class="fa fa-calendar" aria-hidden="true"></i></h4>
+              <h4>Fecha de fin: 25/04/2017 <i class="fa fa-calendar" aria-hidden="true"></i></h4>
 
+              <h2>Horario:</h2>
+              <h4>Lunes: 13:00 - 19:00</h4>
+              <h4>Martes: 13:00 - 19:00</h4>
+            </div>
+
+            <div id="descAct">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+              <br><br><br>
+              <div id="map" style="width:800px;height:400px;background:yellow"></div>
+              <script>
+                function myMap() {
+                    var mapOptions = {
+                        center: new google.maps.LatLng(38.267252, -0.697654),
+                        zoom: 17,
+                        mapTypeId: google.maps.MapTypeId.roadmap
+                    }
+                var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+                }
+              </script>
             </div>
           </div>
           <div class="col-md-3">
@@ -197,5 +221,6 @@ if($logeado) {
     <script src="js/jquery.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="js/bootstrap.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAS0MzQVgs_yEYyaslU5S5vrl9l8MkmsJQ&callback=myMap"></script>
   </body>
 </html>
