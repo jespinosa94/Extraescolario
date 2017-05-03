@@ -29,7 +29,6 @@
     $apellidosUser = $datosUsuario[0]["apellidos"];
     $fechaNacUser = $datosUsuario[0]["fechaNacimiento"];
     $sexoUser = $datosUsuario[0]["sexo"];
-    echo $sexoUser;
 
     /*while ($datosActiv = mysqli_fetch_array($resultado)) {
       $codAct = $datosActiv["cod"];
