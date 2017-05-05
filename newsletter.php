@@ -62,35 +62,12 @@
             <!-- <td> <button class="btn btn-primary" onclick="dameNumero(<?php echo $i?>)">Eliminar Suscripcion</button></td> -->
         </tr>
         <?php } ?>
-        <!--
-        <tr>
-          <td>Centro comercial Moctezuma</td>
-          <td>Francisco Chang</td>
-          <td>Mexico</td>
-        </tr>
-        <tr>
-          <td>Ernst Handel</td>
-          <td>Roland Mendel</td>
-          <td>Austria</td>
-        </tr>
-        <tr>
-          <td>Island Trading</td>
-          <td>Helen Bennett</td>
-          <td>UK</td>
-        </tr>
-        <tr>
-          <td>Laughing Bacchus Winecellars</td>
-          <td>Yoshi Tannamuri</td>
-          <td>Canada</td>
-        </tr>
-        <tr>
-          <td>Magazzini Alimentari Riuniti</td>
-          <td>Giovanni Rovelli</td>
-          <td>Italy</td>
-        </tr> -->
+
+
+      <!-- Tabla  de promociones-->
       </table>
       <br><br>
-      <h3>Suscripciones promocionales</h3>
+      <h3>Suscripciones Promocionales</h3>
       <table id="promos">
         <tr>
           <th>Nombre</th>
@@ -103,7 +80,13 @@
             <td> <?php echo $unapromo["Actividad"]?></td>
             <td> <?php echo $unapromo["direccion"]?></td>
             <td> <?php echo $unapromo["Localidad"]?></td>
-            <td> <button class="btn btn-primary">Eliminar Suscripcion</button></td>
+            <!-- Creamos los botones de borrar dentro de la celda -->
+            <td>               
+              <form action="borroPromos.php" method="post">
+                <input type="hidden" name="codigoActiv" value="<?php echo $unapromo["cod"]?>">
+                <button type="submit">Eliminar Suscripción</button>
+              </form>
+            </td>
         </tr>
         <?php } ?>
       </table>
@@ -112,8 +95,7 @@
     <!-- Row con los botones-->
     <div class= "row col-xs-12">
       <div class="span4 offset4 text-center">
-        <button class="btn btn-primary">Editar Perfil</button>
-        <button class="btn btn-default">Volver</button>
+        <button class="btn btn-default" onclick="cierro()">Volver</button>
       </div>
     </div>
   </div>
@@ -123,6 +105,10 @@
   function dameNumero(y) {
       alert("<?php consulta($notificaciones); ?>");
 
+  }
+
+  function cierro() {
+    close();
   }
 
   </script>

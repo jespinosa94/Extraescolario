@@ -5,7 +5,7 @@
   require_once ("conexion.php");
   require_once ("funciones.php");
 
-  $borranotif = "call borroNotis(".$_SESSION['cod'].",".$_POST['codigoActiv'].");";
+  $borranotif = "call borroPromos(".$_SESSION['cod'].",".$_POST['codigoActiv'].");";
 
   $datosNotis = consulta($borranotif);
 
