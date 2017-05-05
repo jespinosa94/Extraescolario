@@ -257,7 +257,7 @@
             </div>
 				</div>
 				<div class="row col-xs-12">
-					<h3 href="" class="btn">Mis suscripciones</h3>
+					<h3 href="" class="btn" onclick="abreSuscripciones()" >Mis suscripciones</h3>
 				</div>
 				<div class="row col-xs-12">
 					<label>
@@ -298,7 +298,7 @@
 				    </div>
         	</div>
         </div>
-                <!-- Row con los botones-->
+        <!-- Row con los botones-->
         <div class= "row col-xs-12">
           <div class="span4 offset4 text-center">
             <button class="btn btn-primary">Editar Perfil</button>
@@ -395,6 +395,11 @@
         </div>
       </footer>
     </div>
+    <script>
+      function abreSuscripciones() {
+        var myWindow = window.open("http://localhost/Extraescolario/newsletter.php", "suscris", "width=800,height=600");
+      } 
+    </script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
