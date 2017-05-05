@@ -246,8 +246,8 @@
                                       <div class="row col-xs-12"><?php echo $diaHorario["diaSemana"]?><br></div>
                                       <div class="row col-xs-12"><?php echo $diaHorario["horaInicio"]?><br></div>
                                       <div class="row col-xs-12"><?php echo $diaHorario["horaFin"]?><br><br></div>
-                                    <?php }
-                                  ?>:</div>
+                                    <?php } ?>
+                                  </div>
                                 </div>                             
                             </div>
                           <!-- <div class="tab-pane fade" id="tab3default">Default 3</div> -->
@@ -275,7 +275,7 @@
     					</label>
 				    </div>
     				<div class = "row text-left">
-    					<img src="<?php echo $fotoUser; ?>" width="300px" height="300px"><br><br></img>
+    					<img src="<?php echo $fotoUser; ?>" onerror="this.src='img/Maleavatar.jpg'" width="300px" height="300px"><br><br></img>
     				</div>
     				<div class= "row text-left">
     					<div>
@@ -398,7 +398,8 @@
     <script>
       function abreSuscripciones() {
         var myWindow = window.open("http://localhost/Extraescolario/newsletter.php", "suscris", "width=800,height=600");
-      } 
+      }
+
     </script>
 
     <!-- Bootstrap core JavaScript
