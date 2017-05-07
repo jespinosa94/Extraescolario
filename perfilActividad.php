@@ -125,18 +125,41 @@ if($logeado) {
                 }
               </script>
             </div>
+            <div class="row">
+              <h1>Evaluaciones de usuarios</h1>
+              <div class="col-md-12 comentario">
+                <div class="row">
+                  <div class="col-md-2">
+                    <img src="img/maleavatar.jpg" class= "img-circle" width="100px" height="100px">
+                  </div>
+                  <div class="col-md-10">
+                    <h3>Nombre del pavo
+                      <i class="fa fa-star" aria-hidden="true"><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></i>
+                    </h3>
+                    <!-- <div id="stars-existing" class="starrr" data-rating='0'></div> -->
+                    <h5>4 de mayo de 2017</h5>
+                  </div>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="col-md-3">
             <div class="affix">
-              <h1> Esto es un titulaco </h1>
-              <p>
-              Los 4 Fantásticos es un equipo ficticio de superhéroes que aparece en cómics
-              estadounidenses publicados por Marvel Comics. El grupo debutó en The Fantastic
-              Four #1 (Noviembre de 1961), el cual ayudó a marcar el comienzo de un nuevo
-              nivel de realismo en el medio. Los 4 Fantásticos fue el primer equipo de
-              superhéroes creado por el escritor-editor Stan Lee y el artista Jack Kirby,
-              quienes desarrollaron un enfoque de colaboración al crear cómics con este
-              título que usarían a partir de entonces.
+              <img src="img/negro.jpg" width="300px" height="500px" style="margin-bottom: 10px;">
+              <div class="row">
+                <div class="col-md-5">
+                  <h5>Precio: <span style="color:grey">120€</span></h5>
+                  <!-- <p>Detalles y formas de pago:
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
+                </div>
+                <div class="col-md-7">
+                  <button type="button" class="btn btn-danger">Inscribirme!</button>
+                  <div class="row lead" style="margin-left: 1px; margin-top: 4px;">
+                    <i class="fa fa-star" aria-hidden="true"><i class="fa fa-star" aria-hidden="true"></i></i>
+                  </div>
+                </div>
+              </div>
               </p>
             </div>
           </div>
@@ -216,11 +239,17 @@ if($logeado) {
       </footer>
     </div>
 
+
+    <!--  Javascript del star rating-->
+    <!-- <div id="stars-existing" class="starrr" data-rating='3'></div>
+    <h5 style="margin-top: 2px;">Tu puntuación: <span id="count-existing">4</span></h5> -->
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <script src="js/jquery.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="js/bootstrap.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAS0MzQVgs_yEYyaslU5S5vrl9l8MkmsJQ&callback=myMap"></script>
+    <script src="js/star_rating.js"></script>
   </body>
 </html>
