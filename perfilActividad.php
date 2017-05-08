@@ -6,7 +6,29 @@ $logeado = isset($_SESSION['cod']);
 if($logeado) {
   $cod = $_SESSION['cod'];
 }
-
+if(!$_GET) {
+  header('Location: index.php');
+}
+$idAct = $_GET['cod'];
+$datosAct = consulta("call obtener_datos_actividad(".$idAct.");");
+$tagsAct = consulta("call obtener_tags_actividad(".$idAct.");");
+$catAct = consulta("call obtener_cat_actividad(".$idAct.");");
+//var_dump($datosAct);
+//var_dump($tagsAct);
+$nombreAct = $datosAct[0]['nombre'];
+$fechaInicio = $datosAct[0]['fechaInicio'];
+$fechaFin = $datosAct[0]['fechaFin'];
+$foto = $datosAct[0]['foto'];
+$descripcion = $datosAct[0]['descripcion'];
+$valoracionMedia = $datosAct[0]['valoracionMedia'];
+$precio = $datosAct[0]['precio'];
+$pagosAceptados = $datosAct[0]['metodoPago'];
+$mensualidades = $datosAct[0]['formaPago'];
+$direccion = $datosAct[0]['direccion'];
+$rangoEdad = $datosAct[0]['rangoEdad'];
+$localidad = $datosAct[0]['localidad'];
+$provincia = $datosAct[0]['provincia'];
+var_dump($tagsAct);
  ?>
 
 <!DOCTYPE html>
@@ -86,20 +108,36 @@ if($logeado) {
         <div class="row">
           <div class="col-md-9">
              <div id="datosAct">
-              <h1 style="color:black">Título de la actividad</h1>
+              <h1 style="color:black"><?php echo($nombreAct) ?></h1>
               <div class="tagLine">
-                <h4><span style="color:black">Localidad </span> · dirección actividad</h4>
+                <h4><span style="color:black"><?php echo($localidad) ?>, <?php echo($provincia) ?> </span> · <?php echo($direccion) ?></h4>
                 <ul class="list-inline">
-                  <li><a href="#">Tag1</a></li>
+                  <?php
+                  $displayed = array();
+                  for($z1=0; $z1<sizeof($tagsAct); $z1++) {
+                    if(!in_array($tagsAct[$z1]["nombre"], $displayed)) {
+                      echo("<li><a href=\"#\">".$tagsAct[$z1]["nombre"]."</a></li>");
+                      array_push($displayed, $tagsAct[$z1]["nombre"]);
+                    }
+                  }
+                  for($z1=0; $z1<sizeof($catAct); $z1++) {
+                    if(!in_array($catAct[$z1]["nombre"], $displayed)) {
+                      echo("<li><a href=\"#\">".$catAct[$z1]["nombre"]."</a></li>");
+                      array_push($displayed, $catAct[$z1]["nombre"]);
+                    }
+
+                  }
+                   ?>
+                  <!-- <li><a href="#">Tag1</a></li>
                   <li><a href="#">Tag2</a></li>
                   <li><a href="#">Tag3</a></li>
-                  <li><a href="#">Tag4</a></li>
+                  <li><a href="#">Tag4</a></li> -->
                 </ul>
               </div>
             </div>
             <div id="horarioAct">
-              <h4>Fecha de inicio: 23/04/2017 <i class="fa fa-calendar" aria-hidden="true"></i></h4>
-              <h4>Fecha de fin: 25/04/2017 <i class="fa fa-calendar" aria-hidden="true"></i></h4>
+              <h4>Fecha de inicio: <?php echo($fechaInicio);?> <i class="fa fa-calendar" aria-hidden="true"></i></h4>
+              <h4>Fecha de fin: <?php echo($fechaFin); ?> <i class="fa fa-calendar" aria-hidden="true"></i></h4>
 
               <h2>Horario:</h2>
               <h4>Lunes: 13:00 - 19:00</h4>
@@ -107,11 +145,7 @@ if($logeado) {
             </div>
 
             <div id="descAct">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
+              <p><?php echo($descripcion) ?></p>
               <br><br><br>
               <div id="map" style="width:800px;height:400px;background:yellow"></div>
               <script>
@@ -146,10 +180,11 @@ if($logeado) {
           </div>
           <div class="col-md-3">
             <div class="affix">
-              <img src="img/negro.jpg" width="300px" height="500px" style="margin-bottom: 10px;">
-              <div class="row">
+              <?php echo('<img src="data:image/jpeg;base64,'.base64_encode( $foto ).'"/ >'); ?>
+              <!-- <img src="img/negro.jpg" width="300px" height="500px" style="margin-bottom: 10px;"> -->
+              <div class="row" style="margin-top: 10px;">
                 <div class="col-md-5">
-                  <h5>Precio: <span style="color:grey">120€</span></h5>
+                  <h5>Precio: <span style="color:grey"><?php echo($precio); ?>€</span></h5>
                   <!-- <p>Detalles y formas de pago:
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
                 </div>
