@@ -28,7 +28,13 @@ $direccion = $datosAct[0]['direccion'];
 $rangoEdad = $datosAct[0]['rangoEdad'];
 $localidad = $datosAct[0]['localidad'];
 $provincia = $datosAct[0]['provincia'];
-var_dump($tagsAct);
+$turnosAct = consulta("call obtener_turnos_actividad(".$idAct.");");
+
+echo($direccion . " " . $provincia . " Spain");
+$coordenadas = explode(",", getCoordinates($direccion . " " . $localidad . " " . $provincia . " Spain"));
+$lat = floatval($coordenadas[0]);
+$long = floatval($coordenadas[1]);
+
  ?>
 
 <!DOCTYPE html>
@@ -107,7 +113,7 @@ var_dump($tagsAct);
        <div class="actividad container">
         <div class="row">
           <div class="col-md-9">
-             <div id="datosAct">
+             <div id="datosAct" class="row">
               <h1 style="color:black"><?php echo($nombreAct) ?></h1>
               <div class="tagLine">
                 <h4><span style="color:black"><?php echo($localidad) ?>, <?php echo($provincia) ?> </span> · <?php echo($direccion) ?></h4>
@@ -128,20 +134,36 @@ var_dump($tagsAct);
 
                   }
                    ?>
-                  <!-- <li><a href="#">Tag1</a></li>
-                  <li><a href="#">Tag2</a></li>
-                  <li><a href="#">Tag3</a></li>
-                  <li><a href="#">Tag4</a></li> -->
                 </ul>
               </div>
             </div>
-            <div id="horarioAct">
+            <div id="horarioAct" class="row">
               <h4>Fecha de inicio: <?php echo($fechaInicio);?> <i class="fa fa-calendar" aria-hidden="true"></i></h4>
               <h4>Fecha de fin: <?php echo($fechaFin); ?> <i class="fa fa-calendar" aria-hidden="true"></i></h4>
-
               <h2>Horario:</h2>
-              <h4>Lunes: 13:00 - 19:00</h4>
-              <h4>Martes: 13:00 - 19:00</h4>
+
+              <?php
+                 if(count($turnosAct)==0) {
+                   echo("<h3>Esta actividad no tiene ningún grupo disponible actualmente</h3>");
+                 } else {
+                   $aux=false;
+                   for($z1=0; $z1<sizeof($turnosAct); $z1++) {
+                     if($aux==true) {?> <div class="row"> <?php } ?>
+                       <div class="col-md-4">
+                         <h3>Turno <?php echo $z1+1 ?></h3>
+                         <?php
+                         $horarioTurno = consulta("call obtener_horario_turno(".$turnosAct[$z1][0].");");
+                         for($x1=0; $x1<count($horarioTurno); $x1++) {
+                          echo("<h4>" . $horarioTurno[$x1][0] . ": " . $horarioTurno[$x1][1] . "-" . $horarioTurno[$x1][2] . "</h4>");
+                         }
+                         ?>
+                         </div>
+                         <?php if($aux==true) {?> </div> <?php } ?>
+                         <?php if($z1%3==0 && $z1!=0) $aux=true;?>
+                     <?php
+                     }
+                 }
+                  ?>
             </div>
 
             <div id="descAct">
@@ -149,9 +171,13 @@ var_dump($tagsAct);
               <br><br><br>
               <div id="map" style="width:800px;height:400px;background:yellow"></div>
               <script>
+              lat = '<?php echo $lat ;?>';
+              long = '<?php echo $long ;?>';
+              alert(spge);
                 function myMap() {
                     var mapOptions = {
-                        center: new google.maps.LatLng(38.267252, -0.697654),
+                        center: new google.maps.LatLng(lat, long),
+                        // center: new google.maps.LatLng(38.267252, -0.697654),
                         zoom: 17,
                         mapTypeId: google.maps.MapTypeId.roadmap
                     }
@@ -161,21 +187,58 @@ var_dump($tagsAct);
             </div>
             <div class="row">
               <h1>Evaluaciones de usuarios</h1>
-              <div class="col-md-12 comentario">
-                <div class="row">
-                  <div class="col-md-2">
-                    <img src="img/maleavatar.jpg" class= "img-circle" width="100px" height="100px">
-                  </div>
-                  <div class="col-md-10">
-                    <h3>Nombre del pavo
-                      <i class="fa fa-star" aria-hidden="true"><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></i>
-                    </h3>
-                    <!-- <div id="stars-existing" class="starrr" data-rating='0'></div> -->
-                    <h5>4 de mayo de 2017</h5>
-                  </div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <?php
+              $comentarios = consulta("call obtener_comentarios_actividad(".$idAct.");");
+              $dir = "img/";
+              foreach($comentarios as $comentario) {
+                $foto_usuario = $dir.$comentario['foto'];
+                $nombre_usuario = $comentario['nombre'];
+                $apellidos_usuario = $comentario['apellidos'];
+                $valoracion = $comentario['valoracion'];
+                $titulo = $comentario['titulo'];
+                $fecha = $comentario['fecha'];
+                $descripcion_comentario = $comentario['descripcion'];
+                ?>
+                <div id="comentario" class="row">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-2">
+                        <img src="<?php echo $foto_usuario; ?>" class= "img-circle" width="100px" height="100px">
+                      </div>
+                      <div class="col-md-10">
+                        <h3> <?php echo($nombre_usuario . " " . $apellidos_usuario . " - " . $titulo . ": "); ?>
+                          <?php
+                          if($valoracion==0) {?>
+                            <i class="fa fa-star-o" aria-hidden="true"><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i></i>
+                            <?php
+                          } else {
+                            echo("<i class=\"fa fa-star\" aria-hidden=\"true\">");
+                            for($x1=1; $x1<$valoracion && $valoracion>1; $x1++) {
+                              echo("<i class=\"fa fa-star\" aria-hidden=\"true\"></i>");
+                            }
+                            echo("</i>");
+                            if($valoracion<5) {
+                              echo("<i class=\"fa fa-star-o\" aria-hidden=\"true\">");
+                              for($x2=$valoracion+1; $x2<5 && $valoracion<4; $x2++) {
+                                echo("<i class=\"fa fa-star-o\" aria-hidden=\"true\"></i>");
+                              }
+                            }
+                            echo("</i>");
+                          }
+
+                           ?>
+                        </h3>
+                        <!-- <div id="stars-existing" class="starrr" data-rating='0'></div> -->
+                        <h5><?php echo($fecha)?></h5>
+                      </div>
+                      <p><?php echo($descripcion_comentario) ?></p>
+                    </div>
                 </div>
-              </div>
+                </div>
+              <?php
+              }
+               ?>
+
             </div>
           </div>
           <div class="col-md-3">
@@ -191,7 +254,28 @@ var_dump($tagsAct);
                 <div class="col-md-7">
                   <button type="button" class="btn btn-danger">Inscribirme!</button>
                   <div class="row lead" style="margin-left: 1px; margin-top: 4px;">
-                    <i class="fa fa-star" aria-hidden="true"><i class="fa fa-star" aria-hidden="true"></i></i>
+                    <?php
+                    $aux = consulta("select calcula_valoracion_media_actividad(". $idAct .")");
+                    $valoracion_media = $aux[0][0];
+                    if($valoracion_media==0) {?>
+                      <i class="fa fa-star-o" aria-hidden="true"><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i></i>
+                      <?php
+                    } else {
+                      echo("<i class=\"fa fa-star\" aria-hidden=\"true\">");
+                      for($x1=1; $x1<$valoracion_media && $valoracion_media>1; $x1++) {
+                        echo("<i class=\"fa fa-star\" aria-hidden=\"true\"></i>");
+                      }
+                      echo("</i>");
+                      if($valoracion_media<5) {
+                        echo("<i class=\"fa fa-star-o\" aria-hidden=\"true\">");
+                        for($x2=$valoracion_media+1; $x2<5 && $valoracion_media<4; $x2++) {
+                          echo("<i class=\"fa fa-star-o\" aria-hidden=\"true\"></i>");
+                        }
+                      }
+                      echo("</i>");
+                    }
+
+                     ?>
                   </div>
                 </div>
               </div>
