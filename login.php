@@ -16,7 +16,7 @@ $contrasenya = "WG0JJZUI";
   } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();;
   }
-
+    $resultado = consulta('SELECT nick , email, contrasenya FROM USR where email = ' . $email . ' and contrasenya = ' . $password);
     $statement = $conexion->prepare('SELECT nick , email, contrasenya FROM USR where email = :email and contrasenya = :password');
     $statement->execute(array(
       ':email' => $email,
