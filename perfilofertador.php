@@ -1,26 +1,38 @@
 <!DOCTYPE html>
 <?php
+  session_start();
 
   /* Incluimos la conexión predefinida*/
   require_once ("conexion.php");
+  require_once ("funciones.php");
 
   /*HACEMOS UNA LLAMADA A LA BASE DE DATOS PARA EXTRAER INFORMACION*/
-          
-    $conUser = "SELECT OFR.empresa, nick, email, contrasenya, telefono, foto, PROVINCIA.nombre as pNombre,LOCALIDAD.nombre as lNombre, OFR.direccion, OFR.nif from USR,OFR,LOCALIDAD,PROVINCIA where USR.cod=17 AND USR.cod=OFR.cod AND USR.rLocalidad=LOCALIDAD.cod AND PROVINCIA.cod=LOCALIDAD.rProvincia";
-    $resultado = mysqli_query($conexion,$conUser);
+    /*Preparamos las querys a ejecutar en la página*/
+    $conUser = "call datosOFR(".$_SESSION['cod'].")";
+    $sqlVerif = "call OFRobtenVerif(".$_SESSION['cod'].")";
+    $sqlNoVerif = "call OFRobtenNOVerif(".$_SESSION['cod'].")";
 
-    while ($datosUsuario = mysqli_fetch_array($resultado)) {
-      $empresaUser = $datosUsuario["empresa"];
-      $nickUser = $datosUsuario["nick"];
-      $emailUser = $datosUsuario["email"];
-      $passUser = $datosUsuario["contrasenya"];
-      $telefUser = $datosUsuario["telefono"];
-      $fotoUser= $datosUsuario["foto"];
-      $provinciaUser = $datosUsuario["pNombre"];
-      $localidadUser = $datosUsuario["lNombre"];
-      $direccionUser = $datosUsuario["direccion"];
-      $nifUser = $datosUsuario["nif"];
-    }
+    /*Realizamos las querys a través del método guardado en funciones*/
+    $datosUsuario = consulta($conUser);
+    $actisVerifs = consulta($sqlVerif);
+    $actisNoVerifs = consulta($sqlNoVerif);
+
+    /*Directorio en el que se encuentras las imágenes: OJO, se tiene que usar esa barra, si
+    pones la otra, no se queja pero no hace nada*/
+    $dir = "img/";
+
+      $empresaUser = $datosUsuario[0]["empresa"];
+      $nickUser = $datosUsuario[0]["nick"];
+      $emailUser = $datosUsuario[0]["email"];
+      $passUser = $datosUsuario[0]["contrasenya"];
+      $telefUser = $datosUsuario[0]["telefono"];
+      $fotoUser= $dir.$datosUsuario[0]["foto"];
+      $provinciaUser = $datosUsuario[0]["pNombre"];
+      $localidadUser = $datosUsuario[0]["lNombre"];
+      $direccionUser = $datosUsuario[0]["direccion"];
+      $nifUser = $datosUsuario[0]["nif"];
+      $fotoDefecto=$dir."maleavatar.jpg";
+
 ?>
 
 
@@ -121,23 +133,23 @@
               </div>
               <div class = "row">
                       <label class="col-xs-6 col-md-4 control-label text-left" for="telf">Teléfono:</label>
-                    <p class="con-xs-6 col-md-8 control-label text-left" for="telf"><?php echo $telefUser; ?></p> 
+                    <p class="con-xs-6 col-md-8 control-label text-left" for="telf"><?php echo $telefUser; ?></p>
               </div>
               <div class = "row">
                       <label class="col-xs-6 col-md-4 control-label text-left" for="prov">Provincia:</label>
-                    <p class="con-xs-6 col-md-8 control-label text-left" for="prov"><?php echo $provinciaUser; ?></p> 
+                    <p class="con-xs-6 col-md-8 control-label text-left" for="prov"><?php echo $provinciaUser; ?></p>
               </div>
               <div class = "row">
                       <label class="col-xs-6 col-md-4 control-label text-left" for="loc">Localidad:</label>
-                    <p class="con-xs-6 col-md-8 control-label text-left" for="loc"><?php echo $localidadUser; ?></p> 
+                    <p class="con-xs-6 col-md-8 control-label text-left" for="loc"><?php echo $localidadUser; ?></p>
               </div>
               <div class = "row">
                       <label class="col-xs-6 col-md-4 control-label text-left" for="dir">Dirección:</label>
-                    <p class="con-xs-6 col-md-8 control-label text-left" for="dir"><?php echo $direccionUser; ?></p> 
+                    <p class="con-xs-6 col-md-8 control-label text-left" for="dir"><?php echo $direccionUser; ?></p>
               </div>
               <div class = "row">
                       <label class="col-xs-6 col-md-4 control-label text-left" for="dir">NIF:</label>
-                    <p class="con-xs-6 col-md-8 control-label text-left" for="dir"><?php echo $nifUser; ?></p> 
+                    <p class="con-xs-6 col-md-8 control-label text-left" for="dir"><?php echo $nifUser; ?></p>
               </div>
           </div>
           <!-- Segunda gran columna-->
@@ -155,26 +167,30 @@
             <div class="row col-xs-12">
               <div class="panel with-nav-tabs panel-default">
                     <div class="panel-heading">
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tab1default" data-toggle="tab">Default 1</a></li>
-                                <li><a href="#tab2default" data-toggle="tab">Default 2</a></li>
-                                <li><a href="#tab3default" data-toggle="tab">Default 3</a></li>
-                                <li class="dropdown">
-                                    <a href="#" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#tab4default" data-toggle="tab">Default 4</a></li>
-                                        <li><a href="#tab5default" data-toggle="tab">Default 5</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                        <ul class="nav nav-tabs">
+                            <!-- <li class="active"><a href="#tab1default" data-toggle="tab">Default 1</a></li>-->
+                            <?php for($i = 0; $i < sizeof($actisVerifs); $i++)  { $unaActVerif = $actisVerifs[$i]; ?>
+                              <li><a href="<?php echo $var="#tab".$unaActVerif["cod"]?>" data-toggle="tab"><?php echo $unaActVerif["nombre"]?></a></li>
+                            <?php  } ?>
+                            <?php if (sizeof($actisVerifs) > 4) { ?>
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <?php for($i = 5; $i< sizeof($actisVerifs); $i++)  { $unaActVerif = $actisVerifs[$i];?>
+                                      <li><a href="<?php echo $var="#tab".$unaActVerif["cod"]?>" data-toggle="tab"><?php echo $unaActVerif["nombre"]?></a></li>
+                                    <?php  } ?>
+                                </ul>
+                            </li>
+                            <?php } ?>
+                        </ul>
                     </div>
                     <div class="panel-body">
                         <div class="tab-content">
-                            <div class="tab-pane fade in active" id="tab1default">Default 1</div>
-                            <div class="tab-pane fade" id="tab2default">Default 2</div>
-                            <div class="tab-pane fade" id="tab3default">Default 3</div>
-                            <div class="tab-pane fade" id="tab4default">Default 4</div>
-                            <div class="tab-pane fade" id="tab5default">Default 5</div>
+                          <?php for($i = 0; $i< sizeof($actisVerifs); $i++)  { $unaActVerif = $actisVerifs[$i]; ?>
+                            <div class="tab-pane fade" id="<?php echo $var="tab".$unaActVerif["cod"]?>">
+                              <div class="row col-xs-12"> <?php echo $unaActVerif["descripcion"] ?></div>
+                            </div>
+                          <?php } ?>
                         </div>
                     </div>
               </div>
@@ -188,25 +204,29 @@
               <div class="panel with-nav-tabs panel-default">
                     <div class="panel-heading">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tab1default" data-toggle="tab">Default 1</a></li>
-                                <li><a href="#tab2default" data-toggle="tab">Default 2</a></li>
-                                <li><a href="#tab3default" data-toggle="tab">Default 3</a></li>
-                                <li class="dropdown">
-                                    <a href="#" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#tab4default" data-toggle="tab">Default 4</a></li>
-                                        <li><a href="#tab5default" data-toggle="tab">Default 5</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                            <!-- <li class="active"><a href="#tab1default" data-toggle="tab">Default 1</a></li>-->
+                            <?php for($i = 0; $i < sizeof($actisNoVerifs); $i++)  { $unaActNoVerif = $actisNoVerifs[$i]; ?>
+                              <li><a href="<?php echo $var="#tab".$unaActNoVerif["cod"]?>" data-toggle="tab"><?php echo $unaActNoVerif["nombre"]?></a></li>
+                            <?php  } ?>
+                            <?php if (sizeof($actisNoVerifs) > 4) { ?>
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <?php for($i = 5; $i< sizeof($actisNoVerifs); $i++)  { $unaActVerif = $actisNoVerifs[$i];?>
+                                      <li><a href="<?php echo $var="#tab".$unaActNoVerif["cod"]?>" data-toggle="tab"><?php echo $unaActNoVerif["nombre"]?></a></li>
+                                    <?php  } ?>
+                                </ul>
+                            </li>
+                            <?php } ?>
+                        </ul>
                     </div>
                     <div class="panel-body">
                         <div class="tab-content">
-                            <div class="tab-pane fade in active" id="tab1default">Default 1</div>
-                            <div class="tab-pane fade" id="tab2default">Default 2</div>
-                            <div class="tab-pane fade" id="tab3default">Default 3</div>
-                            <div class="tab-pane fade" id="tab4default">Default 4</div>
-                            <div class="tab-pane fade" id="tab5default">Default 5</div>
+                          <?php for($i = 0; $i< sizeof($actisNoVerifs); $i++)  { $unaActNoVerif = $actisNoVerifs[$i]; ?>
+                            <div class="tab-pane fade" id="<?php echo $var="tab".$unaActNoVerif["cod"]?>">
+                              <div class="row col-xs-12"> <?php echo $unaActNoVerif["descripcion"] ?></div>
+                            </div>
+                          <?php } ?>
                         </div>
                     </div>
               </div>
@@ -219,7 +239,7 @@
               </label>
             </div>
             <div class = "row text-left">
-              <img src="img/maleavatar.jpg" width="300px" height="300px"></img>
+              <img src="<?php echo $fotoUser; ?>" onerror="this.src='img/Maleavatar.jpg'" width="300px" height="300px"></img>
             </div>
             </div>
           </div>
