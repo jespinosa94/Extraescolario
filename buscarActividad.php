@@ -5,7 +5,11 @@
   $logeado = isset($_SESSION['cod']);
   if($logeado) {
       $cod = $_SESSION['cod'];
-    }
+  }
+
+  $sqlBuscaActividades="call obtenTodasActivsVerifs()";
+  $actividades = consulta($sqlBuscaActividades);
+
 ?>
 
 
@@ -30,6 +34,19 @@
     <!-- Estilos custom -->
     <link href="css/estilos.css" rel="stylesheet">
     <link href="css//font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Special version of Bootstrap that only affects content wrapped in .bootstrap-iso -->
+    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
+
+    <!--Font Awesome (added because you use icons in your prepend/append)-->
+    <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+    <!--Para hacer las tarjetas de las búsquedas de actividades-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- Inline CSS based on choices in "Settings" tab -->
+    <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
+
+
   </head>
 
   <body>
@@ -80,83 +97,140 @@
         <?php
       }
        ?>
+    <!-- EMPIEZA EL BODY PRINCIPAL DE LA PÁGINA -->
+    <div class="row align-items-center">
+      <!-- Columna con el filtro -->
+      <div class = "col-xs-12 col-md-3">
+        <form class="form">
+          <fieldset>
+            <!-- Form Name -->
+            <legend>Filtros</legend>
 
+            <!-- Precio, con 2 casillas en una línea-->
+            <div class="form-group">
+              <label class="row-xs-12 control-label" for="Precio">Precio</label>
+                <div class= "row-xs-6">  
+                  <div class="col-md-6">
+                    <input id="Precio" name="Precio" type="text" placeholder="0" class="form-control input-md">
+                    <span class="help-block">Mínimo</span>  
+                  </div>
+                  <div class="col-md-6">
+                    <input id="idMaximo" name="idMaximo" type="text" placeholder="9999" class="form-control input-md">
+                    <span class="help-block">Máximo</span>  
+                  </div>
+                  <br><br><br><br>
+                </div>
+            </div>
 
-      <!--Cuerpo -->
-      <div id="cuerpo">
-        <div class="container">
-          <div class="row">
-            <h1><span style="color:black">Elige la actividad ideal para ti entre miles de opciones</span></h1>
-          </div>
-          <form class="row well" action="index.html" method="post">
-            <div class="row buscadorArriba">
+            <!-- Checkboxes de selecciónd de edad -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="rangoEdad">Rango de Edad</label>
+              <div class="col-md-4">
+                <label class="checkbox" for="rangoEdad-0">
+                  <input type="checkbox" name="rangoEdad" id="rangoEdad-0" value="4-7 años">
+                  4-7 años
+                </label>
+                <label class="checkbox" for="rangoEdad-1">
+                  <input type="checkbox" name="rangoEdad" id="rangoEdad-1" value="8-12 años">
+                  8-12 años
+                </label>
+                <label class="checkbox" for="rangoEdad-2">
+                  <input type="checkbox" name="rangoEdad" id="rangoEdad-2" value="13-17 años">
+                  13-17 años
+                </label>
+                <label class="checkbox" for="rangoEdad-3">
+                  <input type="checkbox" name="rangoEdad" id="rangoEdad-3" value="+18 años">
+                  +18 años
+                </label>
+                <label class="checkbox" for="rangoEdad-4">
+                  <input type="checkbox" name="rangoEdad" id="rangoEdad-4" value="todos los publicos">
+                  Todos los públicos
+                  <br><br>
+                </label>
+              </div>
+            </div>
+
+            <!-- Valoración mínima-->
+            <div class="form-group">
+              <label class="col-xs-12 control-label" for="idValoracion">Valoración mínima</label>  
               <div class="col-md-12">
-                <h4><label for="tag">¿Cuándo estás libre?</label></h4>
-                <div class="col-md-5">
-                  <div class="col-md-4">
-
-                    <input type="checkbox" name="semana1" id="lunes" value="lunes"> lunes
-
-                    <input type="text" class="form-control" id="inicioLunes" placeholder="inicio">
-                    <input type="text" class="form-control" id="finLunes" placeholder="fin">
-                  </div>
-                  <div class="col-md-4">
-                    <input type="checkbox" name="semana2" id="martes" value="martes"> martes
-                    <input type="text" class="form-control" id="inicioMartes" placeholder="inicio">
-                    <input type="text" class="form-control" id="finMartes" placeholder="fin">
-                  </div>
-                  <div class="col-md-4">
-                    <input type="checkbox" name="semana3" id="miercoles" value="miercoles"> miercoles
-                    <input type="text" class="form-control" id="inicioMiercoles" placeholder="inicio">
-                    <input type="text" class="form-control" id="finMiercoles" placeholder="fin">
-                  </div>
-                </div>
-                <div class="col-md-5">
-                  <div class="col-md-4">
-                    <input type="checkbox" name="semana4" id="jueves" value="jueves"> jueves
-                    <input type="text" class="form-control" id="inicioJueves" placeholder="inicio">
-                    <input type="text" class="form-control" id="finJueves" placeholder="fin">
-                  </div>
-                  <div class="col-md-4">
-                    <input type="checkbox" name="semana5" id="viernes" value="viernes"> viernes
-                    <input type="text" class="form-control" id="inicioViernes" placeholder="inicio">
-                    <input type="text" class="form-control" id="finViernes" placeholder="fin">
-                  </div>
-                  <div class="col-md-4">
-                    <input type="checkbox" name="semana6" id="sábado" value="sábado"> sábado
-                    <input type="text" class="form-control" id="inicioSabado" placeholder="inicio">
-                    <input type="text" class="form-control" id="finSabado" placeholder="fin">
-                  </div>
-                </div>
-                <div class="col-md-2">
-                  <input type="checkbox" name="semana7" id="domingo" value="domingo"> domingo
-                  <input type="text" class="form-control" id="inicioDomingo" placeholder="inicio">
-                  <input type="text" class="form-control" id="finDomingo" placeholder="fin">
-                </div>
+                <input id="idValoracion" name="idValoracion" type="text" placeholder="0" class="form-control input-md">
+                <span class="help-block">De 0 a 5 estrellas</span>
+                <br><br><br>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-4">
-                <h4><label for="localizacion">Dónde</label></h4>
-                <input class="form-control input-lg" type="text" id="localizacion" placeholder="ciudad, provincia">
+
+            <!-- Cuadro para TAGS y Categorías -->
+            <div class="form-group">
+              <label class="col-xs-12 control-label" for="idTags">Tags y categorías</label>
+              <div class="col-md-12">                     
+                <textarea class="form-control" id="idTags" name="idTags">Introduce aquí los tags y categorías buscados, separados por espacios (Por ejemplo: deportes cartas idiomas etc)</textarea>
               </div>
-              <div class="col-md-4 buscadorArriba">
-                <h4><label for="tag">Actividad</label></h4>
-                <input class="form-control input-lg" type="text" id="tag" placeholder="fútbol, inglés, natación...">
-              </div>
-              <div class="col-md-4">
-                <button id="botonBuscar" type="submit" class="btn btn-primary btn-lg btn-block" name="button"><i class="fa fa-search" aria-hidden="true"></i> Buscar</button>
-              </div>
+              <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             </div>
-          </form>
+
+            <!-- Button -->
+            <div class="form-group">
+              <label class="col-md-8 control-label" for="idFiltrar">Filtrar actividades</label>
+              <div class="col-md-4">
+                <button id="idFiltrar" name="idFiltrar" class="btn btn-primary">Filtrar</button>
+              </div>
+              <br><br><br><br><br><br>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      <!-- Columna con las actividades -->
+      <div class = "col-xs-12 col-md-9">
+      
+      <?php for ($i=0; $i < sizeof($actividades); $i++)   {  $unaActividad=$actividades[$i]; ?>
+      <!-- Tarjeta que irá metida dentro un bucle -->
+      <div class="w3-panel w3-card">
+        <!-- Div que contendrá las 3 columnas de la tarjeta -->
+        <div class="row-xs-12">
+          <!-- Div con la primera columna y que tiene la foto-->
+          <div class="col-xs-4">
+            Jorge Me tiene que decir como se muestra una imagen.
+          </div>
+          <!-- Div con la segunda columna con los datos de la actividad-->
+          <div class="col-xs-4">
+            hola
+          </div>
+          <!-- Div con la tercera columna con la descripción de la actividad-->
+          <div class="col-xs-4">
+            hola
+          </div>                    
         </div>
       </div>
+      <?php } ?>
 
 
 
 
 
-<span style="display:block; height: 1000px;"></span>
+
+
+
+
+
+
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
       <!-- FOOTER -->
@@ -166,7 +240,7 @@
             <div class="row">
               <div class="col-sm-3 col-xs-12">
                 <div class="footerContent">
-                  <a class="footer-logo" href="index.php">
+                  <a class="footer-logo" href="index.html">
                     <img src="http://i66.tinypic.com/103ap8k.jpg" alt="Extraescolario" width="177" height="47" />
                   </a>
                   <p>
@@ -229,11 +303,15 @@
         </div>
       </footer>
     </div>
+    <script>
+
+    </script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <script src="js/jquery.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="js/bootstrap.js"></script>
-  </body>
+    <script src="js/calendario.js"></script>       
+</body>
 </html>

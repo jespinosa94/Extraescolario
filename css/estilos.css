@@ -193,4 +193,10 @@ body {
     background-color: #cccccc;
 }
 
+/*=========================Esto no es nada, una prueba para coger la estructura de Trivago====================*/
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
 /*===========================================perfilActividad==================================================*/
