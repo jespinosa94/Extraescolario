@@ -30,7 +30,6 @@ $localidad = $datosAct[0]['localidad'];
 $provincia = $datosAct[0]['provincia'];
 $turnosAct = consulta("call obtener_turnos_actividad(".$idAct.");");
 
-echo($direccion . " " . $provincia . " Spain");
 $coordenadas = explode(",", getCoordinates($direccion . " " . $localidad . " " . $provincia . " Spain"));
 $lat = floatval($coordenadas[0]);
 $long = floatval($coordenadas[1]);
@@ -142,28 +141,38 @@ $long = floatval($coordenadas[1]);
               <h4>Fecha de fin: <?php echo($fechaFin); ?> <i class="fa fa-calendar" aria-hidden="true"></i></h4>
               <h2>Horario:</h2>
 
-              <?php
-                 if(count($turnosAct)==0) {
-                   echo("<h3>Esta actividad no tiene ningún grupo disponible actualmente</h3>");
-                 } else {
-                   $aux=false;
-                   for($z1=0; $z1<sizeof($turnosAct); $z1++) {
-                     if($aux==true) {?> <div class="row"> <?php } ?>
-                       <div class="col-md-4">
-                         <h3>Turno <?php echo $z1+1 ?></h3>
+                <form action="inscribirse.php" method="post" name="inscripcion" id="formularioInscripcion">
+                  <input type="hidden" name="idAct" value="<?php echo($idAct) ?>">
+                  <?php
+                     if(count($turnosAct)==0) {
+                       echo("<h3>Esta actividad no tiene ningún grupo disponible actualmente</h3>");
+                     } else {
+                       $aux=false;
+                       for($z1=0; $z1<sizeof($turnosAct); $z1++) {
+                         if($aux==true) {?> <div class="row"> <?php } ?>
+                           <div class="col-md-4">
+                             <div class="radio" id="radio<?php echo($z1+1)?>">
+                               <h3>Turno <?php echo $z1+1 ?>
+                                  <label>
+                                    <input type="radio" name="radio" id="radioAct" value="<?php echo($turnosAct[$z1][0]); ?>" required>
+                                  </label>
+                               </h3>
+                             </div>
+
+                             <?php
+                             $horarioTurno = consulta("call obtener_horario_turno(".$turnosAct[$z1][0].");");
+                             for($x1=0; $x1<count($horarioTurno); $x1++) {
+                              echo("<h4>" . $horarioTurno[$x1][0] . ": " . $horarioTurno[$x1][1] . "-" . $horarioTurno[$x1][2] . "</h4>");
+                             }
+                             ?>
+                             </div>
+                             <?php if($aux==true) {?> </div> <?php } ?>
+                             <?php if($z1%3==0 && $z1!=0) $aux=true;?>
                          <?php
-                         $horarioTurno = consulta("call obtener_horario_turno(".$turnosAct[$z1][0].");");
-                         for($x1=0; $x1<count($horarioTurno); $x1++) {
-                          echo("<h4>" . $horarioTurno[$x1][0] . ": " . $horarioTurno[$x1][1] . "-" . $horarioTurno[$x1][2] . "</h4>");
                          }
-                         ?>
-                         </div>
-                         <?php if($aux==true) {?> </div> <?php } ?>
-                         <?php if($z1%3==0 && $z1!=0) $aux=true;?>
-                     <?php
                      }
-                 }
-                  ?>
+                      ?>
+                </form>
             </div>
 
             <div id="descAct">
@@ -252,7 +261,17 @@ $long = floatval($coordenadas[1]);
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
                 </div>
                 <div class="col-md-7">
-                  <button type="button" class="btn btn-danger">Inscribirme!</button>
+                  <button type="button" class="btn btn-danger" onclick="compruebaRadio()">Inscribirme!</button>
+                  <script>
+                    function compruebaRadio() {
+                      if(atLeastOneRadio()) {
+                        inscripcion.submit();
+                      } else {
+                        alert("Debes seleccionar un turno para poder inscribirte");
+                      }
+                    }
+                    function atLeastOneRadio() {return ($('input[type=radio]:checked').size() > 0);}
+                  </script>
                   <div class="row lead" style="margin-left: 1px; margin-top: 4px;">
                     <?php
                     $aux = consulta("select calcula_valoracion_media_actividad(". $idAct .")");
