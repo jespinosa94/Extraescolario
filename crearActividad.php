@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <?php
   session_start();
 
@@ -13,6 +13,8 @@
 
     $sqlProvincias = "call getAllProvincias()";
     $provincias = consulta($sqlProvincias);
+
+
     /* var_dump($provincias); mostrar por pantalla el resultado de la consulta muy util!*/
 
     ?>
@@ -100,24 +102,28 @@
               <div class="form-group">
                 <label class="col-md-4 control-label" for="getProvincia">Provincia</label>
                 <div class="col-md-4">
-                  <select  id="getProvincia" name="getProvincia" class="form-control">
-                    <!--php para rellenar el combo box-->
+
+                  <select  id="getProvincia" name="getProvincia" onchange="cargaPueblo()" class="form-control">
+                    <option value=""> Select Provincia </option>
+                      <!--php para rellenar el combo box-->
                       <?php for ($i = 0; $i < sizeof($provincias); $i++)
                       {  $rowProvincia = $provincias[$i] ; ?>
-                    <option value=<"<?php echo $rowProvincia["cod"]?>" > <?php echo $rowProvincia["nombre"] ?></option>
+                    <option value="<?php echo $rowProvincia["cod"]; ?>"> <?php echo $rowProvincia["nombre"]; ?></option>
+
                     <?php } ?>
                   </select>
                 </div>
               </div>
+
 
               <!-- Selector Localidad -->
               <div class="form-group">
                 <label class="col-md-4 control-label" for="getLocalidad">Localidad</label>
                 <div class="col-md-4">
                   <select id="getLocalidad" name="getLocalidad" class="form-control" >
-                    <option value="1">Ibi</option>
-                    <option value="2">Yecla</option>
-                    <option value="">San Vicentel del Raspeig</option>
+
+                  <option value=""> select </option>
+
                   </select>
                 </div>
               </div>
@@ -467,6 +473,17 @@
     <script src="js/jquery.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="js/bootstrap.js"></script>
+
+
+    <script type="text/JavaScript">
+    function cargaPueblo() {
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("GET", "ajax.php?pueblo="+document.getElementById("getProvincia").value, false);
+      xmlhttp.send(null);
+      alert(xmlhttp.responseText);
+      document.getElementById("getLocalidad").innerHTML=xmlhttp.responseText;
+    }
+    </script>
 
 
   </body>
