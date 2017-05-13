@@ -1,5 +1,8 @@
 <!DOCTYPE html>
+<script language="JavaScript" type="text/javascript" src="js/valPass.js"></script>
 <?php
+
+session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
@@ -11,17 +14,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     echo "Error: " . $e->getMessage();;
   }
 
-
   $nombree=$_POST['nombreempresa'];
   $correo=$_POST['direccioncemresa'];
-  $pass=$_POST['passwordempresa'];
+  $pass=$_POST['pass1'];
   $telefono=$_POST['telefonoempresa'];
   $imagen=$_POST['files'];
   $cif=$_POST['cifo'];
   $localidad=$_POST['slo'];
   $provincia=$_POST['spo'];
 
-  mysqli_query($conexion, "INSERT INTO USR VALUES ('nick', '$correo', '$pass', '$telefono', '$imagen', '$localidad')");
+  echo $nombree;
 
 
 }
@@ -98,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         </div>
         <div class="row margen">
 
-          <form method="post">
+          <form name= "form1" method="post" action = "formOFR.php">
 
 
           <div class="col-xs-12 col-md-6">
@@ -125,18 +127,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
               <!-- Password input-->
               <div class="form-group row">
-                <label class="col-xs-6 control-label text-center" for=passwordempresa>Introduce la contraseña:</label>
+                <label class="col-xs-6 control-label text-center" for=pass1>Introduce la contraseña:</label>
                 <div class="col-xs-6">
-                  <input id=passwordempresa name=passwordempresa placeholder="" class="form-control input-md" required="" type="password">
+                  <input id=pass1 name=pass1 placeholder="" class="form-control input-md" required="" type="password">
                   <span class="help-block">Introduce tu password</span>
                 </div>
               </div>
 
               <!-- Password input-->
               <div class="form-group row">
-                <label class="col-xs-6 control-label text-center" for="passwordempresar">Introduce la contraseña de verificación:</label>
+                <label class="col-xs-6 control-label text-center" for="pass2">Introduce la contraseña de verificación:</label>
                 <div class="col-xs-6">
-                  <input id="passwordempresar" name="passwordempresar" placeholder="" class="form-control input-md" required="" type="password">
+                  <input id="pass2" name="pass2" placeholder="" class="form-control input-md" required="" type="password">
                   <span class="help-block">Introduce tu password ppara verificar que es correcta</span>
                 </div>
               </div>
@@ -218,6 +220,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             </div>
             </div>
 
+            <!-- Text input-->
+            <div class="form-group row">
+              <label class="col-xs-6 control-label text-center" for="nicko"> Nick:</label>
+              <div class="col-xs-6">
+                <input id="nicko" name="nicko" placeholder="MBCompany" class="form-control input-md" required="" type="text">
+                <span class="help-block">Introduce tu nick</span>
+              </div>
+            </div>
+
 <!--// fin 2a columna ===============================================================================================================-->
           </div>
 
@@ -227,7 +238,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
           <center>
           <!-- Button (Double) -->
           <div class="form-group col-xs-12" >
-              <button id="fao" name="formaceptar" class="btn btn-success" type="submit">Aceptar</button>
+              <button id="fao" name="formaceptar" class="btn btn-success" type="submit" onclick="validar_Pass()">Aceptar</button>
               <button id="fro" name="formrechazar" class="btn btn-danger" type="reset">Rechazar</button>
 
           </div>
@@ -314,6 +325,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
+    <script src="js/valPass.js"></script>
     <script src="js/jquery.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="js/bootstrap.js"></script>
