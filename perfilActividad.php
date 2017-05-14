@@ -260,7 +260,7 @@ $yaInscrito = consulta("select comprobar_buscador_inscrito(".$_SESSION['cod']. "
                $nombre_usuario_registrado = $query[0]['nombre'];
                $apellidos_usuario_registrado = $query[0]['apellidos'];
                 ?>
-               <form class="" action="index.html" method="post">
+               <form action="comentar.php" method="post">
                  <div class="row" id="nuevoComentario">
                    <h1>Nuevo comentario: </h1>
                    <div class="col-md-12">
@@ -270,18 +270,27 @@ $yaInscrito = consulta("select comprobar_buscador_inscrito(".$_SESSION['cod']. "
                        </div>
                        <div class="col-md-10">
                          <h3> <?php echo($nombre_usuario_registrado . " " . $apellidos_usuario_registrado . ": "); ?></h3>
-                         
-                         <input type="text" name="" value="">
-
-
+                         <div class="form-group">
+                          <label for="valoracion">Valoración:</label>
+                          <select class="form-control" id="valoracion" name="valoracion">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                        </div>
                          <div class="form-group">
                           <label for="titulo">Titulo:</label>
-                          <input type="text" class="form-control" id="titulo" placeholder="Titulo del comentario">
+                          <input name="titulo" type="text" class="form-control" id="titulo" placeholder="Titulo del comentario" required>
                         </div>
                         <div class="form-group">
                          <label for="comentario">Comentario:</label>
-                         <textarea class="form-control" rows="3" id=comentario placeholder="¿Qué opinas sobre la actividad?"></textarea>
+                         <textarea name="comentario" class="form-control" rows="3" id=comentario placeholder="¿Qué opinas sobre la actividad?" required></textarea>
                        </div>
+                       <input type="hidden" name="idAct" value="<?php echo($idAct); ?>">
+                       <button type="submit" class="btn btn-primary btn-lg">Enviar comentario</button>
                        </div>
                      </div>
                    </div>
