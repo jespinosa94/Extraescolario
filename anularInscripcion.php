@@ -17,7 +17,7 @@ require 'funciones.php';
      <meta name="author" content="Extraescolario Team">
      <link rel="icon" href="http://www.iconj.com/ico/n/q/nqjqtckys4.ico">
 
-     <title>Inscribirse</title>
+     <title>Anular inscripcion</title>
 
      <!-- Bootstrap core CSS -->
      <link href="css/bootstrap.css" rel="stylesheet">
@@ -33,42 +33,24 @@ require 'funciones.php';
    <body>
      <?php
          if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-           if(isset($_POST['radio'])) {
-             $turno = $_POST['radio'];
+           if(isset($_POST['idAct'])) {
              $idAct = $_POST['idAct'];
+             consulta("call anular_inscripcion_buscador(".$_SESSION['cod']. "," .$idAct.");");
+              ?>
+             <div class="row">
+               <div class="col-md-offset-1 col-md-9">
+                 <h1>Inscripción eliminada con éxito,
+                   <h2>Esperamos volver a verte pronto en alguna actividad</h2>
+                 </h1>
+                 <a href="http://localhost/Extraescolario/perfilActividad.php?cod=<?php echo($idAct) ?>">
+                   <button type="button" class="btn btn-primary btn-lg">Volver</button>
+                 </a>
 
-             $yaInscrito = consulta("select comprobar_buscador_inscrito(".$_SESSION['cod']. "," .$idAct.");");
-             if($yaInscrito[0][0] == 1) {
-                ?>
-                <div class="row">
-                  <div class="col-md-offset-1 col-md-9">
-                    <h1>Ya te habías inscrito en esta actividad anteriormente,
-                      <h2>¿Te está gustando tanto que desearías ir dos veces? ;)</h2>
-                    </h1>
-                    <a href="http://localhost/Extraescolario/perfilActividad.php?cod=<?php echo($idAct) ?>">
-                      <button type="button" class="btn btn-primary btn-lg">Volver</button>
-                    </a>
+               </div>
+             </div>
 
-                  </div>
-                </div>
-                <?php
-             } else {
-               consulta("call inscribir_buscador(".$_SESSION['cod']. "," .$idAct. "," .$turno.");");
-                ?>
-                <div class="row">
-                  <div class="col-md-offset-3 col-md-9">
-                    <h1>Enhorabuena, te has inscrito en una actividad!</h1>
-                    <a href="http://localhost/Extraescolario/perfilActividad.php?cod=<?php echo($idAct) ?>">
-                      <button type="button" class="btn btn-primary btn-lg">Volver</button>
-                    </a>
-
-                  </div>
-                </div>
-                <?php
+             <?php
              }
-
-           }
-
          } else {
            require "index.php";
        }

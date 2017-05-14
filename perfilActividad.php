@@ -33,6 +33,7 @@ $turnosAct = consulta("call obtener_turnos_actividad(".$idAct.");");
 $coordenadas = explode(",", getCoordinates($direccion . " " . $localidad . " " . $provincia . " Spain"));
 $lat = floatval($coordenadas[0]);
 $long = floatval($coordenadas[1]);
+$yaInscrito = consulta("select comprobar_buscador_inscrito(".$_SESSION['cod']. "," .$idAct.");");
 
  ?>
 
@@ -149,13 +150,18 @@ $long = floatval($coordenadas[1]);
                      } else {
                        $aux=false;
                        for($z1=0; $z1<sizeof($turnosAct); $z1++) {
-                         if($aux==true) {?> <div class="row"> <?php } ?>
+                         if($aux==true) {?> <div class="row"> <?php }
+                         ?>
                            <div class="col-md-4">
                              <div class="radio" id="radio<?php echo($z1+1)?>">
                                <h3>Turno <?php echo $z1+1 ?>
-                                  <label>
-                                    <input type="radio" name="radio" id="radioAct" value="<?php echo($turnosAct[$z1][0]); ?>" required>
-                                  </label>
+                                 <?php if($yaInscrito[0][0] == 0) {
+                                    ?>
+                                    <label>
+                                      <input type="radio" name="radio" id="radioAct" value="<?php echo($turnosAct[$z1][0]); ?>" required>
+                                    </label>
+                                    <?php
+                                 } ?>
                                </h3>
                              </div>
 
@@ -261,7 +267,19 @@ $long = floatval($coordenadas[1]);
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
                 </div>
                 <div class="col-md-7">
-                  <button type="button" class="btn btn-danger" onclick="compruebaRadio()">Inscribirme!</button>
+                  <?php if($yaInscrito[0][0] == 0) {
+                     ?>
+                     <button type="button" class="btn btn-danger" onclick="compruebaRadio()">Inscribirme!</button>
+                     <?php
+                  } else {
+                     ?>
+                     <form action="anularInscripcion.php" method="post" name="anularInscripcion" id="formularioAnularInscripcion">
+                       <input type="hidden" name="idAct" value="<?php echo($idAct) ?>">
+                       <button type="button" class="btn btn-danger" onclick="anularInscripcion.submit()">Anular inscripción</button>
+                     </form>
+
+                    <?php
+                  } ?>
                   <script>
                     function compruebaRadio() {
                       if(atLeastOneRadio()) {
