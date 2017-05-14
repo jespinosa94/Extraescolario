@@ -254,6 +254,39 @@ $yaInscrito = consulta("select comprobar_buscador_inscrito(".$_SESSION['cod']. "
               }
                ?>
 
+               <?php
+               $query = consulta("call datosBUS(".$cod.");");
+               $foto_usuario_registrado = $dir.$query[0]['foto'];
+               $nombre_usuario_registrado = $query[0]['nombre'];
+               $apellidos_usuario_registrado = $query[0]['apellidos'];
+                ?>
+               <form class="" action="index.html" method="post">
+                 <div class="row" id="nuevoComentario">
+                   <h1>Nuevo comentario: </h1>
+                   <div class="col-md-12">
+                     <div class="row">
+                       <div class="col-md-2">
+                         <img src="<?php echo($foto_usuario_registrado) ; ?>" class= "img-circle" width="100px" height="100px">
+                       </div>
+                       <div class="col-md-10">
+                         <h3> <?php echo($nombre_usuario_registrado . " " . $apellidos_usuario_registrado . ": "); ?></h3>
+                         
+                         <input type="text" name="" value="">
+
+
+                         <div class="form-group">
+                          <label for="titulo">Titulo:</label>
+                          <input type="text" class="form-control" id="titulo" placeholder="Titulo del comentario">
+                        </div>
+                        <div class="form-group">
+                         <label for="comentario">Comentario:</label>
+                         <textarea class="form-control" rows="3" id=comentario placeholder="¿Qué opinas sobre la actividad?"></textarea>
+                       </div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </form>
             </div>
           </div>
           <div class="col-md-3">
@@ -407,5 +440,21 @@ $yaInscrito = consulta("select comprobar_buscador_inscrito(".$_SESSION['cod']. "
     <script src="js/bootstrap.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAS0MzQVgs_yEYyaslU5S5vrl9l8MkmsJQ&callback=myMap"></script>
     <script src="js/star_rating.js"></script>
+
+
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+<link href="path/to/css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+
+<!-- optionally if you need to use a theme, then include the theme file as mentioned below -->
+<link href="path/to/themes/krajee-svg/theme.css" media="all" rel="stylesheet" type="text/css" />
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
+<script src="path/to/js/star-rating.js" type="text/javascript"></script>
+
+<!-- optionally if you need to use a theme, then include the theme file as mentioned below -->
+<script src="path/to/themes/krajee-svg/theme.js"></script>
+
+<!-- optionally if you need translation for your language then include locale file as mentioned below -->
+<script src="path/to/js/locales/{lang}.js"></script>
   </body>
 </html>
