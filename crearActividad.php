@@ -105,9 +105,10 @@
                     <option value=""> Select Provincia </option>
                       <!--php para rellenar el combo box-->
                       <?php for ($i = 0; $i < sizeof($provincias); $i++)
-                      {  $rowProvincia = $provincias[$i] ; ?>
-                    <option value="<?php echo $rowProvincia["cod"]; ?>"> <?php echo $rowProvincia["nombre"]; ?></option>
-                    <?php } ?>
+                      {
+                        $rowProvincia = $provincias[$i] ; ?>
+                        <option value="<?php echo $rowProvincia["cod"]; ?>"> <?php echo $rowProvincia["nombre"]; ?></option>
+                <?php } ?>
                   </select>
                 </div>
               </div>
@@ -331,7 +332,8 @@
             <div class="form-group">
               <label class="col-md-4 control-label" </label>
               <div class="col-md-4">
-              <input id="getDescripcion" name="getDescripcion" type="text" style="width:380px; height:300px" placeholder="Ej: Clases intensivas con profesor especializado..." class="form-control input-md">
+              <input id="getDescripcion" name="getDescripcion" type="text" style="width:380px; height:300px"
+                      placeholder="Ej: Clases intensivas con profesor especializado..." class="form-control input-md" tet>
               </div>
             </div>
 
@@ -474,7 +476,7 @@
       var xmlhttp = new XMLHttpRequest();
       xmlhttp.open("GET", "ajax.php?pueblo="+document.getElementById("getProvincia").value, false);
       xmlhttp.send(null);
-      alert(xmlhttp.responseText);
+      alert(xmlhttp.responseText); //Muestra la respuesta del documento ajax.php
       document.getElementById("getLocalidad").innerHTML=xmlhttp.responseText;
     }
     </script>

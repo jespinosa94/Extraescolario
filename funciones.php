@@ -1,5 +1,55 @@
 <?php
 
+//función ajax DEbe de ir la primera no lo mováis!!
+// lo correcto es meter en un .php todos los métodos que usa el usuario en otro los de otra cosa etc así encapsulas todo perfectamente
+//isset comprueba que el metodo que ha hecho post se llama método
+if(isset($_POST['metodo']) && $_POST['metodo'] == 'compruebaNick')// las comillas dobles evaluan carácteres especiales por eso mejor usar las simples
+{
+  compruebaNick();
+}
+function obtenerNumeroFilas($query)
+{
+  $resultado;
+  $usuariobd = "gi_jec21";
+  $contrasenya = ".gi_jec21.";
+
+    try {
+      $conexion = new PDO('mysql:host=bbdd.dlsi.ua.es;dbname=gi_extraescol;charset=utf8', $usuariobd, $contrasenya);
+    } catch (PDOException $e) {
+      echo "Error: " . $e->getMessage();
+    }
+    $stm = $conexion->prepare($query);
+    $stm->execute();
+    $resultado = $stm->rowCount();
+
+    return $resultado;
+}
+function compruebaNick()
+{
+  $nick=$_POST['nick'];
+  $sqlUsr = "select nick from USR where nick= \"$nick\" limit 1";
+  $Nfilas = obtenerNumeroFilas($sqlUsr);
+
+  if ($Nfilas==0)
+  {
+
+    $estado="success";
+    $mensaje="no existe el nick por lo que es válido";
+  }
+  else
+  {
+    $estado="error";
+    $mensaje= "este nick ya existe, por favor selecciona otro";
+  }
+
+  header('Content-type: application/json; charset=utf-8');
+  echo json_encode(array('estado'=>$estado,'mensaje'=>$mensaje,'resultado'=>$Nfilas));
+
+
+}
+
+
+
 //si la sesión ya está iniciada, automáticamente va al index
 function compruebaSesionIniciada() {
   if(isset($_SESSION['usuario'])){
@@ -66,4 +116,7 @@ function consulta($query) {
     /*Para ver el resultado de la consulta: */
     //print_r(array_values($query));
 }
+
+
+
  ?>
