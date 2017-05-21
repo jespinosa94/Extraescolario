@@ -79,6 +79,7 @@ if($logeado) {
         <?php
       }
        ?>
+
       <!--Cuerpo -->
       <div id="cuerpo">
         <span style="display:block; height: 800px;"></span>

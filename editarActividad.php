@@ -6,11 +6,26 @@
   require_once ("conexion.php");
   require_once ("funciones.php");
 
+  /*Recibimos los datos de la actividad a cargar*/
+  $codActividad = 2;
+
   /*HACEMOS UNA LLAMADA A LA BASE DE DATOS PARA EXTRAER INFORMACION*/
 
     $conUser = "call datosOFR(".$_SESSION['cod'].")";
     $resultado = mysqli_query ($conexion, $conUser);
 
+
+    /*Preparamos la query de usuarios NO ACEPTADOS en la actividad*/
+    $sqlUsuariosNoAceptados = "call getUsuariosNoAceptados($codActividad)";
+    $usuariosNoAceptados = consulta($sqlUsuariosNoAceptados);
+
+    /*Preparamos la query de usuarios ACEPTADOS en la actividad*/
+    $sqlUsuariosAceptados = "call getUsuariosAceptados($codActividad)";
+    $usuariosAceptados = consulta($sqlUsuariosAceptados);
+
+    /*Preparamos y ejecutamos la query de los datos de la actividad*/
+    $sqlCargarDatosActividad = "call obtener_datos_actividad($codActividad)";
+    $cargarDatosActividad = consulta($sqlCargarDatosActividad);
 ?>
 <html lang="es"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -21,7 +36,8 @@
     <meta name="author" content="Extraescolario Team">
     <link rel="icon" href="http://www.iconj.com/ico/n/q/nqjqtckys4.ico">
 
-    <title>Crear actividad</title>
+    <title>Editar actividad</title>
+
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -84,12 +100,10 @@
           <form class="form-horizontal">
               <!-- InputNombreActividad -->
               <div class="form-group">
-
                 <label class="col-md-4 control-label" for="nombreActividad">Nombre Actividad:</label>
                 <div class="col-md-4">
-                  <input class="form-control" id="nombreActividad" style="width:280px" placeholder="Zumba" />
+                  <input class="form-control" id="nombreActividad" style="width:280px" value="<?php echo $cargarDatosActividad[0]["nombre"]; ?>"/>
                 </div>
-
               </div>
               <!-- Selector Provincia -->
               <div class="form-group">
@@ -118,8 +132,7 @@
               <div class="form-group">
                 <label class="col-md-4 control-label" for="getDireccion">Direccion</label>
                 <div class="col-md-4">
-                <input id="getDireccion" name="getDireccion" type="text" style="width:300px" placeholder="Ej: C/ Alicante nº50" class="form-control input-md">
-
+                <input id="getDireccion" name="getDireccion" type="text" style="width:300px" value="<?php echo $cargarDatosActividad[0]["direccion"];?>" class="form-control input-md">
                 </div>
               </div>
 
@@ -127,7 +140,7 @@
               <div class="form-group">
                 <label class="col-md-4 control-label" for="getPrecio">Precio</label>
                 <div class="col-md-4">
-                <input id="getPrecio" name="getPrecio" type="text" placeholder="Ej: 100" class="form-control input-md">
+                <input id="getPrecio" name="getPrecio" type="text" value="<?php echo $cargarDatosActividad[0]["precio"];?>" class="form-control input-md">
                 </div>
               </div>
 
@@ -162,7 +175,7 @@
                            <i class="fa fa-calendar">
                            </i>
                          </div>
-                         <input class="form-control" id="fechaInicio" name="fechaInicio" style="width:120px" placeholder="MM/DD/YYYY" type="text"/>
+                         <input class="form-control" id="fechaInicio" name="fechaInicio" style="width:120px" value="<?php echo $cargarDatosActividad[0]["fechaInicio"];?>" type="text"/>
                        </div>
                      </div>
               <!-- Input Fecha Fin -->
@@ -175,7 +188,7 @@
                               <i class="fa fa-calendar">
                               </i>
                             </div>
-                            <input class="form-control" id="fechaFin" name="fechaFin"style="width:120px"  placeholder="MM/DD/YYYY" type="text"/>
+                            <input class="form-control" id="fechaFin" name="fechaFin"style="width:120px"  value="<?php echo $cargarDatosActividad[0]["fechaFin"];?>" type="text"/>
                           </div>
                         </div>
 
@@ -312,7 +325,6 @@
                 </div>
               </div>
 
-
               <!-- Boton Confirmar cambios -->
               <div class row>
                 <div class="form-group">
@@ -333,7 +345,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label" </label>
               <div class="col-md-4">
-              <input id="getDescripcion" name="getDescripcion" type="text" style="width:380px; height:300px" placeholder="Ej: Clases intensivas con profesor especializado..." class="form-control input-md">
+              <input id="getDescripcion" name="getDescripcion" type="text" style="width:380px; height:300px" value="<?php echo $cargarDatosActividad[0]["descripcion"];?>" class="form-control input-md">
               </div>
             </div>
 
@@ -341,7 +353,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label" </label>
               <div class="col-md-4">
-              <input id="getOrganizacion" name="getOrganizacion" type="text" style="width: 380px; height:150px" placeholder="Organizacion de pagos" class="form-control input-md">
+              <input id="getOrganizacion" name="getOrganizacion" type="text" style="width: 380px; height:150px" value="<?php echo $cargarDatosActividad[0]["formaPago"];?>" class="form-control input-md">
               </div>
             </div>
             <br>
@@ -380,24 +392,98 @@
                   </div>
                   <script src="js/showimg.js"></script>
               </div>
-              <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+              <!--<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
               <br><br><br><br><br><br><br><br><br><br><br><br><br>
-              <br><br><br><br><br><br><br><br>
+              <br><br><br><br><br><br><br><br>-->
 
-              <!-- Boton borrar actividad -->
-              <div class row>
-                <div class="form-group">
-                  <div class="col-md-4"></div>
-                  <div class="col-md-4">
-                    <label class="col-md-offset-4 control-label" for="botonBorrar"></label>
-                    <button id="botonBorrar" name="botonBorrar" class="btn btn-danger">Borrar actividad</button>
-                  </div>
+
+            <!--TABLA DE USUARIOS INSCRITOS PENDIENTES DE VALIDAR-->
+            <br><br>
+            <h4>Usuarios inscritos pendientes de Validar</h4>
+            <table id="pendientes">
+              <tr>
+                <th>Nombre</th>
+                <th></th>
+                <th></th>
+              </tr>
+              <?php for ($i = 0; $i< sizeof($usuariosNoAceptados); $i++)
+              {
+                $rowUsuariosNoAceptados = $usuariosNoAceptados[$i]; ?>
+              <tr>
+                  <td> <?php echo $rowUsuariosNoAceptados["nick"]?></td>
+                  <!-- Creamos los botones de borrar dentro de la celda -->
+                  <td>
+                    <form action="borroInscripciones.php" method="post">
+                      <input type="hidden" name="codigoBus" value="<?php echo $rowUsuariosNoAceptados["rBus"]?>">
+                      <input type="hidden" name="codigoActividad" value="<?php echo $codActividad?>">
+                      <button type="submit">Rechazar</button>
+                    </form>
+                  </td>
+                  <td>
+                    <form action="aceptarInscripciones.php" method="post">
+                      <input type="hidden" name="codigoBus" value="<?php echo $rowUsuariosNoAceptados["rBus"]?>">
+                      <input type="hidden" name="codigoActividad" value="<?php echo $codActividad?>">
+                      <button type="submit">Aceptar</button>
+                    </form>
+                  </td>
+              </tr>
+              <?php } ?>
+            </table>
+
+            <!--TABLA DE USUARIOS INSCRITOS-->
+            <br><br>
+            <h4>Usuarios inscritos</h4>
+            <table id="pendientes">
+              <tr>
+                <th>Nombre</th>
+                <th></th>
+              </tr>
+              <?php for ($i = 0; $i< sizeof($usuariosAceptados); $i++)
+              {
+                $rowUsuariosAceptados = $usuariosAceptados[$i]; ?>
+              <tr>
+                  <td> <?php echo $rowUsuariosAceptados["nick"]?></td>
+                  <!-- Creamos los botones de borrar dentro de la celda -->
+                  <td>
+                    <form action="borroInscripciones.php" method="post">
+                      <input type="hidden" name="codigoBus" value="<?php echo $rowUsuariosAceptados["rBus"]?>">
+                      <input type="hidden" name="codigoActividad" value="<?php echo $codActividad?>">
+                      <button type="submit">Borrar Inscripción</button>
+                    </form>
+                  </td>
+              </tr>
+              <?php } ?>
+            </table>
+            </div>
+      </div>
+
+      <div class="row">
+
+            <!--Fila con los botones del formulario -->
+            <!-- Boton Confirmar cambios -->
+              <div class="form-group">
+                <div class="col-md-4">
+                  <label class="col-md-offset-4 control-label" for="botonConfirmar"></label>
+                  <button id="botonConfirmar" name="botonConfirmar" class="btn btn-success">Confirmar cambios</button>
                 </div>
               </div>
-            </div>
 
-      </div>
-    </div>
+            <!-- Boton Publicar Newsletter -->
+            <div class="form-group">
+              <div class="col-md-4">
+                <label class="col-md-offset-4 control-label" for="publicarNewsletter"></label>
+                <button id="publicarNewsletter" name="publicarNewsletter" class="btn btn-primary">Publicar Newsletter</button>
+                <a href="index.html"></a>
+              </div>
+            </div>
+              <!-- Boton borrar actividad -->
+            <div class="form-group">
+              <div class="col-md-4">
+                <label class="col-md-offset-4 control-label" for="botonBorrar"></label>
+                <button id="botonBorrar" name="botonBorrar" class="btn btn-danger">Borrar actividad</button>
+              </div>
+            </div>
+          </div>
 
 
 

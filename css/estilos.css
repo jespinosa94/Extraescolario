@@ -1,4 +1,4 @@
-/*=====================================================HEADER=================================================*/
+﻿/*=====================================================HEADER=================================================*/
 body {
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
@@ -8,6 +8,28 @@ body {
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
+
+header {
+  position: relative;
+  z-index: 999;
+  margin-bottom: 25px;
+}
+
+.headerPrincipal {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  height: 95px;
+}
+
+.navbar-default {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  margin-bottom: 0;
+  position: relative;
+}
+
 
 .navbar-brand {
   background-image: url("http://i67.tinypic.com/2e2iays.jpg");
@@ -158,6 +180,40 @@ body {
   margin-top: 7px;
 }
 
+
+
+
+
+/*=====================================================FormOFR=================================================*/
+
+
+
+#formOFR h2
+{
+  font-size: 48px;
+  font-style: oblique;
+
+
+}
+.margen
+{
+  margin-top: 75px;
+}
+
+.margenimagen
+{
+  margin-bottom: 45px;
+
+}
+
+/*=====================================================Java script=================================================*/
+.imagenperfil {
+  height: 300px;
+  width: 550px;
+  border: 1px solid #000;
+}
+
+
 /*=====================================================Index=================================================*/
 #botonBuscar {
   margin-top: 43px;
@@ -193,19 +249,14 @@ body {
     height: 300px;
     background-image: url(../img/maleavatar.jpg);
     background-color: #cccccc;
+
 }
 
-/*=========================Esto no es nada, una prueba para coger la estructura de Trivago====================*/
-li {
-    display: list-item;
-    text-align: -webkit-match-parent;
-}
 
 /*===========================================perfilActividad==================================================*/
-
-/*===========================================buscadorPrincipal==================================================*/
-#aboutDescription
-{
-  height: 100px !important;
-  max-height: 100px !important;
+#datosAct, #horarioAct, #descAct{
+  border-bottom-width: 1px !important;
+  border-bottom-style: solid !important;
+  border-bottom-color: #DBDBDB !important;
+  margin-bottom: 20px;
 }
