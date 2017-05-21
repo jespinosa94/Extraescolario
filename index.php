@@ -149,6 +149,12 @@ if($logeado) {
               </div>
             </div>
           </form>
+          <span style="display:block; height: 500px;"></span>
+          <div id="populares">
+            <a href="http://localhost/Extraescolario/perfilActividad.php?cod=1">
+              <h1>Salta conmigo!</h1>
+            </a>
+          </div>
         </div>
       </div>
 
@@ -156,7 +162,7 @@ if($logeado) {
 
 
 
-<span style="display:block; height: 1000px;"></span>
+
 
 
       <!-- FOOTER -->

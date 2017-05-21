@@ -8,10 +8,12 @@
 
   /*Recibimos los datos de la actividad a cargar*/
   $codActividad = 2;
+
   /*HACEMOS UNA LLAMADA A LA BASE DE DATOS PARA EXTRAER INFORMACION*/
 
     $conUser = "call datosOFR(".$_SESSION['cod'].")";
     $resultado = mysqli_query ($conexion, $conUser);
+
 
     /*Preparamos la query de usuarios NO ACEPTADOS en la actividad*/
     $sqlUsuariosNoAceptados = "call getUsuariosNoAceptados($codActividad)";
@@ -24,8 +26,6 @@
     /*Preparamos y ejecutamos la query de los datos de la actividad*/
     $sqlCargarDatosActividad = "call obtener_datos_actividad($codActividad)";
     $cargarDatosActividad = consulta($sqlCargarDatosActividad);
-
-
 ?>
 <html lang="es"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -37,6 +37,7 @@
     <link rel="icon" href="http://www.iconj.com/ico/n/q/nqjqtckys4.ico">
 
     <title>Editar actividad</title>
+
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -132,7 +133,6 @@
                 <label class="col-md-4 control-label" for="getDireccion">Direccion</label>
                 <div class="col-md-4">
                 <input id="getDireccion" name="getDireccion" type="text" style="width:300px" value="<?php echo $cargarDatosActividad[0]["direccion"];?>" class="form-control input-md">
-
                 </div>
               </div>
 
@@ -324,6 +324,17 @@
                         <input id="domingoFin" name="domingoFin" type="text" placeholder="ej: 12:30" class="form-control input-md">
                 </div>
               </div>
+
+              <!-- Boton Confirmar cambios -->
+              <div class row>
+                <div class="form-group">
+                  <div class="col-md-4"></div>
+                  <div class="col-md-4">
+                    <label class="col-md-offset-4 control-label" for="botonConfirmar"></label>
+                    <button id="botonConfirmar" name="botonConfirmar" class="btn btn-success">Confirmar cambios</button>
+                  </div>
+                </div>
+              </div>
           </form>
         </div>
           <!--Segunda columna del form -->
@@ -361,7 +372,14 @@
             <br>
             <br>
 
-
+            <!-- Boton Publicar Newsletter -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="publicarNewsletter"></label>
+              <div class="col-md-4">
+                <button id="publicarNewsletter" name="publicarNewsletter" class="btn btn-primary">Publicar Newsletter</button>
+                <a href="index.html"></a>
+              </div>
+            </div>
           </form>
         </div>
 
@@ -466,7 +484,6 @@
               </div>
             </div>
           </div>
-
 
 
 
