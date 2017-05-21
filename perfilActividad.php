@@ -3,16 +3,19 @@ session_start();
 require 'funciones.php';
 
 $logeado = isset($_SESSION['cod']);
+$yaInscrito = 0;
+$idAct = $_GET['cod'];
 if($logeado) {
   $cod = $_SESSION['cod'];
+  $yaInscrito = consulta("select comprobarBuscadorInscrito(".$_SESSION['cod']. "," .$idAct.");");
 }
 if(!$_GET) {
   header('Location: index.php');
 }
-$idAct = $_GET['cod'];
-$datosAct = consulta("call obtener_datos_actividad(".$idAct.");");
-$tagsAct = consulta("call obtener_tags_actividad(".$idAct.");");
-$catAct = consulta("call obtener_cat_actividad(".$idAct.");");
+
+$datosAct = consulta("call getDatosActividad(".$idAct.");");
+$tagsAct = consulta("call getTagsActividad(".$idAct.");");
+$catAct = consulta("call getCatsActividad(".$idAct.");");
 //var_dump($datosAct);
 //var_dump($tagsAct);
 $nombreAct = $datosAct[0]['nombre'];
@@ -28,12 +31,15 @@ $direccion = $datosAct[0]['direccion'];
 $rangoEdad = $datosAct[0]['rangoEdad'];
 $localidad = $datosAct[0]['localidad'];
 $provincia = $datosAct[0]['provincia'];
-$turnosAct = consulta("call obtener_turnos_actividad(".$idAct.");");
+$turnosAct = consulta("call getTurnosActividad(".$idAct.");");
 
 $coordenadas = explode(",", getCoordinates($direccion . " " . $localidad . " " . $provincia . " Spain"));
+
+//var_dump($coordenadas);
 $lat = floatval($coordenadas[0]);
 $long = floatval($coordenadas[1]);
-$yaInscrito = consulta("select comprobar_buscador_inscrito(".$_SESSION['cod']. "," .$idAct.");");
+
+
 
  ?>
 
@@ -115,6 +121,7 @@ $yaInscrito = consulta("select comprobar_buscador_inscrito(".$_SESSION['cod']. "
           <div class="col-md-9">
              <div id="datosAct" class="row">
               <h1 style="color:black"><?php echo($nombreAct) ?></h1>
+
               <div class="tagLine">
                 <h4><span style="color:black"><?php echo($localidad) ?>, <?php echo($provincia) ?> </span> · <?php echo($direccion) ?></h4>
                 <ul class="list-inline">
@@ -166,7 +173,7 @@ $yaInscrito = consulta("select comprobar_buscador_inscrito(".$_SESSION['cod']. "
                              </div>
 
                              <?php
-                             $horarioTurno = consulta("call obtener_horario_turno(".$turnosAct[$z1][0].");");
+                             $horarioTurno = consulta("call getHorariosTurno(".$turnosAct[$z1][0].");");
                              for($x1=0; $x1<count($horarioTurno); $x1++) {
                               echo("<h4>" . $horarioTurno[$x1][0] . ": " . $horarioTurno[$x1][1] . "-" . $horarioTurno[$x1][2] . "</h4>");
                              }
@@ -203,7 +210,7 @@ $yaInscrito = consulta("select comprobar_buscador_inscrito(".$_SESSION['cod']. "
             <div class="row">
               <h1>Evaluaciones de usuarios</h1>
               <?php
-              $comentarios = consulta("call obtener_comentarios_actividad(".$idAct.");");
+              $comentarios = consulta("call getValoracionesActividad(".$idAct.");");
               $dir = "img/";
               foreach($comentarios as $comentario) {
                 $foto_usuario = $dir.$comentario['foto'];
@@ -253,54 +260,69 @@ $yaInscrito = consulta("select comprobar_buscador_inscrito(".$_SESSION['cod']. "
               <?php
               }
                ?>
+                <?php
 
-               <?php
-               $query = consulta("call datosBUS(".$cod.");");
-               $foto_usuario_registrado = $dir.$query[0]['foto'];
-               $nombre_usuario_registrado = $query[0]['nombre'];
-               $apellidos_usuario_registrado = $query[0]['apellidos'];
-                ?>
-               <form action="comentar.php" method="post">
-                 <div class="row" id="nuevoComentario">
-                   <h1>Nuevo comentario: </h1>
-                   <div class="col-md-12">
-                     <div class="row">
-                       <div class="col-md-2">
-                         <img src="<?php echo($foto_usuario_registrado) ; ?>" class= "img-circle" width="100px" height="100px">
+                if($logeado) {
+                  $puedeComentar = 0;
+                  $puedeComentar = consulta("select puedeComentar(". $cod .", ". $idAct .");");
+                  if($puedeComentar[0][0]==1) {
+                    $query = consulta("call getDatosBUS(".$cod.");");
+                    $foto_usuario_registrado = $dir.$query[0]['foto'];
+                    $nombre_usuario_registrado = $query[0]['nombre'];
+                    $apellidos_usuario_registrado = $query[0]['apellidos'];
+                     ?>
+                     <form action="comentar.php" method="post">
+                       <div class="row" id="nuevoComentario">
+                         <h1>Nuevo comentario: </h1>
+                         <div class="col-md-12">
+                           <div class="row">
+                             <div class="col-md-2">
+                               <img src="<?php echo($foto_usuario_registrado) ; ?>" class= "img-circle" width="100px" height="100px">
+                             </div>
+                             <div class="col-md-10">
+                               <h3> <?php echo($nombre_usuario_registrado . " " . $apellidos_usuario_registrado . ": "); ?></h3>
+                               <div class="form-group">
+                                <label for="valoracion">Valoración:</label>
+                                <select class="form-control" id="valoracion" name="valoracion">
+                                  <option value="0">0</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                  <option value="5">5</option>
+                                </select>
+                              </div>
+                               <div class="form-group">
+                                <label for="titulo">Titulo:</label>
+                                <input name="titulo" type="text" class="form-control" id="titulo" placeholder="Titulo del comentario" required>
+                              </div>
+                              <div class="form-group">
+                               <label for="comentario">Comentario:</label>
+                               <textarea name="comentario" class="form-control" rows="3" id=comentario placeholder="¿Qué opinas sobre la actividad?" required></textarea>
+                             </div>
+                             <input type="hidden" name="idAct" value="<?php echo($idAct); ?>">
+                             <button type="submit" class="btn btn-primary btn-lg">Enviar comentario</button>
+                             </div>
+                           </div>
+                         </div>
                        </div>
-                       <div class="col-md-10">
-                         <h3> <?php echo($nombre_usuario_registrado . " " . $apellidos_usuario_registrado . ": "); ?></h3>
-                         <div class="form-group">
-                          <label for="valoracion">Valoración:</label>
-                          <select class="form-control" id="valoracion" name="valoracion">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                          </select>
-                        </div>
-                         <div class="form-group">
-                          <label for="titulo">Titulo:</label>
-                          <input name="titulo" type="text" class="form-control" id="titulo" placeholder="Titulo del comentario" required>
-                        </div>
-                        <div class="form-group">
-                         <label for="comentario">Comentario:</label>
-                         <textarea name="comentario" class="form-control" rows="3" id=comentario placeholder="¿Qué opinas sobre la actividad?" required></textarea>
-                       </div>
-                       <input type="hidden" name="idAct" value="<?php echo($idAct); ?>">
-                       <button type="submit" class="btn btn-primary btn-lg">Enviar comentario</button>
-                       </div>
-                     </div>
-                   </div>
-                 </div>
-               </form>
+                     </form>
+                     <?php
+                  } else {
+                    $haComentado = consulta("select haComentado(". $cod.", ". $idAct .")");
+                    if(!$haComentado[0][0]) {
+                      ?>
+                      <h6>Aún no puedes comentar en la actividad, pero no te preocupes, te avisaremos cuando pase un tiempo para que valores la experiencia.</h6>
+                      <?php
+                    }
+                  }
+                }
+                   ?>
             </div>
           </div>
           <div class="col-md-3">
             <div class="affix">
-              <?php echo('<img src="data:image/jpeg;base64,'.base64_encode( $foto ).'"/ >'); ?>
+              <?php echo('<img src="data:image/jpeg;base64,'.base64_encode( $foto ).'"/ style= "height: 270px; width: 300px;">'); ?>
               <!-- <img src="img/negro.jpg" width="300px" height="500px" style="margin-bottom: 10px;"> -->
               <div class="row" style="margin-top: 10px;">
                 <div class="col-md-5">
@@ -334,20 +356,18 @@ $yaInscrito = consulta("select comprobar_buscador_inscrito(".$_SESSION['cod']. "
                   </script>
                   <div class="row lead" style="margin-left: 1px; margin-top: 4px;">
                     <?php
-                    $aux = consulta("select calcula_valoracion_media_actividad(". $idAct .")");
-                    $valoracion_media = $aux[0][0];
-                    if($valoracion_media==0) {?>
+                    if($valoracionMedia==0) {?>
                       <i class="fa fa-star-o" aria-hidden="true"><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i></i>
                       <?php
                     } else {
                       echo("<i class=\"fa fa-star\" aria-hidden=\"true\">");
-                      for($x1=1; $x1<$valoracion_media && $valoracion_media>1; $x1++) {
+                      for($x1=1; $x1<$valoracionMedia && $valoracionMedia>1; $x1++) {
                         echo("<i class=\"fa fa-star\" aria-hidden=\"true\"></i>");
                       }
                       echo("</i>");
-                      if($valoracion_media<5) {
+                      if($valoracionMedia<5) {
                         echo("<i class=\"fa fa-star-o\" aria-hidden=\"true\">");
-                        for($x2=$valoracion_media+1; $x2<5 && $valoracion_media<4; $x2++) {
+                        for($x2=$valoracionMedia+1; $x2<5 && $valoracionMedia<4; $x2++) {
                           echo("<i class=\"fa fa-star-o\" aria-hidden=\"true\"></i>");
                         }
                       }

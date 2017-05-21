@@ -35,7 +35,7 @@ require 'funciones.php';
          if ($_SERVER['REQUEST_METHOD'] == 'POST') {
            if(isset($_POST['idAct'])) {
              $idAct = $_POST['idAct'];
-             consulta("call anular_inscripcion_buscador(".$_SESSION['cod']. "," .$idAct.");");
+             consulta("call anularInscripcionBuscador(".$_SESSION['cod']. "," .$idAct.");");
               ?>
              <div class="row">
                <div class="col-md-offset-1 col-md-9">

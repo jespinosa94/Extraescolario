@@ -36,9 +36,14 @@ require 'funciones.php';
            if(isset($_POST['radio'])) {
              $turno = $_POST['radio'];
              $idAct = $_POST['idAct'];
+             $logeado = isset($_SESSION['cod']);
+             $yaInscrito = 0;
+             if($logeado) {
+               $cod = $_SESSION['cod'];
+               $yaInscrito = consulta("select comprobarBuscadorInscrito(".$_SESSION['cod']. "," .$idAct.");");
+             }
 
-             $yaInscrito = consulta("select comprobar_buscador_inscrito(".$_SESSION['cod']. "," .$idAct.");");
-             if($yaInscrito[0][0] == 1) {
+             if($yaInscrito == 1) {
                 ?>
                 <div class="row">
                   <div class="col-md-offset-1 col-md-9">
@@ -53,11 +58,11 @@ require 'funciones.php';
                 </div>
                 <?php
              } else {
-               consulta("call inscribir_buscador(".$_SESSION['cod']. "," .$idAct. "," .$turno.");");
+               consulta("call inscribirBuscador(".$_SESSION['cod']. "," .$idAct. "," .$turno.");");
                 ?>
                 <div class="row">
                   <div class="col-md-offset-3 col-md-9">
-                    <h1>Enhorabuena, te has inscrito en una actividad!</h1>
+                    <h1>Enhorabuena! Te has inscrito en una actividad, esperamos que la disfrutes. </h1>
                     <a href="http://localhost/Extraescolario/perfilActividad.php?cod=<?php echo($idAct) ?>">
                       <button type="button" class="btn btn-primary btn-lg">Volver</button>
                     </a>

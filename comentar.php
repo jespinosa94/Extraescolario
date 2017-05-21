@@ -38,7 +38,7 @@ require 'funciones.php';
            $valoracion = $_POST['valoracion'];
            $titulo = "\"".$_POST['titulo']."\"";
            $comentario = "\"".$_POST['comentario']."\"";
-           consulta("call anyadir_comentario(".$idAct.",".$idBus.",".$valoracion.",".$titulo.",".$comentario.");");
+           consulta("call anyadirComentario(".$idAct.",".$idBus.",".$valoracion.",".$titulo.",".$comentario.");");
          }
      ?>
      <div class="row">
