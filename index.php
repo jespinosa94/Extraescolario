@@ -114,13 +114,6 @@ if($logeado) {
         </div>
       </div>
 
-
-
-
-
-
-
-
       <!-- FOOTER -->
       <?php  require_once('footer.php'); ?>
     </div>

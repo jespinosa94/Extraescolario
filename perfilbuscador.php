@@ -10,7 +10,7 @@
   pones la otra, no se queja pero no hace nada*/
     $dir = "img/";
 
-  /*Realizamos una primera llamadaa la BBDD para extraer la información del usuario*/         
+  /*Realizamos una primera llamadaa la BBDD para extraer la información del usuario*/
     $conUser = "call datosBUS(".$_SESSION['cod'].");";
     $obtenActiv= "call obtenACT(".$_SESSION['cod'].");";
 
@@ -79,42 +79,7 @@
     <div class="principal">
 
       <!-- Header de la página -->
-      <header>
-        <nav class="navbar navbar-default navbar-main headerPrincipal" role="navigation">
-          <div class="container-fluid">
-
-            <!-- Logo y menu minimizado -->
-            <div class="navbar-header">
-              <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar1">
-                <span class="sr-only">Menu</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="index.html"></a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="navbar1">
-              <ul class="nav navbar-nav" id="registroOFR">
-                <li class="dropdown singleDrop">
-                  <a href="#">Oferta tus propias actividades</a>
-                </li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li class="active dropdown singleDrop">
-                  <a href="index.html">Inicio</a>
-                </li>
-                <li class="dropdown singleDrop">
-                  <a href="#">Ayuda</a>
-                </li>
-                <li class="dropdown singleDrop">
-                  <a href="#">Iniciar sesión</a>
-                </li>
-              </ul>
-            </div> <!-- Fin collapse navbar1-->
-          </div>
-        </nav>
-      </header>
+      <?php require_once('header.php'); ?>
 
       <!--Cuerpo -->
       <div id="perfilbuscador" class = "container-fluid">
@@ -152,44 +117,44 @@
 
     			    <div class = "row">
     	                <label class="col-xs-6 col-md-4 control-label text-left" for="apellidos">Apellidos:</label>
-    		            <p class="con-xs-6 col-md-8 control-label text-left" for="apellidos"><?php echo $apellidosUser?></p> 
+    		            <p class="con-xs-6 col-md-8 control-label text-left" for="apellidos"><?php echo $apellidosUser?></p>
     			    </div>
 
 			        <div class = "row">
                     <label class="col-xs-6 col-md-4 control-label text-left" for="apellidos">Sexo:</label>
-                    <p class="con-xs-6 col-md-8 control-label text-left" for="apellidos"><?php echo $sexoUser?></p> 
+                    <p class="con-xs-6 col-md-8 control-label text-left" for="apellidos"><?php echo $sexoUser?></p>
                 <!--
 	                <label class="col-xs-4 control-label text-left" for="sexo">Sexo:</label>
-	                <div class="col-xs-8"> 
+	                <div class="col-xs-8">
 	                  <label class="radio-inline" for="radios-0">
-	                     <input type="radio" name="radios" id="sHombre" value="1" checked="<?php if ($sexoUser="Mujer") {echo false;}?>"       >Hombre</label> 
+	                     <input type="radio" name="radios" id="sHombre" value="1" checked="<?php if ($sexoUser="Mujer") {echo false;}?>"       >Hombre</label>
 	                  <label class="radio-inline" for="radios-1">
 	                    <input type="radio" name="radios" id="sMujer" value="2" checked="<?php if ($sexoUser="Mujer") {echo true;}?>"         >Mujer</label>
 	                </div> -->
     			    </div>
     			    <div class = "row">
     	                <label class="col-xs-6 col-md-4 control-label text-left" for="fecnac">Fecha de Nacimiento:</label>
-    		            <p class="con-xs-6 col-md-8 control-label text-left" for="fecnac"><?php echo $fechaNacUser?></p> 
+    		            <p class="con-xs-6 col-md-8 control-label text-left" for="fecnac"><?php echo $fechaNacUser?></p>
     			    </div>
 
     			    <div class = "row">
     	                <label class="col-xs-6 col-md-4 control-label text-left" for="telf">Teléfono:</label>
-    		            <p class="con-xs-6 col-md-8 control-label text-left" for="telf"><?php echo $telefUser?></p> 
+    		            <p class="con-xs-6 col-md-8 control-label text-left" for="telf"><?php echo $telefUser?></p>
     			    </div>
 
     			    <div class = "row">
     	                <label class="col-xs-6 col-md-4 control-label text-left" for="prov">Provincia:</label>
-    		            <p class="con-xs-6 col-md-8 control-label text-left" for="prov"><?php echo $provinciaUser?></p> 
+    		            <p class="con-xs-6 col-md-8 control-label text-left" for="prov"><?php echo $provinciaUser?></p>
     			    </div>
 
     			    <div class = "row">
     	                <label class="col-xs-6 col-md-4 control-label text-left" for="loc">Localidad:</label>
-    		            <p class="con-xs-6 col-md-8 control-label text-left" for="loc"><?php echo $localidadUser ?></p> 
+    		            <p class="con-xs-6 col-md-8 control-label text-left" for="loc"><?php echo $localidadUser ?></p>
     			    </div>
 
     			    <div class = "row">
     	                <label class="col-xs-6 col-md-4 control-label text-left" for="dir">Dirección:</label>
-    		            <p class="con-xs-6 col-md-8 control-label text-left" for="dir"><?php echo $direccionUser?></p> 
+    		            <p class="con-xs-6 col-md-8 control-label text-left" for="dir"><?php echo $direccionUser?></p>
     			    </div>
         	</div>
         	<!-- Segunda gran columna-->
@@ -240,7 +205,7 @@
                                   $horarios = consulta($buscahorarios);
 
                                   ?>
-                                  <div class="col-md-6"> <?php 
+                                  <div class="col-md-6"> <?php
                                     for ($y = 0; $y < sizeof($horarios); $y++) {
                                       $diaHorario = $horarios[$y]; ?>
                                       <div class="row col-xs-12"><?php echo $diaHorario["diaSemana"]?><br></div>
@@ -248,7 +213,7 @@
                                       <div class="row col-xs-12"><?php echo $diaHorario["horaFin"]?><br><br></div>
                                     <?php } ?>
                                   </div>
-                                </div>                             
+                                </div>
                             </div>
                           <!-- <div class="tab-pane fade" id="tab3default">Default 3</div> -->
                           <?php } ?>
@@ -326,74 +291,7 @@
       </div>
 
       <!-- FOOTER -->
-      <footer>
-        <div class="footer clearfix">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-3 col-xs-12">
-                <div class="footerContent">
-                  <a class="footer-logo" href="index.html">
-                    <img src="http://i66.tinypic.com/103ap8k.jpg" alt="Extraescolario" width="177" height="47" />
-                  </a>
-                  <p>
-                    Encuentra las actividades que más te apetezca hacer adaptándose a tu horario, simplemente navega por nuestras recomendaciones
-                    y te aseguramos que no te quedarás en casa aburrido.
-                  </p>
-                </div>
-              </div>
-
-              <div class="col-sm-3 col-xs-12">
-                <div class="footerContent">
-                  <h5>Contacta con nosotros</h5>
-                  <p>
-                    Estamos a tu disposición los 7 días de la semana.
-                  </p>
-                  <ul class="list-unlysted">
-                    <li>
-                      <i class="fa fa-home" aria-hidden="true"></i>
-                      <a href="https://www.google.es/maps/@38.383397,-0.5145466,17z">
-                        Universidad de Alicante
-                      </a>
-                    </li>
-                    <li><i class="fa fa-phone" aria-hidden="true"></i> 96 590 3400</li>
-                    <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailTo:info@extraescolario.com">info@extraescolario.com</a></li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="col-sm-3 col-xs-12">
-                <div class="footerContent">
-                  <h5>Descubre extraescolario</h5>
-                  <ul class="list-unlysted">
-                    <li><a href="#">Información</a></li>
-                    <li><a href="#">Trabaja con nosotros</a></li>
-                    <li><a href="#">Ayuda</a></li>
-                    <li><a href="#">Razones para utilizar extraescolario</a></li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="col-sm-3 col-xs-12">
-                <div class="footerContent">
-                  <h5>Newsletter</h5>
-                  <p>Suscríbete a nuestro boletín de información semanal para estar al tanto de las últimas actualizaciones</p>
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Introduce tu email" aria-describedby="basic-addon21" />
-                    <span class="input-group-addon" id="basic-addon21"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
-                  </div>
-                  <ul class="list-inline">
-                  <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
-                </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <?php  require_once('footer.php'); ?>
     </div>
     <script>
       function abreSuscripciones() {
