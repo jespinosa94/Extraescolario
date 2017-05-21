@@ -8,9 +8,9 @@
 
   /*HACEMOS UNA LLAMADA A LA BASE DE DATOS PARA EXTRAER INFORMACION*/
     /*Preparamos las querys a ejecutar en la página*/
-    $conUser = "call datosOFR(".$_SESSION['cod'].")";
-    $sqlVerif = "call OFRobtenVerif(".$_SESSION['cod'].")";
-    $sqlNoVerif = "call OFRobtenNOVerif(".$_SESSION['cod'].")";
+    $conUser = "call getDatosOFR(".$_SESSION['cod'].")";
+    $sqlVerif = "call OFRgetVerif(".$_SESSION['cod'].")";
+    $sqlNoVerif = "call OFRgetNOVerif(".$_SESSION['cod'].")";
 
     /*Realizamos las querys a través del método guardado en funciones*/
     $datosUsuario = consulta($conUser);

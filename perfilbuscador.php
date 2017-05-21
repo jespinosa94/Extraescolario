@@ -11,8 +11,8 @@
     $dir = "img/";
 
   /*Realizamos una primera llamadaa la BBDD para extraer la información del usuario*/         
-    $conUser = "call datosBUS(".$_SESSION['cod'].");";
-    $obtenActiv= "call obtenACT(".$_SESSION['cod'].");";
+    $conUser = "call getDatosBUS(".$_SESSION['cod'].");";
+    $obtenActiv= "call getACTS(".$_SESSION['cod'].");";
 
     $datosUsuario = consulta($conUser);
     $datosAct = consulta($obtenActiv);
@@ -137,7 +137,7 @@
              	</div>
              	<div class ="row">
 	                <label class="col-xs-6 col-md-4 control-label text-left" for="cont">Contraseña:</label>
-		            <p class="con-xs-6 col-md-8 control-label text-left" for="cont"><?php echo $passUser?></p>
+		            <p class="con-xs-6 col-md-8 control-label text-left" for="cont">¡Es secreta!</p>
              	</div>
 
              	<div class = "row">
@@ -231,23 +231,29 @@
                             <div class="tab-pane fade" id="<?php echo $var="tab".$actividad["cod"]?>">
                               <div class="row col-xs-12"> <?php echo $actividad["descripcion"] ?><br><br></div>
                                 <div class="row align-items-center">
-                                  <div class="col-md-6">
-                                    Horario:
-                                  </div>
-                                  <!-- Realizamos la consultad de los horarios-->
-                                  <?php
-                                  $buscahorarios = "call obtenHorario(".$_SESSION['cod'].",".$actividad["cod"].");";
-                                  $horarios = consulta($buscahorarios);
+                                  <!-- Realizamos la consulta para saber el número de turnos que tiene esa actividad, pero no la utilizamos
+                                  porque la cosa cambió XD-->
+                                  <?php $numTurnos = consulta("select getNumTurnosACT(".$_SESSION['cod'].",".$actividad["cod"].")"); ?>
 
-                                  ?>
-                                  <div class="col-md-6"> <?php 
-                                    for ($y = 0; $y < sizeof($horarios); $y++) {
-                                      $diaHorario = $horarios[$y]; ?>
-                                      <div class="row col-xs-12"><?php echo $diaHorario["diaSemana"]?><br></div>
-                                      <div class="row col-xs-12"><?php echo $diaHorario["horaInicio"]?><br></div>
-                                      <div class="row col-xs-12"><?php echo $diaHorario["horaFin"]?><br><br></div>
-                                    <?php } ?>
-                                  </div>
+                                    <div class="col-md-4">
+                                      Horarios:
+                                    </div>
+                                    <!-- Realizamos la consultad de los horarios-->
+                                    <?php
+                                    $buscahorarios = "call getHorariosACT(".$_SESSION['cod'].",".$actividad["cod"].");";
+                                    $horarios = consulta($buscahorarios);
+
+                                    ?>
+                                    <div class="col-md-8"> <?php 
+                                      for ($y = 0; $y < sizeof($horarios); $y++) { ?>
+                                        <div class="col-xs-4">
+                                            <?php $diaHorario = $horarios[$y]; ?>
+                                            <div class="row col-xs-12"><?php echo $diaHorario["diaSemana"]?><br></div>
+                                            <div class="row col-xs-12"><?php echo $diaHorario["horaInicio"]?><br></div>
+                                            <div class="row col-xs-12"><?php echo $diaHorario["horaFin"]?><br><br></div>
+                                        </div>
+                                      <?php } ?>
+                                    </div>
                                 </div>                             
                             </div>
                           <!-- <div class="tab-pane fade" id="tab3default">Default 3</div> -->
@@ -257,7 +263,7 @@
             </div>
 				</div>
 				<div class="row col-xs-12">
-					<h3 href="" class="btn" onclick="abreSuscripciones()" >Mis suscripciones</h3>
+          <a href="" class="btn" onclick="abreSuscripciones()" >Mis suscripciones</a>
 				</div>
 				<div class="row col-xs-12">
 					<label>
@@ -282,8 +288,8 @@
                 <label>
                   <?php
                     // Preparamos las consultas de tags y categorías, y las realizamos
-                    $consultaTags ="call obtenTags(".$_SESSION['cod'].");";
-                    $consultaCategor ="call obtenCategs(".$_SESSION['cod'].");";
+                    $consultaTags ="call getTAGS_USR(".$_SESSION['cod'].");";
+                    $consultaCategor ="call getCATS_USR(".$_SESSION['cod'].");";
                     $categorias = consulta($consultaCategor);
                     $tags = consulta($consultaTags);
 

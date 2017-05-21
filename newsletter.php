@@ -7,8 +7,8 @@
   require_once ("conexion.php");
   require_once ("funciones.php");
 
-  $notificaciones = "call obtenNotis(".$_SESSION['cod'].");";
-  $promociones= "call obtenPromos(".$_SESSION['cod'].");";
+  $notificaciones = "call getNotisUSR(".$_SESSION['cod'].");";
+  $promociones= "call getPromosUSR(".$_SESSION['cod'].");";
 
   $datosNotis = consulta($notificaciones);
   $datosPromos = consulta($promociones);
