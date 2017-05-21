@@ -49,7 +49,7 @@
 
         <div class="col-sm-3 col-xs-12">
           <div class="footerContent">
-            <h5>Newsletter</h5>
+            <h5>Noticias</h5>
             <p>Suscríbete a nuestro boletín de información semanal para estar al tanto de las últimas actualizaciones</p>
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Introduce tu email" aria-describedby="basic-addon21" />
