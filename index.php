@@ -110,46 +110,52 @@
           <!-- Vista de actividades más populares -->
           <div id="populares">
             <h1>Echa un ojo a las actividades más populares</h1>
-            <?php
-            $idAct = 1;
-            $datosAct = consulta("call getDatosActividad(".$idAct.");");
-            $nombreAct = $datosAct[0]['nombre'];
-            $foto = $datosAct[0]['foto'];
-            $valoracionMedia = $datosAct[0]['valoracionMedia'];
-            $precio = $datosAct[0]['precio'];
-            $provincia = $datosAct[0]['provincia'];
-             ?>
             <div class="row">
-              <div class="col-md-3">
-                <a <?php echo("href=\"http://localhost/Extraescolario/perfilActividad.php?cod=". $idAct . "\""); ?>>
-                  <?php echo('<img src="data:image/jpeg;base64,'.base64_encode( $foto ).'"/ style= "height: 290px; width: 200px;">'); ?>
-                  <h4 style="margin-bottom: 0px;"><span style="color:#484848"><?php echo($precio . "€"); ?></span> <span style="color:grey; font-size: 14px;"> <?php echo($nombreAct); ?> </span></h4>
-                  <?php
-                  if($valoracionMedia==0) {?>
-                    <i class="fa fa-star-o" aria-hidden="true"><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i></i>
-                    <?php
-                  } else {
-                    echo("<i class=\"fa fa-star\" aria-hidden=\"true\">");
-                    for($x1=1; $x1<$valoracionMedia && $valoracionMedia>1; $x1++) {
-                      echo("<i class=\"fa fa-star\" aria-hidden=\"true\"></i>");
-                    }
-                    echo("</i>");
-                    if($valoracionMedia<5) {
-                      echo("<i class=\"fa fa-star-o\" aria-hidden=\"true\">");
-                      for($x2=$valoracionMedia+1; $x2<5 && $valoracionMedia<4; $x2++) {
-                        echo("<i class=\"fa fa-star-o\" aria-hidden=\"true\"></i>");
-                      }
-                    }
-                    echo("</i>");
-                  }
-                   ?>
-                </a>
+            <?php
+            $mejorValoradas = consulta("select * from mejorValoradas;");
+            for($x=0; $x<sizeof($mejorValoradas); $x++) {
+              $idAct = $mejorValoradas[$x][0];
+              $datosAct = consulta("call getDatosActividad(".$idAct.");");
+              $nombreAct = $datosAct[0]['nombre'];
+              $foto = $datosAct[0]['foto'];
+              $valoracionMedia = $datosAct[0]['valoracionMedia'];
+              $precio = $datosAct[0]['precio'];
+               ?>
+               <div class="col-md-3">
+                 <a <?php echo("href=\"http://localhost/Extraescolario/perfilActividad.php?cod=". $idAct . "\""); ?>>
+                   <?php echo('<img src="data:image/jpeg;base64,'.base64_encode( $foto ).'"/ style= "height: 290px; width: 200px;">'); ?>
+                   <h4 style="margin-bottom: 0px;"><span style="color:#484848"><?php echo($precio . "€"); ?></span> <span style="color:grey; font-size: 14px;"> <?php echo($nombreAct); ?> </span></h4>
+                   <?php
+                   if($valoracionMedia==0) {?>
+                     <i class="fa fa-star-o" aria-hidden="true"><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i></i>
+                     <?php
+                   } else {
+                     echo("<i class=\"fa fa-star\" aria-hidden=\"true\">");
+                     for($x1=1; $x1<$valoracionMedia && $valoracionMedia>1; $x1++) {
+                       echo("<i class=\"fa fa-star\" aria-hidden=\"true\"></i>");
+                     }
+                     echo("</i>");
+                     if($valoracionMedia<5) {
+                       echo("<i class=\"fa fa-star-o\" aria-hidden=\"true\">");
+                       for($x2=$valoracionMedia+1; $x2<5 && $valoracionMedia<4; $x2++) {
+                         echo("<i class=\"fa fa-star-o\" aria-hidden=\"true\"></i>");
+                       }
+                     }
+                     echo("</i>");
+                   }
+                    ?>
+                 </a>
+               </div>
+               <?php
+            }
+             ?>
+             </div>
 
-              </div>
-              <div class="col-md-3"></div>
-              <div class="col-md-3"></div>
-            </div>
-<span style="display:block; height: 20px;"></span>
+
+
+
+
+            <span style="display:block; height: 20px;"></span>
           </div>
         </div>
       </div>
