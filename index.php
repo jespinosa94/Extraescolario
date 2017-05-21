@@ -1,12 +1,12 @@
 <?php
-session_start();
-require 'funciones.php';
+  session_start();
+  require 'funciones.php';
 
-$logeado = isset($_SESSION['cod']);
-if($logeado) {
-  $cod = $_SESSION['cod'];
-}
- ?>
+  $logeado = isset($_SESSION['cod']);
+  if($logeado) {
+      $cod = $_SESSION['cod'];
+    }
+?>
 
 
 <!DOCTYPE html>

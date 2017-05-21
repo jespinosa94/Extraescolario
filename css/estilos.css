@@ -129,6 +129,7 @@ body {
     line-height: 35px;
     font-size: 14px;
   }
+
 /*=====================================================Login=================================================*/
 #login.container{
   margin-bottom: 200px;
@@ -179,6 +180,7 @@ body {
 
 #miCuenta {
   padding-top: 0px;
+}
 
 /*===========================================perfilbuscador==================================================*/
 #perfilbuscador .btnLink {
@@ -193,4 +195,17 @@ body {
     background-color: #cccccc;
 }
 
+/*=========================Esto no es nada, una prueba para coger la estructura de Trivago====================*/
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
 /*===========================================perfilActividad==================================================*/
+
+/*===========================================buscadorPrincipal==================================================*/
+#aboutDescription
+{
+  height: 100px !important;
+  max-height: 100px !important;
+}
