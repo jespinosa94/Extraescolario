@@ -225,7 +225,7 @@ $long = floatval($coordenadas[1]);
                   <div class="col-md-12">
                     <div class="row">
                       <div class="col-md-2">
-                        <img src="<?php echo $foto_usuario; ?>" class= "img-circle" width="100px" height="100px">
+                        <img src="<?php echo $foto_usuario; ?>" onerror="this.src='img/Maleavatar.jpg'" class= "img-circle" width="100px" height="100px">
                       </div>
                       <div class="col-md-10">
                         <h3> <?php echo($nombre_usuario . " " . $apellidos_usuario . " - " . $titulo . ": "); ?>
@@ -277,7 +277,7 @@ $long = floatval($coordenadas[1]);
                          <div class="col-md-12">
                            <div class="row">
                              <div class="col-md-2">
-                               <img src="<?php echo($foto_usuario_registrado) ; ?>" class= "img-circle" width="100px" height="100px">
+                               <img src="<?php echo($foto_usuario_registrado) ; ?>" onerror="this.src='img/Maleavatar.jpg'" class= "img-circle" width="100px" height="100px">
                              </div>
                              <div class="col-md-10">
                                <h3> <?php echo($nombre_usuario_registrado . " " . $apellidos_usuario_registrado . ": "); ?></h3>
