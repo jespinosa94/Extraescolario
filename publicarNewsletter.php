@@ -6,6 +6,8 @@ $logeado = isset($_SESSION['cod']);
 if($logeado) {
   $cod = $_SESSION['cod'];
 }
+
+$codActividad = $_POST['codActividad'];
  ?>
 
 
@@ -82,11 +84,12 @@ if($logeado) {
        ?>
        <body>
          <form name= "formNewsletter" method="post" action = "insertarNewsletter.php" id= "formularioNewsletter">
+           <input type="hidden" name="codActividad" value="<?php echo $codActividad?>">
           <div class="row">
              <div class="col-md-6 control-label">
                <!-- Titulo de la newsletter-->
                <div class="form-group">
-                 <label class="col-md-6 control-label" for="tituloNewsletter">Enviar una nueva newsletter</label>
+                 <label class="col-md-6 control-label" for="tituloNewsletter">Titulo de la newsletter</label>
                  <div class="col-md-6">
                  <input id="tituloNewsletter" name="tituloNewsletter" type="text" placeholder="Introduce el titulo de la newsletter" class="form-control input-md">
                  </div>
