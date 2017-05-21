@@ -474,7 +474,6 @@
       var xmlhttp = new XMLHttpRequest();
       xmlhttp.open("GET", "ajax.php?pueblo="+document.getElementById("getProvincia").value, false);
       xmlhttp.send(null);
-      alert(xmlhttp.responseText);
       document.getElementById("getLocalidad").innerHTML=xmlhttp.responseText;
     }
     </script>
