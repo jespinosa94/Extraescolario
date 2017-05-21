@@ -3,15 +3,18 @@
   session_start();
 
   /* Incluimos la conexión predefinida*/
-  require_once ("conexion.php");
   require_once ("funciones.php");
+
+  $logeado = isset($_SESSION['cod']);
+  if($logeado) {
+    $cod = $_SESSION['cod'];
+  }
 
   /*Recibimos los datos de la actividad a cargar*/
   $codActividad = 1;
   /*HACEMOS UNA LLAMADA A LA BASE DE DATOS PARA EXTRAER INFORMACION*/
 
     $conUser = "call datosOFR(".$_SESSION['cod'].")";
-    $resultado = mysqli_query ($conexion, $conUser);
 
     /*Preparamos y ejecutamosla query de usuarios NO ACEPTADOS en la actividad*/
     $sqlUsuariosNoAceptados = "call getUsuariosNoAceptados($codActividad)";
