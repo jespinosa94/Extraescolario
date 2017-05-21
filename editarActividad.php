@@ -109,16 +109,15 @@
       <div class="row">
         <!--Primera columna del form -->
         <div class="col-md-4">
-
               <div class="row">
-              <!-- InputNombreActividad -->
-              <div class="form-group">
-                <label class="col-md-4 control-label" for="nombreActividad">Nombre Actividad:</label>
-                <div class="col-md-4">
-                  <input class="form-control" id="nombreActividad" style="width:280px" value="<?php echo $cargarDatosActividad[0]["nombre"]; ?>"/>
+                <!-- InputNombreActividad -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="nombreActividad">Nombre Actividad:</label>
+                  <div class="col-md-4">
+                    <input class="form-control" id="nombreActividad" style="width:280px" value="<?php echo $cargarDatosActividad[0]["nombre"]; ?>"/>
+                  </div>
                 </div>
               </div>
-            </div>
             <div class="row">
               <!-- Selector Provincia -->
               <div class="form-group">
@@ -315,7 +314,7 @@
                 </select>
               </div>
             </div>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br>
           </form>
         </div>
         <!--Tercera columna del form -->
