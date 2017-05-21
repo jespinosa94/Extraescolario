@@ -29,8 +29,16 @@
     $sqlHorarioActividad = "call getHorarioActividad($codActividad)";
     $horario = consulta($sqlHorarioActividad);
 
+    /*Preparamos y ejecutamos la query que carga las provincias*/
+    $sqlProvincias = "call getAllProvincias()";
+    $provincias = consulta($sqlProvincias);
 
+    /*Preparamos y ejecutamos la query que carga los pueblos de una provincia*/
+    $row = $cargarDatosActividad[0];
+    $provi = $row["codProvincia"];
+    $localidades = consulta("call getLocalidades($provi)");
 ?>
+
 <html lang="es"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -116,9 +124,14 @@
               <div class="form-group">
                 <label class="col-md-4 control-label" for="getProvincia">Provincia</label>
                 <div class="col-md-4">
-                  <select id="getProvincia" name="getProvincia" class="form-control" style="width:150px">
-                    <option value="1">Alicante</option>
-                    <option value="2">Murcia</option>
+                  <select id="getProvincia" name="getProvincia" onchange="cargaPueblo()" class="form-control" style="width:150px">
+                    <option value="<?php echo $row["codProvincia"] ?>"><?php echo $row["provincia"] ?></option>
+                    <!--php para rellenar el combo box-->
+                    <?php for ($i = 0; $i < sizeof($provincias); $i++)
+                    {
+                      $rowProvincia = $provincias[$i] ; ?>
+                      <option value="<?php echo $rowProvincia["cod"]; ?>"> <?php echo $rowProvincia["nombre"]; ?></option>
+              <?php } ?>
                   </select>
                 </div>
               </div>
@@ -130,9 +143,12 @@
                 <label class="col-md-4 control-label" for="getLocalidad">Localidad</label>
                 <div class="col-md-4">
                   <select id="getLocalidad" name="getLocalidad" class="form-control" style="width:150px">
-                    <option value="1">Ibi</option>
-                    <option value="2">Yecla</option>
-                    <option value="">San Vicentel del Raspeig</option>
+                    <option value="<?php echo $row["codLocalidad"] ?>"><?php echo $row["localidad"] ?></option>
+                    <?php for($i = 0; $i <sizeof($localidades); $i++)
+                    {
+                      $rowLocalidades = $localidades[$i];
+                        echo '<option value="';echo $rowLocalidades["cod"]; echo '">';echo $rowLocalidades["nombre"]; echo'  </option>';
+                    }?>
                   </select>
                 </div>
               </div>
@@ -346,49 +362,45 @@
                 </tr>
                 <?php } ?>
                 <tr>
-                  <td >
-                    <div class="form-group">
-                      <label class="col-md-4 control-label" for="seleccionarDia"></label>
-                      <div class="col-md-11">
-                        <select id="seleccionarDia" name="seleccionarDia" class="form-control">
-                          <option value="1">Lunes</option>
-                          <option value="2">Martes</option>
-                          <option value="3">Miercoles</option>
-                          <option value="4">Jueves</option>
-                          <option value="5">Viernes</option>
-                          <option value="6">Sabado</option>
-                          <option value="7">Domingo</option>
-                        </select>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="form-group">
-                      <label class="col-md-4 control-label" for="horaInicio"></label>
-                      <div class="col-md-11">
-                        <input id="horaInicio" name="horaInicio2" type="text" class="form-control input-md">
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="form-group">
-                      <label class="col-md-4 control-label" for="horaInicio"></label>
-                      <div class="col-md-11">
-                        <input id="horaFin" name="horaFin" type="text" class="form-control input-md">
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <form action="añadirTurno.php" method="post">
-                      <?php $inicio = $_GET["horaInicio2"]; echo $inicio?>
-
+                  <form action="añadirTurno.php" method="post">
+                    <td >
                       <input type="hidden" name="codActividad" value="<?php echo $codActividad?>">
-                      <input type="hidden" name="horaInicio" value="<?php echo $horaInicio?>">
-                      <input type="hidden" name="horaFin" value="<?php echo $rowHorario["rFranja"]?>">
-                      <input type="hidden" name="codDia" value="<?php echo $codActividad["rFranja"]?>">
-                      <button type="submit">Añadir Turno</button>
-                    </form>
-                  </td>
+                      <div class="form-group">
+                        <label class="col-md-4 control-label" for="seleccionarDia"></label>
+                        <div class="col-md-11">
+                          <select id="seleccionarDia" name="seleccionarDia" class="form-control">
+                            <option value="1">Lunes</option>
+                            <option value="2">Martes</option>
+                            <option value="3">Miercoles</option>
+                            <option value="4">Jueves</option>
+                            <option value="5">Viernes</option>
+                            <option value="6">Sabado</option>
+                            <option value="7">Domingo</option>
+                          </select>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="form-group">
+                        <label class="col-md-4 control-label" for="horaInicio"></label>
+                        <div class="col-md-11">
+                          <input id="horaInicio" name="horaInicio" type="text" class="form-control input-md">
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="form-group">
+                        <label class="col-md-4 control-label" for="horaInicio"></label>
+                        <div class="col-md-11">
+                          <input id="horaFin" name="horaFin" type="text" class="form-control input-md">
+                        </div>
+                      </div>
+                    </td>
+
+                    <td>
+                        <button type="submit">Añadir Turno</button>
+                    </td>
+                </form>
                 </tr>
               </table>
 
@@ -570,14 +582,15 @@
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="js/bootstrap.js"></script>
 
-    <script>
-      function getValorInicio()
-      {
-        var inicio = getElementById("horaInicio").value;
-        var_dump(inicio);
-        return inicio;
-
-      }
+    <script type="text/JavaScript">
+    function cargaPueblo() {
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("GET", "ajax.php?pueblo="+document.getElementById("getProvincia").value, false);
+      xmlhttp.send(null);
+      //alert(xmlhttp.responseText); //Muestra la respuesta del documento ajax.php
+      document.getElementById("getLocalidad").innerHTML=xmlhttp.responseText;
+    }
     </script>
+
   </body>
 </html>
