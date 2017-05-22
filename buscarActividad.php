@@ -10,6 +10,7 @@
   $sqlBuscaActividades="call obtenTodasActivsVerifs()";
   $actividades = consulta($sqlBuscaActividades);
 
+var_dump($_GET);
 ?>
 
 
