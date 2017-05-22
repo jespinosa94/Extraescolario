@@ -275,6 +275,9 @@ $long = floatval($coordenadas[1]);
                 }
                    ?>
             </div>
+
+
+
           </div>
           <div class="col-md-3" style="top: 128px;">
             <div class="affix">
