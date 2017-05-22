@@ -18,7 +18,7 @@
               <?php
               if(!$logeado) {
                 //linki a registrar un ofertador
-                echo("<a href=\"#\">Oferta tus propias actividades</a>");
+                echo("<a href=\"formOFR.php\">Oferta tus propias actividades</a>");
               }
                ?>
             </div>

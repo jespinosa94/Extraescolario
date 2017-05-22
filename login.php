@@ -2,10 +2,30 @@
 session_start();
 require_once ("conexion.php");
 require 'funciones.php';
+$pimienta = "MpABX|sj:;%/";
+$aux = consulta("call getSal()");
+$sal = $aux[0][0];
 //compruebaSesionIniciada();
+$logeado = isset($_SESSION['cod']);
+if($logeado) {
+  header('Location: index.php');
+}
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $email = filter_var(strtolower($_POST['email']), FILTER_SANITIZE_STRING); //El filter comprueba que no tenga caracteres raros tipo <h1></h1>
+
+
+
+//Gestión de error de que en la bd se insertaron datos "mal encriptados, los nuevos campos serán encriptados totalmente"
+  /*$codIntento = consulta("select cod from USR where email=\"". $email ."\";");
+  if($codIntento[0][0]>=5100018) {
+    $password = $sal.$_POST['password'].$pimienta;
+  } else {
+    $password = $_POST['password'];
+  }*/
   $password = $_POST['password'];
+  $passencriptada = hash ( 'sha256' , $password , false );
+  $passencriptada = substr($passencriptada, 0, -14);
+
     /**Hay que hashear la password**/
   $errores = '';
 /*
@@ -26,10 +46,9 @@ $contrasenya = ".gi_jec21.";
     ));
 
     $resultado = $sql->fetch();*/
-
     $sql = $conexion->prepare('SELECT cod FROM USR where email = ? and contrasenya = ?');
     /*(i=int, d=double, s=string, b=blob)*/
-    $sql->bind_param('ss', $email, $password);
+    $sql->bind_param('ss', $email, $passencriptada);
     $sql->execute();
     $sql->bind_result($resultado);  //asocio el resultado a una variable, pero no le doy valor
     $sql->fetch();  //Doy valor a la variable que he asociado
@@ -88,7 +107,7 @@ $contrasenya = ".gi_jec21.";
 				    </div>
             <div class="checkbox">
               <label><input type="checkbox" value="">Recordar email</label>
-              <a href="recuperar_pass.html" class="btn btn-link pull-right">¿No puedes iniciar sesión?</a>
+              <a href="recuperar_pass.php" class="btn btn-link pull-right">¿No puedes iniciar sesión?</a>
             </div>
             <hr class="colorgraph" />
             <div class="row">
@@ -96,7 +115,7 @@ $contrasenya = ".gi_jec21.";
                 <button type="submit" class="btn btn-lg btn-success btn-block" name="button">Iniciar sesión</button>
               </div>
               <div class="col-xs-6 col-sm-6 col-md-6">
-                <a href="registroBUS.html" class="btn btn-lg btn-primary btn-block">Crear cuenta gratuita</a>
+                <a href="formBUS.php" class="btn btn-lg btn-primary btn-block">Crear cuenta gratuita</a>
               </div>
             </div>
           </form>
