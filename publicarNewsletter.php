@@ -39,7 +39,7 @@ $codActividad = $_POST['codActividad'];
       <!-- Header de la página -->
       <?php require_once('header.php'); ?>
        <body>
-         <form name= "formNewsletter" method="post" action = "insertarNewsletter.php" id= "formularioNewsletter">
+         <form name= "formNewsletter" method="post" action = "añadirNewsletter.php" id= "formularioNewsletter">
            <input type="hidden" name="codActividad" value="<?php echo $codActividad?>">
           <div class="row">
              <div class="col-md-6 control-label">
@@ -47,7 +47,7 @@ $codActividad = $_POST['codActividad'];
                <div class="form-group">
                  <label class="col-md-6 control-label" for="tituloNewsletter">Titulo de la newsletter</label>
                  <div class="col-md-6">
-                 <input id="tituloNewsletter" name="tituloNewsletter" type="text" placeholder="Introduce el titulo de la newsletter" class="form-control input-md">
+                 <input id="tituloNewsletter" name="tituloNewsletter" type="text" placeholder="Introduce el titulo de la newsletter" required="" class="form-control input-md">
                  </div>
                </div>
               <br><br><br>
@@ -56,7 +56,7 @@ $codActividad = $_POST['codActividad'];
              <div class="form-group">
                <label class="col-md-6 control-label" for="descripcionNewsletter">Descripción</label>
                <div class="col-md-4">
-               <input id="descripcionNewsletter" name="descripcionNewsletter" style="width:300px; height:300px" type="text" placeholder="Introduce el mensaje que quieres enviar" class="form-control input-md">
+               <input id="descripcionNewsletter" name="descripcionNewsletter" style="width:300px; height:300px" type="text" placeholder="Introduce el mensaje que quieres enviar" required="" class="form-control input-md">
                </div>
              </div>
 
