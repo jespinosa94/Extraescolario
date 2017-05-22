@@ -86,10 +86,10 @@
 
   //======================Filtro de página de búsqueda====================//
   // Añadimos filtro de precio
-    $sqlFiltro.="AND ACTIVIDAD.precio >= 10 AND ACTIVIDAD.precio <=90 AND 1"
+    //$sqlFiltro.="AND ACTIVIDAD.precio >= 10 AND ACTIVIDAD.precio <=90 AND 1"
 
   // Añadimos filtro de rango de edad
-    $sqlFiltro.="AND ACTIVIDAD"
+    //$sqlFiltro.="AND ACTIVIDAD"
 
 
 
@@ -221,6 +221,61 @@
               <div class="col-md-12">
                 <textarea class="form-control" id="idTags" name="idTags">Introduce aquí los tags y categorías buscados, separados por espacios (Por ejemplo: deportes cartas idiomas etc)</textarea>
               </div>
+
+             <!-- Hidden inputs de la página de index -->
+             <?php
+               if(array_key_exists("lunes",$_GET)) {
+                  ?>
+                 <input type="hidden" name="lunes" id="lunes" value="1">
+                 <?php
+               }
+               if(array_key_exists("martes",$_GET)) {
+                  ?>
+                 <input type="hidden" name="martes" id="martes" value="2">
+                 <?php
+               }
+               if(array_key_exists("miercoles",$_GET)) {
+                  ?>
+                 <input type="hidden" name="miercoles" id="miercoles" value="3">
+                 <?php
+               }
+               if(array_key_exists("jueves",$_GET)) {
+                  ?>
+                 <input type="hidden" name="jueves" id="jueves" value="4">
+                 <?php
+               }
+               if(array_key_exists("viernes",$_GET)) {
+                  ?>
+                 <input type="hidden" name="viernes" id="viernes" value="5">
+                 <?php
+               }
+               if(array_key_exists("sabado",$_GET)) {
+                  ?>
+                 <input type="hidden" name="sabado" id="sabado" value="6">
+                 <?php
+               }
+               if(array_key_exists("domingo",$_GET)) {
+                  ?>
+                 <input type="hidden" name="domingo" id="domingo" value="7">
+                 <?php
+               }
+             ?>
+             <input type="hidden" name="iniLunes" value="<?php echo $_GET["iniLunes"]; ?>">
+             <input type="hidden" name="finLunes" value="<?php echo $_GET["finLunes"]; ?>">
+             <input type="hidden" name="iniMartes" value="<?php echo $_GET["iniMartes"]; ?>">
+             <input type="hidden" name="finMartes" value="<?php echo $_GET["finMartes"]; ?>">
+             <input type="hidden" name="iniMiercoles" value="<?php echo $_GET["iniMiercoles"]; ?>">
+             <input type="hidden" name="finMiercoles" value="<?php echo $_GET["finMiercoles"]; ?>">
+             <input type="hidden" name="iniJueves" value="<?php echo $_GET["iniJueves"]; ?>">
+             <input type="hidden" name="finJueves" value="<?php echo $_GET["finJueves"]; ?>">
+             <input type="hidden" name="iniViernes" value="<?php echo $_GET["iniViernes"]; ?>">
+             <input type="hidden" name="finViernes" value="<?php echo $_GET["finViernes"]; ?>">
+             <input type="hidden" name="iniSabado" value="<?php echo $_GET["iniSabado"]; ?>">
+             <input type="hidden" name="finSabado" value="<?php echo $_GET["finSabado"]; ?>">
+             <input type="hidden" name="iniDomingo" value="<?php echo $_GET["iniDomingo"]; ?>">
+             <input type="hidden" name="finDomingo" value="<?php echo $_GET["finDomingo"]; ?>">
+             <input type="hidden" name="loc" value="<?php echo $_GET["loc"]; ?>">
+             <input type="hidden" name="tag-cat" value="<?php echo $_GET["tag-cat"]; ?>">
               <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             </div>
 
@@ -259,7 +314,7 @@
         $rangoEdad = $datosAct[0]['rangoEdad'];
         */$localidad = $datosAct[0]['localidad'];
         //$provincia = $datosAct[0]['provincia'];*/
-        
+
 
         ?>
       <!-- Tarjeta que irá metida dentro un bucle -->
