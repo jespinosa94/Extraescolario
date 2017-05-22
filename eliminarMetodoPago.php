@@ -1,5 +1,6 @@
 <?php
   session_start();
+  $logeado = isset($_SESSION['cod']);
 
   /* Incluimos la conexión predefinida*/
   require_once ("conexion.php");

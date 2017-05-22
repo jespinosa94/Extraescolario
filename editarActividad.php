@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <?php
   session_start();
-
+  $logeado = isset($_SESSION['cod']);
+  if($logeado) {
+    $cod = $_SESSION['cod'];
+  } else {
+    header('Location: index.php');
+  }
   /* Incluimos la conexión predefinida*/
   require_once ("conexion.php");
   require_once ("funciones.php");

@@ -3,12 +3,7 @@ session_start();
 require 'funciones.php';
 
 $logeado = isset($_SESSION['cod']);
-$esOfr = consulta("call esOfr(".$_SESSION['cod'].")");
-if($logeado) {
-  $cod = $_SESSION['cod'];
-} else {
-  header('Location: index.php');
-}
+
 
 
 $sqlUsuarios = "call getBUSAdmin()";

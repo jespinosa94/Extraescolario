@@ -4,7 +4,9 @@
 
   $logeado = isset($_SESSION['cod']);
   if($logeado) {
-      $cod = $_SESSION['cod'];
+    $cod = $_SESSION['cod'];
+  } else {
+    header('Location: index.php');
   }
 
   /* Incluimos la conexión predefinida*/
@@ -14,7 +16,7 @@
   pones la otra, no se queja pero no hace nada*/
     $dir = "img/";
 
-  /*Realizamos una primera llamadaa la BBDD para extraer la información del usuario*/         
+  /*Realizamos una primera llamadaa la BBDD para extraer la información del usuario*/
     $conUser = "call getDatosBUS(".$_SESSION['cod'].");";
     $obtenActiv= "call getACTS(".$_SESSION['cod'].");";
 
@@ -214,7 +216,7 @@
                                       $horarios = consulta($buscahorarios);
 
                                       ?>
-                                      <div class="col-md-8"> <?php 
+                                      <div class="col-md-8"> <?php
                                         for ($y = 0; $y < sizeof($horarios); $y++) { ?>
                                           <div class="col-xs-4">
                                               <?php $diaHorario = $horarios[$y]; ?>
@@ -225,7 +227,7 @@
                                         <?php } ?>
                                       </div>
                                   </div>
-                                </a>                             
+                                </a>
                             </div>
                           <!-- <div class="tab-pane fade" id="tab3default">Default 3</div> -->
                           <?php } ?>
