@@ -10,7 +10,43 @@
   $sqlBuscaActividades="call obtenTodasActivsVerifs()";
   $actividades = consulta($sqlBuscaActividades);
 
+  //Comprobamos si se debe de filtrar por LOCALIDAD
+  if ($_GET["loc"] == null)
+      echo "hola";
+  else
+      echo "CACA";
+
+  /*Ejemplo de Query con turnos en días específicos (aunque estén en distintos horarios)
+  /*SELECT DISTINCT ACTIVIDAD.nombre, ACTIVIDAD.cod FROM ACTIVIDAD, TURNO, HORARIO
+  WHERE TURNO.rActividad=ACTIVIDAD.cod
+  AND TURNO.cod IN (
+  SELECT distinct rTurno FROM HORARIO WHERE rDias = 6 OR rDias = 7);*/
+
+  // Empezamos la megaquery de buscar Actividad:
+  $sqlBase = "SELECT DISTINCT ACTIVIDAD.cod FROM ACTIVIDAD, TURNO, HORARIO WHERE TURNO.rActividad=ACTIVIDAD.cod ";
+
+  // El Where de la sentencia
+  //$sqlWhere = "WHERE ";
+
+  $sqlHorario = "AND TURNO.cod IN (SELECT distinct rTurno FROM HORARIO WHERE rDias = 1 OR rDias = 3)";
+
+  // Filtramos por localidad
+  $fromLocalidad =",LOCALIDAD ";
+  $sqlLocalidad = "MATCH(Localidad) Against (".$_GET["loc"].")";
+
+  // Filtramos por Actividad
+  $sqlActividad = "ACTIVIDAD.Nombre LIKE '%".xxxxxxx."%'";
+
+  // Añadimos el filtro de actividades verificadas
+  $sqlFiltro = "ACTIVIDAD.verificar=1";
+
+  //Montamos la secuencia en función de los parámetros
+  $sqlBusqueda = $sqlBase.$sqlHorario;
+  $actividades=consulta($sqlBusqueda);
+
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -143,11 +179,11 @@
         <?php
         $idAct = $actividades[$i][0];
 
-        $datosAct = consulta("call obtener_datos_actividad(".$idAct.");");
+        $datosAct = consulta("call getDatosActividad(".$idAct.");");
         $nombreAct = $datosAct[0]['nombre'];
         $foto = $datosAct[0]['foto'];
         $descripcion = $datosAct[0]['descripcion'];
-        $valoracionMedia = $datosAct[0]['valoracionMedia'];
+        $valoracion_media = $datosAct[0]['valoracionMedia'];
         $precio = $datosAct[0]['precio'];
         /* Más datos que puedes poner si quieres, sino se borran y ya
         $tagsAct = consulta("call obtener_tags_actividad(".$idAct.");");
@@ -175,8 +211,8 @@
           <div class="col-xs-3">
             <h3 style="margin-bottom:0px;"><?php echo($nombreAct) ?></h3>
             <?php //Aquí se pintan las estrellas, parece que no vaya pero es porque me cargué los comentarios sin querer :/
-                    $aux = consulta("select calcula_valoracion_media_actividad(". $idAct .")");
-                    $valoracion_media = $aux[0][0];
+                    //$aux = consulta("select calcula_valoracion_media_actividad(". $idAct .")");
+                    //$valoracion_media = $aux[0][0];
                     if($valoracion_media==0) {?>
                       <i class="fa fa-star-o" aria-hidden="true"><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i></i>
                       <?php
