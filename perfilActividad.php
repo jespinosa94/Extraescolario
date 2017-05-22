@@ -310,7 +310,7 @@ $long = floatval($coordenadas[1]);
                     }
                     function atLeastOneRadio() {return ($('input[type=radio]:checked').size() > 0);}
                   </script>
-                  <div class="row lead" style="margin-left: 1px; margin-top: 4px;">
+                  <div class="row lead" style="margin-left: 1px; margin-top: 4px; margin-bottom: 0px;">
                     <?php
                     if($valoracionMedia==0) {?>
                       <i class="fa fa-star-o" aria-hidden="true"><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i></i>
@@ -332,6 +332,10 @@ $long = floatval($coordenadas[1]);
 
                      ?>
                   </div>
+                  <?php
+                  $numComentarios = consulta("select numComentariosAct(". $idAct .");");
+                  ?>
+                  <h5 style="margin-top: 0px;"><?php echo($numComentarios[0][0] . " comentario(s)") ?></h5>
                </div>
               </div>
               </p>

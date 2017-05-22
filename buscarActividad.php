@@ -44,6 +44,8 @@
   $sqlBusqueda = $sqlBase.$sqlHorario;
   $actividades=consulta($sqlBusqueda);
 
+var_dump($_GET);
+
 ?>
 
 
