@@ -76,11 +76,27 @@
     $sqlHorario.=$sqlLocalidad;
   }
 
-  // Filtramos por Actividad
-  $sqlActividad = "ACTIVIDAD.Nombre LIKE '%".xxxxxxx."%'";
 
   // Añadimos el filtro de actividades verificadas
-  $sqlFiltro = "AND ACTIVIDAD.verificar=1";
+  $sqlFiltro = "AND ACTIVIDAD.verificar=1 AND 1 ";
+
+  // Filtramos por Actividad, si se ha pasado algún parámetro
+  if ($_GET["tag-cat"]!=null)
+    $sqlFiltro.="AND ACTIVIDAD.Nombre LIKE '%".$_GET["tag-cat"]."%' AND 1";
+
+  //======================Filtro de página de búsqueda====================//
+  // Añadimos filtro de precio
+    $sqlFiltro.="AND ACTIVIDAD.precio >= 10 AND ACTIVIDAD.precio <=90 AND 1"
+
+  // Añadimos filtro de rango de edad
+    $sqlFiltro.="AND ACTIVIDAD"
+
+
+
+  // Añadimos filtro de valoración mínima
+
+
+
 
   // Cerramos inicio y horas y cerramos
   $sqlTotal=$sqlBase.$sqlWhere.$sqlHorario.$sqlFiltro;
@@ -150,11 +166,11 @@
               <label class="row-xs-12 control-label" for="Precio">Precio</label>
                 <div class= "row-xs-6">
                   <div class="col-md-6">
-                    <input id="Precio" name="Precio" type="text" placeholder="0" class="form-control input-md">
+                    <input id="Precio" value="0" name="Precio" type="text" placeholder="0" class="form-control input-md">
                     <span class="help-block">Mínimo</span>
                   </div>
                   <div class="col-md-6">
-                    <input id="idMaximo" name="idMaximo" type="text" placeholder="9999" class="form-control input-md">
+                    <input id="idMaximo" value="9999" name="idMaximo" type="text" placeholder="9999" class="form-control input-md">
                     <span class="help-block">Máximo</span>
                   </div>
                   <br><br><br><br>
@@ -241,57 +257,59 @@
         $mensualidades = $datosAct[0]['formaPago'];
         $direccion = $datosAct[0]['direccion'];
         $rangoEdad = $datosAct[0]['rangoEdad'];
-        $localidad = $datosAct[0]['localidad'];
-        $provincia = $datosAct[0]['provincia'];
-        */
+        */$localidad = $datosAct[0]['localidad'];
+        //$provincia = $datosAct[0]['provincia'];*/
+        
 
         ?>
       <!-- Tarjeta que irá metida dentro un bucle -->
       <div class="w3-panel w3-card">
-        <!-- Div que contendrá las 3 columnas de la tarjeta -->
-        <div class="row-xs-12">
-          <!-- Div con la primera columna y que tiene la foto-->
-          <div class="col-xs-3">
-            <?php echo('<img src="data:image/jpeg;base64,'.base64_encode( $foto ).'"/ height="150px" width="200px">'); ?>
-          </div>
-          <!-- Div con la segunda columna con los datos de la actividad-->
-          <div class="col-xs-3">
-            <h3 style="margin-bottom:0px;"><?php echo($nombreAct) ?></h3>
-            <?php //Aquí se pintan las estrellas, parece que no vaya pero es porque me cargué los comentarios sin querer :/
-                    //$aux = consulta("select calcula_valoracion_media_actividad(". $idAct .")");
-                    //$valoracion_media = $aux[0][0];
-                    if($valoracion_media==0) {?>
-                      <i class="fa fa-star-o" aria-hidden="true"><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i></i>
-                      <?php
-                    } else {
-                      echo("<i class=\"fa fa-star\" aria-hidden=\"true\">");
-                      for($x1=1; $x1<$valoracion_media && $valoracion_media>1; $x1++) {
-                        echo("<i class=\"fa fa-star\" aria-hidden=\"true\"></i>");
-                      }
-                      echo("</i>");
-                      if($valoracion_media<5) {
-                        echo("<i class=\"fa fa-star-o\" aria-hidden=\"true\">");
-                        for($x2=$valoracion_media+1; $x2<5 && $valoracion_media<4; $x2++) {
-                          echo("<i class=\"fa fa-star-o\" aria-hidden=\"true\"></i>");
+        <a <?php echo("href=\"http://localhost/Extraescolario/perfilActividad.php?cod=". $idAct . "\""); ?>>
+            <!-- Div que contendrá las 3 columnas de la tarjeta -->
+            <div class="row-xs-12">
+              <!-- Div con la primera columna y que tiene la foto-->
+              <div class="col-xs-3">
+                <?php echo('<img src="data:image/jpeg;base64,'.base64_encode( $foto ).'"/ height="150px" width="200px">'); ?>
+              </div>
+              <!-- Div con la segunda columna con los datos de la actividad-->
+              <div class="col-xs-3">
+                <h3 style="margin-bottom:0px;"><?php echo($nombreAct) ?></h3>
+                <?php //Aquí se pintan las estrellas, parece que no vaya pero es porque me cargué los comentarios sin querer :/
+                        //$aux = consulta("select calcula_valoracion_media_actividad(". $idAct .")");
+                        //$valoracion_media = $aux[0][0];
+                        if($valoracion_media==0) {?>
+                          <i class="fa fa-star-o" aria-hidden="true"><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i></i>
+                          <?php
+                        } else {
+                          echo("<i class=\"fa fa-star\" aria-hidden=\"true\">");
+                          for($x1=1; $x1<$valoracion_media && $valoracion_media>1; $x1++) {
+                            echo("<i class=\"fa fa-star\" aria-hidden=\"true\"></i>");
+                          }
+                          echo("</i>");
+                          if($valoracion_media<5) {
+                            echo("<i class=\"fa fa-star-o\" aria-hidden=\"true\">");
+                            for($x2=$valoracion_media+1; $x2<5 && $valoracion_media<4; $x2++) {
+                              echo("<i class=\"fa fa-star-o\" aria-hidden=\"true\"></i>");
+                            }
+                          }
+                          echo("</i>");
                         }
-                      }
-                      echo("</i>");
-                    }
-                     ?>
+                         ?>
 
-              <!--  Aquí puedes poner todos los datos que quieras, pero yo no añadiría muchos más, solo los imprescindibles para saber de que va la actividad-->
-              <!--  Los horarios no los pongo porque si la actividad tiene 20 queda muy mal-->
-             <h6>Duración de la actividad: (hay que sacarlo de bd)<!-- Extraer la duración de un turno de la actividad--> </h6>
-             <h4>Precio: <span style="color:grey"><?php echo($precio); ?>€</span></h4>
-          </div>
-          <!-- Div con la tercera columna con la descripción de la actividad-->
-          <div class="col-xs-5">
-            <label for="aboutDescription" id="aboutHeading">Descripción:</label>
-                <textarea rows="15" cols="50" id="aboutDescription" style="resize: none;">
-                  <?php echo($descripcion); ?>
-                </textarea>
-          </div>
-        </div>
+                  <!--  Aquí puedes poner todos los datos que quieras, pero yo no añadiría muchos más, solo los imprescindibles para saber de que va la actividad-->
+                  <!--  Los horarios no los pongo porque si la actividad tiene 20 queda muy mal-->
+                 <h6><?php echo $localidad?><!-- Extraer la duración de un turno de la actividad--> </h6>
+                 <h4>Precio: <span style="color:grey"><?php echo($precio); ?>€</span></h4>
+              </div>
+              <!-- Div con la tercera columna con la descripción de la actividad-->
+              <div class="col-xs-5">
+                <label for="aboutDescription" id="aboutHeading">Descripción:</label>
+                    <textarea rows="15" cols="50" id="aboutDescription" style="resize: none;">
+                      <?php echo($descripcion); ?>
+                    </textarea>
+              </div>
+            </div>
+          </a>
       </div>
       <?php } ?>
 

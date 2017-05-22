@@ -198,32 +198,34 @@
                           <!--<div class="tab-pane fade in active" id="#tab1"><?php echo $datosAct[0]["descripcion"] ?></div>-->
                           <?php for($i = 0; $i< sizeof($datosAct); $i++)  { $actividad = $datosAct[$i]; ?>
                             <div class="tab-pane fade" id="<?php echo $var="tab".$actividad["cod"]?>">
-                              <div class="row col-xs-12"> <?php echo $actividad["descripcion"] ?><br><br></div>
-                                <div class="row align-items-center">
-                                  <!-- Realizamos la consulta para saber el número de turnos que tiene esa actividad, pero no la utilizamos
-                                  porque la cosa cambió XD-->
-                                  <?php $numTurnos = consulta("select getNumTurnosACT(".$_SESSION['cod'].",".$actividad["cod"].")"); ?>
+                              <a <?php echo("href=\"http://localhost/Extraescolario/perfilActividad.php?cod=". $actividad["cod"] . "\""); ?>>
+                                <div class="row col-xs-12"> <?php echo $actividad["descripcion"] ?><br><br></div>
+                                  <div class="row align-items-center">
+                                    <!-- Realizamos la consulta para saber el número de turnos que tiene esa actividad, pero no la utilizamos
+                                    porque la cosa cambió XD-->
+                                    <?php $numTurnos = consulta("select getNumTurnosACT(".$_SESSION['cod'].",".$actividad["cod"].")"); ?>
 
-                                    <div class="col-md-4">
-                                      Horarios:
-                                    </div>
-                                    <!-- Realizamos la consultad de los horarios-->
-                                    <?php
-                                    $buscahorarios = "call getHorariosACT(".$_SESSION['cod'].",".$actividad["cod"].");";
-                                    $horarios = consulta($buscahorarios);
+                                      <div class="col-md-4">
+                                        Horarios:
+                                      </div>
+                                      <!-- Realizamos la consultad de los horarios-->
+                                      <?php
+                                      $buscahorarios = "call getHorariosACT(".$_SESSION['cod'].",".$actividad["cod"].");";
+                                      $horarios = consulta($buscahorarios);
 
-                                    ?>
-                                    <div class="col-md-8"> <?php 
-                                      for ($y = 0; $y < sizeof($horarios); $y++) { ?>
-                                        <div class="col-xs-4">
-                                            <?php $diaHorario = $horarios[$y]; ?>
-                                            <div class="row col-xs-12"><?php echo $diaHorario["diaSemana"]?><br></div>
-                                            <div class="row col-xs-12"><?php echo $diaHorario["horaInicio"]?><br></div>
-                                            <div class="row col-xs-12"><?php echo $diaHorario["horaFin"]?><br><br></div>
-                                        </div>
-                                      <?php } ?>
-                                    </div>
-                                </div>                             
+                                      ?>
+                                      <div class="col-md-8"> <?php 
+                                        for ($y = 0; $y < sizeof($horarios); $y++) { ?>
+                                          <div class="col-xs-4">
+                                              <?php $diaHorario = $horarios[$y]; ?>
+                                              <div class="row col-xs-12"><?php echo $diaHorario["diaSemana"]?><br></div>
+                                              <div class="row col-xs-12"><?php echo $diaHorario["horaInicio"]?><br></div>
+                                              <div class="row col-xs-12"><?php echo $diaHorario["horaFin"]?><br><br></div>
+                                          </div>
+                                        <?php } ?>
+                                      </div>
+                                  </div>
+                                </a>                             
                             </div>
                           <!-- <div class="tab-pane fade" id="tab3default">Default 3</div> -->
                           <?php } ?>
