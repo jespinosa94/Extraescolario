@@ -5,8 +5,6 @@ $aux = consulta("call getUsuariosAceptados(". $_GET['cod'] . ")");
 
 
 
-
-
 $nombreArchivo = "usuariosAct" . $_GET['cod'] . ".xml";
 $fichero = fopen($nombreArchivo, "w") or die("No ze puede abrir el archivo :(");
 echo("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
