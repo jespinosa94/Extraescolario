@@ -1,4 +1,4 @@
-/*=====================================================HEADER=================================================*/
+﻿/*=====================================================HEADER=================================================*/
 body {
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
@@ -9,7 +9,6 @@ body {
   padding-bottom: 20px;
 }
 
-<<<<<<< HEAD
 header {
   position: relative;
   z-index: 999;
@@ -31,8 +30,6 @@ header {
 }
 
 
-=======
->>>>>>> develop
 .navbar-brand {
   background-image: url("http://i67.tinypic.com/2e2iays.jpg");
   background-position: 0px 19px;
@@ -153,6 +150,7 @@ header {
     line-height: 35px;
     font-size: 14px;
   }
+
 /*=====================================================Login=================================================*/
 #login.container{
   margin-bottom: 200px;
@@ -237,6 +235,7 @@ header {
 
 #miCuenta {
   padding-top: 0px;
+}
 
 /*===========================================perfilbuscador==================================================*/
 #perfilbuscador .btnLink {
@@ -254,3 +253,9 @@ header {
 
 
 /*===========================================perfilActividad==================================================*/
+#datosAct, #horarioAct, #descAct{
+  border-bottom-width: 1px !important;
+  border-bottom-style: solid !important;
+  border-bottom-color: #DBDBDB !important;
+  margin-bottom: 20px;
+}

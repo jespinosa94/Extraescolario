@@ -9,5 +9,5 @@
 
   $aceptarInscripciones = consulta($sqlAceptarInscripciones);
 
-  header("Location: http://localhost/Extraescolario/editarActividad.php");
+  header("Location: /Extraescolario/editarActividad.php");
  ?>
