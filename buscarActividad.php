@@ -10,11 +10,8 @@
   $sqlBuscaActividades="call obtenTodasActivsVerifs()";
   $actividades = consulta($sqlBuscaActividades);
 
-  //Comprobamos si se debe de filtrar por LOCALIDAD
-  if ($_GET["loc"] == null)
-      echo "hola";
-  else
-      echo "CACA";
+
+
 
   /*Ejemplo de Query con turnos en días específicos (aunque estén en distintos horarios)
   /*SELECT DISTINCT ACTIVIDAD.nombre, ACTIVIDAD.cod FROM ACTIVIDAD, TURNO, HORARIO
@@ -23,28 +20,76 @@
   SELECT distinct rTurno FROM HORARIO WHERE rDias = 6 OR rDias = 7);*/
 
   // Empezamos la megaquery de buscar Actividad:
-  $sqlBase = "SELECT DISTINCT ACTIVIDAD.cod FROM ACTIVIDAD, TURNO, HORARIO WHERE TURNO.rActividad=ACTIVIDAD.cod ";
+  $sqlBase = "SELECT DISTINCT ACTIVIDAD.cod FROM ACTIVIDAD, TURNO, HORARIO ";
 
-  // El Where de la sentencia
-  //$sqlWhere = "WHERE ";
+  $sqlWhere = "WHERE TURNO.rActividad=ACTIVIDAD.cod ";
 
-  $sqlHorario = "AND TURNO.cod IN (SELECT distinct rTurno FROM HORARIO WHERE rDias = 1 OR rDias = 3)";
+  $sqlHorario = "AND TURNO.cod IN (SELECT distinct rTurno FROM HORARIO ";
 
-  // Filtramos por localidad
-  $fromLocalidad =",LOCALIDAD ";
-  $sqlLocalidad = "MATCH(Localidad) Against (".$_GET["loc"].")";
+  // Preparamos SQL para localidad
+  $sqlLocalidad = "AND LOCALIDAD.cod=ACTIVIDAD.rLocalidad AND LOCALIDAD.Nombre LIKE '%".$_GET["loc"]."%' ";
+
+  //Comprobamos los días que se han pasado.
+  if (array_key_exists("lunes",$_GET)) {
+
+  }
+  else {
+      if ($_GET["iniLunes"]!="" OR $_GET["finLunes"]!="") {
+      // Si algún valor está vacío, significará que tiene completa disposición, por lo que deberemos de sustituir
+      // el valor vacío por el máximo posible
+      if ($_GET["iniLunes"]=="")
+        $inicioLunes = "00:00";
+      else
+        $inicioLunes = $_GET["iniLunes"];
+      if ($_GET["finLunes"]=="")
+        $finLunes = "23:59";
+      else
+        $finLunes = $_GET["finLunes"];
+
+      //Una vez que los datos son correctos, procedemos a montar la query, añadiendo la Franja Horaria en el FROM
+      $sqlHorario.=", FRANJA_HORARIA WHERE (rDias=1 AND HORARIO.rFranjaHoraria=FRANJA_HORARIA.cod and horaInicio >='".$inicioLunes."' and horaFin<='".$finLunes."')";
+      }
+      else {
+        $sqlHorario.="WHERE (rDias=1) ";
+      }
+  }
+
+
+  if (array_key_exists("martes",$_GET))
+      $sqlHorario.="OR (rDias=2) ";
+  if (array_key_exists("miercoles",$_GET))
+      $sqlHorario.="OR (rDias=3) ";
+  if (array_key_exists("jueves",$_GET))
+      $sqlHorario.="OR (rDias=4) ";
+  if (array_key_exists("viernes",$_GET))
+      $sqlHorario.="OR (rDias=5) ";
+  if (array_key_exists("sabado",$_GET))
+      $sqlHorario.="OR (rDias=6) ";
+  if (array_key_exists("domingo",$_GET))
+      $sqlHorario.="OR (rDias=7) ";
+
+  // Cerramos la subselect
+  $sqlHorario.=") ";
+
+  if ($_GET["loc"]!="") {
+    $sqlBase.=",LOCALIDAD ";
+    $sqlHorario.=$sqlLocalidad;
+  }
 
   // Filtramos por Actividad
   $sqlActividad = "ACTIVIDAD.Nombre LIKE '%".xxxxxxx."%'";
 
   // Añadimos el filtro de actividades verificadas
-  $sqlFiltro = "ACTIVIDAD.verificar=1";
+  $sqlFiltro = "AND ACTIVIDAD.verificar=1";
+
+  // Cerramos inicio y horas y cerramos
+  $sqlTotal=$sqlBase.$sqlWhere.$sqlHorario.$sqlFiltro;
+  var_dump($sqlTotal);
 
   //Montamos la secuencia en función de los parámetros
-  $sqlBusqueda = $sqlBase.$sqlHorario;
-  $actividades=consulta($sqlBusqueda);
+  $actividades=consulta($sqlTotal);
 
-var_dump($_GET);
+  var_dump($_GET);
 
 ?>
 
