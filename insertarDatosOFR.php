@@ -29,10 +29,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   $fichero_subido = $dir_subida . basename($_FILES['files']['name']);
 
 
-
+  move_uploaded_file($_FILES['files']['tmp_name'], $fichero_subido)
 
   //muestra los datos del fichero subido
-  /*
+/*
   echo '<pre>';
   if (move_uploaded_file($_FILES['files']['tmp_name'], $fichero_subido))
   {
@@ -42,8 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       echo "¡Posible ataque de subida de ficheros!\n";
   }
 
-  echo 'Más información de depuración:';
-  print_r($_FILES);
+  //echo 'Más información de depuración:';
+  //print_r($_FILES);
 
   print "</pre>";
   */
