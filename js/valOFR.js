@@ -1,14 +1,23 @@
 //$(document).on("ready",inicio);
 
+//PARA LA PROXIMA EN VEZ DE PONER CORREO EMPRESA PON SOLO CORREO Y ASÍ EN USUARIO NO TIENES CORREO EMPRESA MELÓN
 function validar_Todo()
 {
 
-      if(validar_Email() && validar_Telef() && validar_Pass() )
+      if(validar_Email() && validar_Telef() && validar_Pass() && validar_Nick())
       {
+        //alert("devuelvo true");
         return true;
       }
       else
       {
+        /*
+        var bool1=validar_Email();
+        var bool2=validar_Telef();
+        var bool3=validar_Pass();
+        var bool4=validar_Nick();
+        alert("devuelvo false la variable email es"+ bool1 +"la variable telef es "+ bool2 +"la variable pass es " + bool3 +" validar nick da:" +bool4);
+        */
         return false;
       }
 
@@ -25,7 +34,7 @@ function comprobar_DatosBD()
 function validar_Email()
 {
   var valor = document.getElementById("correoempresa").value;
-  if( !(/\D[@]/.test(valor)) )
+  if( !(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(valor)) )
   {
     //alert ("No has introducido una dirección de correo!");
     poner_Estados("correoempresa","error","No has introducido una dirección de correo!");
@@ -137,8 +146,11 @@ function validar_Nick() //el parámetro de entrada no lo voy a usar pero se prod
      {
 
        poner_Estados("nicko",json.estado,json.mensaje);
+
+
        console.log(json.mensaje);
        console.log("el numero de filas es :" +json.resultado);
+
        /*if(json.estado == "error")
          //notificaEstado("cajaNickLogin",json.estado,json.mensaje,"inputsLogin");
          alert("existe el nick")
@@ -155,5 +167,9 @@ function validar_Nick() //el parámetro de entrada no lo voy a usar pero se prod
  });
 
    }
+
+   if ($('#nicko').parent().parent().hasClass("has-error"))
+   {return false}
+   else{return true}
 
 }
