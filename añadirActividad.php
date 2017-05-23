@@ -22,10 +22,10 @@ require_once ("funciones.php");
   $formaPago = $_POST['getFormaPago'];
   $formaPagoFinal = "";
 
-  $imagen = $_POST['files'];
-  echo $imagen;
-  $imagenBlob = '"'. file_get_contents($imagen) . '"';
-  echo $imagenBlob;
+  //$imagen = $_POST['files'];
+  //echo $imagen;
+  //$imagenBlob = '"'. file_get_contents($imagen) . '"';
+  //echo $imagenBlob;
   //Recorremos las distintas formas de pago seleccionadas por el cliente
   for($i=0; $i < sizeof($formaPago); $i++)
   {
@@ -41,9 +41,9 @@ require_once ("funciones.php");
   $sqlAñadirActividad = "call añadirActividad($nombre, $fInicio, $fFin, $direccion, $precio, $formaPagoFinal, $periodoPago,
   $descripcion, $codOfertador, $localidad, $rangoEdad);";
 
-//  $añadirActividad = consulta($sqlAñadirActividad);
+  $añadirActividad = consulta($sqlAñadirActividad);
 
-//  header('Location: /Extraescolario/perfilOfertador.php');
+  header('Location: /Extraescolario/perfilOfertador.php');
 
 
 
