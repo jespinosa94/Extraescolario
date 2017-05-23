@@ -44,7 +44,7 @@ if($logeado && $esAdmin[0][0]) {
       <!--Cuerpo -->
       <div id="cuerpo">
         <div class="row">
-          <h1>Estadísticas de la base de datos</h1>
+          <h1>Estadísticas de la base de datos:</h1>
         </div>
       </div>
 
