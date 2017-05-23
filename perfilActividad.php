@@ -266,7 +266,7 @@ $long = floatval($coordenadas[1]);
                      <?php
                   } else {
                     $haComentado = consulta("select haComentado(". $cod.", ". $idAct .")");
-                    if(!$haComentado[0][0]) {
+                    if(!$haComentado[0][0] && $yaInscrito[0][0]) {
                       ?>
                       <h6>Aún no puedes comentar en la actividad, pero no te preocupes, te avisaremos cuando pase un tiempo para que valores la experiencia.</h6>
                       <?php
@@ -275,6 +275,9 @@ $long = floatval($coordenadas[1]);
                 }
                    ?>
             </div>
+
+
+
           </div>
           <div class="col-md-3" style="top: 128px;">
             <div class="affix">

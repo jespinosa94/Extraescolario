@@ -3,7 +3,9 @@
   session_start();
   $logeado = isset($_SESSION['cod']);
   if($logeado) {
-      $cod = $_SESSION['cod'];
+    $cod = $_SESSION['cod'];
+  } else {
+    header('Location: index.php');
   }
 
   /* Incluimos la conexión predefinida*/
@@ -137,7 +139,7 @@
                     <div class="panel-heading">
                         <ul class="nav nav-tabs">
                             <!-- <li class="active"><a href="#tab1default" data-toggle="tab">Default 1</a></li>-->
-                            <?php for($i = 0; $i < sizeof($actisVerifs); $i++)  { $unaActVerif = $actisVerifs[$i]; ?>
+                            <?php for($i = 0; $i < sizeof($actisVerifs) && $i<5; $i++)  { $unaActVerif = $actisVerifs[$i]; ?>
                               <li><a href="<?php echo $var="#tab".$unaActVerif["cod"]?>" data-toggle="tab"><?php echo $unaActVerif["nombre"]?></a></li>
                             <?php  } ?>
                             <?php if (sizeof($actisVerifs) > 4) { ?>
@@ -157,6 +159,9 @@
                           <?php for($i = 0; $i< sizeof($actisVerifs); $i++)  { $unaActVerif = $actisVerifs[$i]; ?>
                             <div class="tab-pane fade" id="<?php echo $var="tab".$unaActVerif["cod"]?>">
                               <div class="row col-xs-12"> <?php echo $unaActVerif["descripcion"] ?></div>
+                                <div class="span4 offset4 text-center">
+                                  <a class="btn btn-primary" href="<?php echo "http://localhost/Extraescolario/exportarXML.php?cod=".$unaActVerif["cod"] ?>">Exportar xml</a>
+                                </div>
                             </div>
                           <?php } ?>
                         </div>

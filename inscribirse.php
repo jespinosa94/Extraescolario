@@ -2,9 +2,12 @@
 session_start();
 require 'funciones.php';
 
-  if (!isset($_SESSION['cod'])){
-    header('Location: login.php');
-  }
+$logeado = isset($_SESSION['cod']);
+if($logeado) {
+  $cod = $_SESSION['cod'];
+} else {
+  header('Location: login.php');
+}
  ?>
 
  <!DOCTYPE html>
@@ -75,7 +78,7 @@ require 'funciones.php';
            }
 
          } else {
-           require "index.php";
+           header('Location: login.php');
        }
       ?>
    </body>

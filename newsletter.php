@@ -4,7 +4,6 @@
   session_start();
 
   /* Incluimos la conexión predefinida*/
-  require_once ("conexion.php");
   require_once ("funciones.php");
 
   $notificaciones = "call getNotisUSR(".$_SESSION['cod'].");";
@@ -81,7 +80,7 @@
             <td> <?php echo $unapromo["direccion"]?></td>
             <td> <?php echo $unapromo["Localidad"]?></td>
             <!-- Creamos los botones de borrar dentro de la celda -->
-            <td>               
+            <td>
               <form action="borroPromos.php" method="post">
                 <input type="hidden" name="codigoActiv" value="<?php echo $unapromo["cod"]?>">
                 <button type="submit">Eliminar Suscripción</button>
@@ -91,7 +90,7 @@
         <?php } ?>
       </table>
       <br><br>
-    
+
     <!-- Row con los botones-->
     <div class= "row col-xs-12">
       <div class="span4 offset4 text-center">

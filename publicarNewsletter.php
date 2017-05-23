@@ -3,8 +3,11 @@ session_start();
 require 'funciones.php';
 
 $logeado = isset($_SESSION['cod']);
-if($logeado) {
+$esOfr = consulta("call esOfr(".$_SESSION['cod'].")");
+if($logeado && $esOfr[0][0]) {
   $cod = $_SESSION['cod'];
+} else {
+  header('Location: index.php');
 }
 
 $codActividad = $_POST['codActividad'];
