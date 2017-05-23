@@ -34,6 +34,15 @@ if($logeado && $esAdmin[0][0]) {
 
   $sqlInfoAjenas = "call infClavesAjenas()";
   $infoAjenas = consulta($sqlInfoAjenas);
+
+  $sqlinfRutinas = "call infRutinas()";
+  $infRutinas = consulta($sqlinfRutinas);
+
+  $sqlinfVistas = "call infVistas()";
+  $infVistas = consulta($sqlinfVistas);
+
+  $sqlinfTrigger = "call infTrigger()";
+  $infTrigger = consulta($sqlinfTrigger);
 ?>
 
 
@@ -86,6 +95,52 @@ if($logeado && $esAdmin[0][0]) {
           echo $nomCod[0]['codifi']; ?> <br> <?php
           echo "Tamaño de la BD: ".$tam[0]['Tamaño']." MB"; ?> <br> <?php
           ?>
+        </div>
+        <div class="col-md-4">
+          <h3>Nº de Funciones y procedimientos:</h3>
+          <table id="indices">
+              <tr>
+                <th style="width:150px" align="center">Cantidad</th>
+                <th style="width:150px" align="center">Tipo de rutina</th>
+
+              </tr>
+              <?php for ($i = 0; $i< sizeof($infRutinas); $i++)
+              {
+                $rowinfRutinas = $infRutinas[$i];?>
+              <tr>
+                  <td> <?php echo $rowinfRutinas["n"]?></td>
+                  <td> <?php echo $rowinfRutinas["routine_type"]?></td>
+              </tr>
+              <?php } ?>
+          </table>
+        </div>
+        <div class="col-md-4">
+          <h3>Nº Vistas:</h3>
+          <table id="vistas">
+              <tr>
+                <th style="width:150px" align="center">Numero de vistas</th>
+              </tr>
+              <?php for ($i = 0; $i< sizeof($infVistas); $i++)
+              {
+                $rowinfVistas = $infVistas[$i];?>
+              <tr>
+                  <td> <?php echo $rowinfVistas["vistas"]?></td>
+              </tr>
+              <?php } ?>
+          </table>
+          <h3> Nº de triggers </h3>
+          <table id="trigger">
+              <tr>
+                <th style="width:150px" align="center">Numero de trigger</th>
+              </tr>
+              <?php for ($i = 0; $i< sizeof($infTrigger); $i++)
+              {
+                $rowinfTrigger = $infTrigger[$i];?>
+              <tr>
+                  <td> <?php echo $rowinfTrigger["n"]?></td>
+              </tr>
+              <?php } ?>
+          </table>
         </div>
       </div>
       <div class="row">
