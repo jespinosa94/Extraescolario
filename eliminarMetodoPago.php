@@ -29,6 +29,7 @@
   }
   //Eliminamos el primer caracter
   $final = substr($metodosTratados, 1);
+  //Le añadimos comillas para que mysql lo detecte como una unica variable, ya que es un tipo set
   $final = '"'.$final.'"';
   echo $final;
 

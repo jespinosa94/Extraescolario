@@ -77,8 +77,10 @@
   <!-- Header de la página -->
   <?php require_once('header.php'); ?>
 
+  <form action="añadirActividad.php" method="post">
     <div class="container-fluid">
 
+      <input type="hidden" name="codigoOfertador" value="<?php echo $cod?>">
       <!--Fila donde estaran las 3 columnas del form -->
       <div class="row">
         <!--Primera columna del form -->
@@ -88,7 +90,7 @@
                 <div class="form-group">
                   <label class="col-md-4 control-label" for="nombreActividad">Nombre Actividad:</label>
                   <div class="col-md-4">
-                    <input class="form-control" id="nombreActividad" style="width:280px" placeholder="Zumba"/>
+                    <input class="form-control" id="nombreActividad" name="nombreActividad" style="width:280px" required="" placeholder="Zumba"/>
                   </div>
                 </div>
               </div>
@@ -98,7 +100,7 @@
                 <label class="col-md-4 control-label" for="getProvincia">Provincia</label>
                 <div class="col-md-4">
 
-                  <select id="getProvincia" name="getProvincia" style="width:200px" onchange="cargaPueblo()" class="form-control" style="width:150px">
+                  <select id="getProvincia" name="getProvincia" style="width:200px" onchange="cargaPueblo()" required="" class="form-control" style="width:150px">
                     <option value=""> Selecciona Provincia </option>
                     <!--php para rellenar el combo box-->
                     <?php for ($i = 0; $i < sizeof($provincias); $i++)
@@ -115,39 +117,39 @@
               <div class="form-group">
                 <label class="col-md-4 control-label" for="getLocalidad">Localidad</label>
                 <div class="col-md-4">
-                  <select id="getLocalidad" name="getLocalidad" style="width:200px" class="form-control" style="width:150px">
+                  <select id="getLocalidad" name="getLocalidad" style="width:200px" required="" class="form-control" style="width:150px">
                     <option value=""> Selecciona localidad </option>
                   </select>
                 </div>
               </div>
             </div>
             <br>
+              <!-- Input Direccion-->
               <div class="row">
-                <!-- Input Direccion-->
                 <div class="form-group">
                   <label class="col-md-4 control-label" for="getDireccion">Direccion</label>
                   <div class="col-md-4">
-                  <input id="getDireccion" name="getDireccion" type="text" style="width:300px" value="<?php echo $cargarDatosActividad[0]["direccion"];?>" class="form-control input-md">
+                  <input id="getDireccion" name="getDireccion" type="text" style="width:300px" required="" placeholder="C/ Atrapame si puedes nº15" class="form-control input-md">
                   </div>
                 </div>
               </div>
               <br>
-            <div class="row">
               <!-- Input precio actividad-->
+            <div class="row">
               <div class="form-group">
                 <label class="col-md-4 control-label" for="getPrecio">Precio</label>
                 <div class="col-md-4">
-                <input id="getPrecio" name="getPrecio" type="text" placeholder="Ej: 100" class="form-control input-md">
+                <input id="getPrecio" name="getPrecio" type="text" required="" placeholder="Ej: 100" class="form-control input-md">
                 </div>
               </div>
             </div>
             <br>
+            <!-- Selector Multiple Forma de pago -->
             <div class="row">
-              <!-- Selector Multiple Forma de pago -->
               <div class="form-group">
-                <label class="col-md-4 control-label" for="getFormaPago">Forma de Pago</label>
+                <label class="col-md-4 control-label" for="getFormaPago[]">Forma de Pago</label>
                 <div class="col-md-4">
-                  <select id="getFormaPago" name="getFormaPago" class="form-control" multiple="multiple">
+                  <select id="getFormaPago[]" name="getFormaPago[]" class="form-control" multiple="multiple" required="">
                     <option value="Paypal">Paypal</option>
                     <option value="Efectivo">Efectivo</option>
                     <option value="Tarjeta">Tarjeta</option>
@@ -168,7 +170,7 @@
                            <i class="fa fa-calendar">
                            </i>
                          </div>
-                         <input class="form-control" id="fechaInicio" name="fechaInicio" style="width:120px" placeholder="MM/DD/YYYY" type="text"/>
+                         <input class="form-control" id="fechaInicio" name="fechaInicio" style="width:120px" required="" placeholder="YYYY-MM-DD" type="text"/>
                   </div>
               </div>
               <!-- Input Fecha Fin -->
@@ -181,48 +183,51 @@
                               <i class="fa fa-calendar">
                               </i>
                             </div>
-                            <input class="form-control" id="fechaFin" name="fechaFin"style="width:120px" placeholder="MM/DD/YYYY" type="text"/>
+                            <input class="form-control" id="fechaFin" name="fechaFin"style="width:120px" required="" placeholder="YYYY-MM-DD" type="text"/>
                           </div>
                         </div>
         </div>
         <!--Segunda columna del form -->
         <div class="col-md-4">
-          <form class="form-horizontal">
+          <div class="row">
             <p><b> Describe eso que hace a tu actividad tan especial</b></p>
             <!-- Input Descripcion actividad-->
             <div class="form-group">
               <label class="col-md-4 control-label" </label>
               <div class="col-md-4">
-              <input id="getDescripcion" name="getDescripcion" type="text" style="width:380px; height:320px" placeholder="Introduce una descripcion de tu actividad " class="form-control input-md">
+              <input id="getDescripcion" name="getDescripcion" type="text" style="width:380px; height:320px" required="" placeholder="Introduce una descripcion de tu actividad " class="form-control input-md">
               </div>
             </div>
-
+          </div>
             <!-- Input Organización de pagos-->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="getPeriodo">Periodo de pago</label>
-              <div class="col-md-4">
-                <select  id="getPeriodoPago" name="periodoPago" class="form-control" style="width:150px">
-                  <option value="mensual"> Mensual </option>
-                  <option value="trimestral"> Trimestral </option>
-                  <option value="anual"> Anual </option>
-                </select>
+            <div class="row">
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="getPeriodo">Periodo de pago</label>
+                <div class="col-md-4">
+                  <select  id="getPeriodoPago" name="getPeriodoPago" class="form-control" required="" style="width:150px">
+                    <option value="mensual"> Mensual </option>
+                    <option value="trimestral"> Trimestral </option>
+                    <option value="anual"> Anual </option>
+                  </select>
+                </div>
               </div>
             </div>
-
+            <br>
             <!-- Input Rango edad-->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="getRango">Rango de edad</label>
-              <div class="col-md-4">
-                <select  id="getRangoEdad" name="rangoEdad" class="form-control" style="width:150px">
-                  <option value="4-7 años"> De 4 a 7 años </option>
-                  <option value="8-12 años"> De 8 a 12 años </option>
-                  <option value="13-17"> De 13 a 17 años </option>
-                  <option value="+18 años"> Mayores de 18 </option>
-                  <option value="todos los publicos"> Todos los publicos </option>
-                </select>
+            <div class="row">
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="getRangoEdad">Rango de edad</label>
+                <div class="col-md-4">
+                  <select  id="getRangoEdad" name="getRangoEdad" class="form-control" required="" style="width:150px">
+                    <option value="4-7 años"> De 4 a 7 años </option>
+                    <option value="8-12 años"> De 8 a 12 años </option>
+                    <option value="13-17 años"> De 13 a 17 años </option>
+                    <option value="+18 años"> Mayores de 18 </option>
+                    <option value="todos los publicos"> Todos los publicos </option>
+                  </select>
+                </div>
               </div>
             </div>
-          </form>
         </div>
         <!--Tercera columna del form -->
         <div class="col-md-4" >
@@ -247,21 +252,23 @@
       <div class="row">
         <!-- Boton Publicar Actividad -->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="publicarActividad"></label>
+          <label class="col-md-5 control-label" for="publicarActividad"></label>
           <div class="col-md-4">
             <button id="publicarActividad" name="publicarActividad" class="btn btn-primary">Publicar Actividad</button>
           </div>
         </div>
-        <!-- Link problemas con el formulario contactanos-->
+        <br>
+        <!-- Link problemas con el formulario contactanos
         <div class="form-group">
           <label class="col-md-4 control-label" for="publicarNewsletter"></label>
           <div class="col-md-4">
             <button type="button" class="btn btn-link">¿Tienes problemas rellenando los campos? Contacta</button>
           </div>
-        </div>
+        </div>-->
       </div>
       </div>
-      </div>
+    </form>
+
 
 
 
