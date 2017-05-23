@@ -25,6 +25,8 @@ require_once ("funciones.php");
   echo $sqlUpdateActividad;
   $updateActividad = consulta($sqlUpdateActividad);
 
+  $foto = addslashes(file_get_contents($_FILES['files']['tmp_name']));
+  consulta("UPDATE ACTIVIDAD SET foto=\"". $foto ."\" WHERE cod= ". $cod . ";");
   header('Location: /Extraescolario/perfilOfertador.php');
 
 
