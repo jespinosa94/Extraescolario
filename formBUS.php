@@ -146,14 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                 </div>
               </div>
 
-              <!-- Text input-->
-              <div class="form-group row">
-                <label class="col-xs-6 control-label text-center" for="fechan">Fecha de Nacimiento</label>
-                <div class="col-xs-6">
-                  <input id="fechan" name="fechan" placeholder="1985-8-13" class="form-control input-md" required="" type="text" onchange="validar_Fecha()">
-                  <span class="help-block">Introduce tu fecha de nacimiento</span>
-                </div>
-              </div>
+
 
 
 
@@ -219,6 +212,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
               <div class="col-xs-6">
                 <input id="nicko" name="nicko" placeholder="MB.BOSS" class="form-control input-md" required="" type="text" onChange="validar_Nick()">
                 <span id= "nickwarning" class="help-block">Introduce tu nick</span>
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group row">
+              <label class="col-xs-6 control-label text-center" for="fechan">Fecha de Nacimiento</label>
+              <div class="col-xs-6">
+                <input id="fechan" name="fechan" placeholder="1985-8-13" class="form-control input-md" required="" type="text" onchange="validar_Fecha()">
+                <span class="help-block">Introduce tu fecha de nacimiento</span>
               </div>
             </div>
 
