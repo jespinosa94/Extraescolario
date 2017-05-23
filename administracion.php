@@ -9,6 +9,34 @@ if($logeado && $esAdmin[0][0]) {
   } else {
     header('Location: login-admin.php');
   }
+
+
+  $sqlnomCod = "call nombreycodBBDD()";
+  $nomCod = consulta($sqlnomCod);
+
+  $sqlTam = "call tamBBDD()";
+  $tam = consulta($sqlTam);
+
+  $sqlIndices = "call porcentajeIndices()";
+  $indices = consulta($sqlIndices);
+
+  $sqlNull = "call columnasNull();";
+  $null = consulta($sqlNull);
+
+  $sqlTipoDatos = "call InfTipoDatos()";
+  $tipoDatos = consulta($sqlTipoDatos);
+
+  $sqlInfoCol = "call infNumColTablas()";
+  $infoCol = consulta($sqlInfoCol);
+
+  $sqlInfoPrimarias = "call infPrimarias()";
+  $infoPrimarias = consulta($sqlInfoPrimarias);
+
+  $sqlInfoAjenas = "call infClavesAjenas()";
+  $infoAjenas = consulta($sqlInfoAjenas);
+
+
+>>>>>>> 2bbe59a13e4182e69abbb41a8a3885c9a7c04b71
 ?>
 
 
@@ -44,7 +72,142 @@ if($logeado && $esAdmin[0][0]) {
       <!--Cuerpo -->
       <div id="cuerpo">
         <div class="row">
-          <h1>Estadísticas de la base de datos:</h1>
+          <div class="col-md-4">
+            <h3>Estadísticas de la base de datos:</h3>
+          <?php
+            echo "Nombre de la base de datos: ";
+            echo $nomCod[0]['name'];
+          ?>
+          <br>
+          <?php echo "Codificación de la BD: ";
+          echo $nomCod[0]['codifi']; ?> <br> <?php
+          echo "Tamaño de la BD: ".$tam[0]['Tamaño']." MB"; ?> <br> <?php
+          ?>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <h3>% de tamaño que ocupan los indices respecto a la tabla:</h3>
+          <table id="indices">
+              <tr>
+                <th style="width:150px" align="center">Nombre de la BD</th>
+                <th>Nombre de la tabla</th>
+                <th style="width:150px" align="center">% Tamaño de los indices</th>
+                <th>Motor de la BD</th>
+              </tr>
+              <?php for ($i = 0; $i< sizeof($indices); $i++)
+              {
+                $rowIndices = $indices[$i];?>
+              <tr>
+                  <td> <?php echo $rowIndices["table_schema"]?></td>
+                  <td> <?php echo $rowIndices["table_name"]?></td>
+                  <td> <?php echo $rowIndices["%"]?></td>
+                  <td> <?php echo $rowIndices["engine"]?></td>
+
+              </tr>
+              <?php } ?>
+          </table>
+        </div>
+            <br>
+            <div class="col-md-4">
+          <h3>Columnas que pueden ser null</h3>
+          <table id="null">
+                <tr>
+                  <th style="width:150px" align="center">Nombre de la tabla</th>
+                  <th style="width:150px" align="center">Columna null</th>
+                </tr>
+                <?php for ($i = 0; $i< sizeof($null); $i++)
+                {
+                  $rowNull = $null[$i];?>
+                <tr>
+                    <td> <?php echo $rowNull["table_name"]?></td>
+                    <td> <?php echo $rowNull["column_name"]?></td>
+
+                </tr>
+                <?php } ?>
+            </table>
+          </div>
+          <div class="col-md-4">
+            <h3>Tipos de datos en nuestra BD:</h3>
+            <table id="tipoDatos">
+                  <tr>
+                    <th style="width:150px" align="center">Tipo de dato</th>
+                    <th style="width:150px" align="center">Nombre de la tabla</th>
+                    <th style="width:150px" align="center">Motor</th>
+                  </tr>
+                  <?php for ($i = 0; $i< sizeof($tipoDatos); $i++)
+                  {
+                    $rowtipoDato = $tipoDatos[$i];?>
+                  <tr>
+                      <td> <?php echo $rowtipoDato["data_type"]?></td>
+                      <td> <?php echo $rowtipoDato["table_name"]?></td>
+                      <td> <?php echo $rowtipoDato["engine"]?></td>
+
+                  </tr>
+                  <?php } ?>
+              </table>
+            </div>
+            <div class="row">
+              <div class= "col-md-4">
+              <h3>Nº de columnas por tabla en nuestra BD:</h3>
+              <table id="infoCol">
+                    <tr>
+                      <th style="width:150px" align="center">Nº de columnas</th>
+                      <th style="width:150px" align="center">Nombre de la tabla</th>
+                    </tr>
+                    <?php for ($i = 0; $i< sizeof($infoCol); $i++)
+                    {
+                      $rowinfoCol = $infoCol[$i];?>
+                    <tr>
+                        <td> <?php echo $rowinfoCol["num"]?></td>
+                        <td> <?php echo $rowinfoCol["table_name"]?></td>
+                    </tr>
+                    <?php } ?>
+                </table>
+                </div>
+<div class= "col-md-4">
+                    <h3>Informacion de las claves primarias:</h3>
+                <table id="infoPrimarias">
+                      <tr>
+                        <th style="width:150px" align="center">Nº de columnas</th>
+                        <th style="width:150px" align="center">Nombre de la tabla</th>
+                      </tr>
+                      <?php for ($i = 0; $i< sizeof($infoPrimarias); $i++)
+                      {
+                        $rowinfoPrimarias = $infoPrimarias[$i];?>
+                      <tr>
+                          <td> <?php echo $rowinfoPrimarias["table_name"]?></td>
+                          <td> <?php echo $rowinfoPrimarias["column_name"]?></td>
+                      </tr>
+                      <?php } ?>
+                  </table>
+</div>
+<div class= "col-md-4">
+                  <h3>Informacion de las claves ajenas:</h3>
+              <table id="infoAjenas">
+                    <tr>
+                      <th style="width:150px" align="center">Nº de columnas</th>
+                      <th style="width:150px" align="center">Nombre de la tabla</th>
+                      <th style="width:150px" align="center">Nº de columnas</th>
+                      <th style="width:150px" align="center">Nº de columnas</th>
+                    </tr>
+                    <?php for ($i = 0; $i< sizeof($infoAjenas); $i++)
+                    {
+                      $rowinfoAjenas = $infoAjenas[$i];?>
+                    <tr>
+                        <td> <?php echo $rowinfoAjenas["table_name"]?></td>
+                        <td> <?php echo $rowinfoAjenas["column_name"]?></td>
+                        <td> <?php echo $rowinfoAjenas["referenced_table_name"]?></td>
+                        <td> <?php echo $rowinfoAjenas["referenced_column_name"]?></td>
+                    </tr>
+                    <?php } ?>
+                </table>
+                </div>
+              </div>
+
+        </div>
+      </div>
+
         </div>
       </div>
 
