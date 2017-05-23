@@ -16,12 +16,15 @@
           <div class="col-md-3">
             <div id="header1" class="pull-right">
               <?php
-              $esOFR = consulta("select esOFR(". $_SESSION['cod'] .")");
+              if($logeado) {
+                $esOFR = consulta("select esOFR(". $_SESSION['cod'] .")");
+                if($esOFR[0][0]) {
+                  echo("<a href=\"crearActividad.php\">Crea una actividad!</a>");
+                }
+              }
               if(!$logeado) {
                 //linki a registrar un ofertador
                 echo("<a href=\"formOFR.php\">Oferta tus propias actividades</a>");
-              } else if($esOFR[0][0]) {
-                echo("<a href=\"crearActividad.php\">Crea una actividad!</a>");
               }
                ?>
             </div>
