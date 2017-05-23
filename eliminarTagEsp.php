@@ -14,5 +14,5 @@
   echo $sqlEliminarTagEsp;
   $eliminarTagEsp = consulta($sqlEliminarTagEsp);
 
-  header('Location: /Extraescolario/TagBus.php');
+  header('Location: /Extraescolario/editarBUS.php');
 ?>

@@ -14,5 +14,5 @@
   echo $sqlAñadirTagEsp;
   $añadirTagEsp = consulta($sqlAñadirTagEsp);
 
-  header('Location: /Extraescolario/TagBus.php');
+  header('Location: /Extraescolario/editarBUS.php');
 ?>

@@ -4,7 +4,7 @@
 function validar_Todo()
 {
 
-      if(validar_Email() && validar_Telef() && validar_Pass() && validar_Nick() && validar_Fecha())
+      if(validar_Email() && validar_Telef() && validar_Fecha())
       {
         //alert("devuelvo true");
         return true;
