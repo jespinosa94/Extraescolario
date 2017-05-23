@@ -1,5 +1,4 @@
 <?php
-require_once ("conexion.php");
 require_once ("funciones.php");
 
   $codOfertador = $_POST['codigoOfertador'];
@@ -23,7 +22,7 @@ require_once ("funciones.php");
   $formaPagoFinal = "";
 
   //$imagen = $_POST['files'];
-  //echo $imagen;
+  $foto = addslashes(file_get_contents($_FILES['files']['tmp_name']));
   //$imagenBlob = '"'. file_get_contents($imagen) . '"';
   //echo $imagenBlob;
   //Recorremos las distintas formas de pago seleccionadas por el cliente
@@ -38,10 +37,14 @@ require_once ("funciones.php");
   //call añadirActividad('Prueba', '2017-05-22', '2017-06-22', 'pruebaaaaaaa', '123', 'Contado', 'mensual',
 //  'asdfasdf', '5000000', '1234', '4-7 años')
   //preparamos y ejecutamos la consulta
-  $sqlAñadirActividad = "call añadirActividad($nombre, $fInicio, $fFin, $direccion, $precio, $formaPagoFinal, $periodoPago,
-  $descripcion, $codOfertador, $localidad, $rangoEdad);";
+
+
+  $sqlAñadirActividad = "call añadirActividad($nombre, $fInicio, $fFin, $descripcion , $precio, $formaPagoFinal, $periodoPago,
+  $direccion, $codOfertador, $localidad, $rangoEdad);";
+
 
   $añadirActividad = consulta($sqlAñadirActividad);
+  consulta("UPDATE ACTIVIDAD SET foto=\"". $foto ."\" WHERE nombre= ". $nombre . ";");
 
   header('Location: /Extraescolario/perfilOfertador.php');
 

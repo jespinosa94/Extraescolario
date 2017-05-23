@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <?php
   session_start();
+  /* Incluimos la conexión predefinida*/
+  require_once ("funciones.php");
+
   $logeado = isset($_SESSION['cod']);
-  if($logeado) {
+  $esOFR = consulta("select esOFR(". $_SESSION['cod'] .")");
+  if($logeado && $esOFR[0][0]) {
     $cod = $_SESSION['cod'];
   } else {
     header('Location: index.php');
   }
 
-  /* Incluimos la conexión predefinida*/
-  require_once ("funciones.php");
+
 
   $logeado = isset($_SESSION['cod']);
   if($logeado) {
@@ -77,7 +80,7 @@
   <!-- Header de la página -->
   <?php require_once('header.php'); ?>
 
-  <form action="añadirActividad.php" method="post">
+  <form enctype="multipart/form-data" action="añadirActividad.php" method="post">
     <div class="container-fluid">
 
       <input type="hidden" name="codigoOfertador" value="<?php echo $cod?>">
