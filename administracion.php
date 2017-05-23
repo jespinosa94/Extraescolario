@@ -4,11 +4,11 @@
 
   $logeado = isset($_SESSION['cod']);
   $esAdmin = consulta("select esADM(". $_SESSION['cod'] . ");");
-if($logeado && $esAdmin[0][0]) {
+/*if($logeado && $esAdmin[0][0]) {
     $cod = $_SESSION['cod'];
   } else {
     header('Location: login-admin.php');
-  }
+  }*/
 ?>
 
 
