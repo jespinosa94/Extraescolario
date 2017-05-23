@@ -16,7 +16,7 @@
   }
 
   /*Recibimos los datos de la actividad a cargar*/
-  $codActividad = 1;
+  $codActividad = $_GET['cod'];
   /*HACEMOS UNA LLAMADA A LA BASE DE DATOS PARA EXTRAER INFORMACION*/
 
     $conUser = "call datosOFR(".$_SESSION['cod'].")";
