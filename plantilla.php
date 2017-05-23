@@ -1,3 +1,13 @@
+<?php
+session_start();
+require 'funciones.php';
+
+$logeado = isset($_SESSION['cod']);
+if($logeado) {
+  $cod = $_SESSION['cod'];
+}
+
+ ?>
 <!DOCTYPE html>
 <html lang="es"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -23,92 +33,56 @@
 
   <body>
     <div class="principal">
-
       <!-- Header de la página -->
-      <header>
-        <nav class="navbar navbar-default navbar-main headerPrincipal" role="navigation">
-          <div class="container-fluid">
-
-            <!-- Logo y menu minimizado -->
-            <div class="navbar-header">
-              <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar1">
-                <span class="sr-only">Menu</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="index.html"></a>
+      <?php
+      if ($logeado) {
+        require 'header.registered.php';
+      } else {
+        ?>
+        <header>
+          <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="sr-only">Barra de navegación</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.php"></a>
+              </div>
+              <div id="navbar" class="navbar-collapse collapse">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div id="header1" class="pull-right">
+                      <a href="#">Oferta tus propias actividades</a>
+                    </div>
+                  </div>
+                  <div id="header2" class="col-md-offset-5 col-md-2 pull-right">
+                    <ul class="nav navbar-nav">
+                      <li class="active dropdown singleDrop">
+                        <a href="index.html">Inicio</a>
+                      </li>
+                      <li class="dropdown singleDrop">
+                        <a href="#">Ayuda</a>
+                      </li>
+                      <li class="dropdown singleDrop">
+                        <a href="login.php">Iniciar sesión</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
-
-            <div class="collapse navbar-collapse navbar1">
-              <ul class="nav navbar-nav" id="registroOFR">
-                <li class="dropdown singleDrop">
-                  <a href="#">Oferta tus propias actividades</a>
-                </li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li class="active dropdown singleDrop">
-                  <a href="index.html">Inicio</a>
-                </li>
-                <li class="dropdown singleDrop">
-                  <a href="#">Ayuda</a>
-                </li>
-                <li class="dropdown singleDrop">
-                  <a href="#">Iniciar sesión</a>
-                </li>
-              </ul>
-            </div> <!-- Fin collapse navbar1-->
-          </div>
-        </nav>
-      </header>
+          </nav>
+        </header>
+        <?php
+      }
+       ?>
 
       <!--Cuerpo -->
       <div id="cuerpo">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <span style="display:block; height: 800px;"></span>
       </div>
 
       <!-- FOOTER -->
@@ -118,7 +92,7 @@
             <div class="row">
               <div class="col-sm-3 col-xs-12">
                 <div class="footerContent">
-                  <a class="footer-logo" href="index.html">
+                  <a class="footer-logo" href="index.php">
                     <img src="http://i66.tinypic.com/103ap8k.jpg" alt="Extraescolario" width="177" height="47" />
                   </a>
                   <p>

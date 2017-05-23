@@ -1,9 +1,9 @@
-/*=====================================================HEADER=================================================*/
+﻿/*=====================================================HEADER=================================================*/
 body {
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
   line-height: 21px;
-  color: #969696;
+  color: black;
   font-weight: 400;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -29,29 +29,26 @@ header {
   position: relative;
 }
 
-.navbar-brand {
-  float:left;
-  width: 235px;
-  height: 95px;
-  background-color: transparent;
-  padding: 24px 15px 24px 15px;
-}
 
-.headerPrincipal .navbar-brand {
+.navbar-brand {
   background-image: url("http://i67.tinypic.com/2e2iays.jpg");
   background-position: 0px 19px;
   background-repeat: no-repeat;
-  background-size: cover;
   background-size: 203px 54px;
-  height: 95px;
+  height: 80px;
+  width: 210px;
 }
 
-.navbar-nav > li > a {
-  margin: 38px 15px 29px 15px;
+.navbar {
+  margin-bottom: 25px;
 }
-
-#registroOFR > li > a {
-  margin: 38px 15px 29px 50%;
+/*Se corresponde con el div que lleva "Oferta tus propias actividades"*/
+#header1 {
+  margin-top: 45px;
+}
+/*Se corresponde con el div que lleva los botones de inicio de sesión*/
+#header2 {
+  margin-top: 20px;
 }
 
 /*=====================================================FOOTER=================================================*/
@@ -153,3 +150,112 @@ header {
     line-height: 35px;
     font-size: 14px;
   }
+
+/*=====================================================Login=================================================*/
+#login.container{
+  margin-bottom: 200px;
+}
+#login .colorgraph {
+  height: 5px;
+  border-top: 0;
+  background: #62c2e4;
+  border-radius: 5px;
+}
+
+#login .logo {
+  background-image: url("http://i67.tinypic.com/2e2iays.jpg");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  width: 300px;
+  height: 95px;
+  text-indent: -9999px;
+  margin: 0 auto;
+}
+
+#login .checkbox label {
+  margin-top: 7px;
+}
+
+
+
+
+
+/*=====================================================FormOFR=================================================*/
+
+
+
+#formOFR h2
+{
+  font-size: 48px;
+  font-style: oblique;
+
+
+}
+.margen
+{
+  margin-top: 75px;
+}
+
+.margenimagen
+{
+  margin-bottom: 45px;
+
+}
+
+/*=====================================================Java script=================================================*/
+.imagenperfil {
+  height: 300px;
+  width: 550px;
+  border: 1px solid #000;
+}
+
+
+/*=====================================================Index=================================================*/
+#botonBuscar {
+  margin-top: 43px;
+  padding-left: 0px;
+}
+
+.buscadorArriba {
+  margin-bottom: 30px;
+}
+
+.buscadorArriba .label.radio-inline .checkbox {
+  padding-left: 0px;
+}
+
+.label-header {
+  color: black;
+  font-size: 12px;
+  padding-left: 15px;
+}
+
+#miCuenta {
+  padding-top: 0px;
+}
+
+/*===========================================perfilbuscador==================================================*/
+#perfilbuscador .btnLink {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    background-image: url(../img/maleavatar.jpg);
+    background-color: #cccccc;
+
+}
+
+
+/*===========================================perfilActividad==================================================*/
+#datosAct, #horarioAct, #descAct{
+  border-bottom-width: 1px !important;
+  border-bottom-style: solid !important;
+  border-bottom-color: #DBDBDB !important;
+  margin-bottom: 20px;
+}
