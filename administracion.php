@@ -34,9 +34,6 @@ if($logeado && $esAdmin[0][0]) {
 
   $sqlInfoAjenas = "call infClavesAjenas()";
   $infoAjenas = consulta($sqlInfoAjenas);
-
-
->>>>>>> 2bbe59a13e4182e69abbb41a8a3885c9a7c04b71
 ?>
 
 
@@ -71,6 +68,12 @@ if($logeado && $esAdmin[0][0]) {
 
       <!--Cuerpo -->
       <div id="cuerpo">
+        <div class="row">
+          <div class="col-md-12">
+            <h1><a href="http://localhost/Extraescolario/admUsuarios.php">Administración de usuarios</a></h1>
+          </div>
+
+        </div>
         <div class="row">
           <div class="col-md-4">
             <h3>Estadísticas de la base de datos:</h3>
