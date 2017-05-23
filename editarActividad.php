@@ -16,7 +16,7 @@
   }
 
   /*Recibimos los datos de la actividad a cargar*/
-  $codActividad = 1;
+  $codActividad = $_GET['cod'];
   /*HACEMOS UNA LLAMADA A LA BASE DE DATOS PARA EXTRAER INFORMACION*/
 
     $conUser = "call datosOFR(".$_SESSION['cod'].")";
@@ -87,7 +87,7 @@
     <!-- Header de la página -->
     <?php require_once('header.php'); ?>
 
-    <form action="updateActividad.php" method="post">
+    <form action="updateActividad.php" enctype="multipart/form-data" method="post">
       <div class="container-fluid">
 
         <!--Fila donde estaran las 3 columnas del form -->

@@ -99,7 +99,7 @@
               </div>
               <div class ="row">
                   <label class="col-xs-6 col-md-4 control-label text-left" for="cont">Contraseña:</label>
-                <p class="con-xs-6 col-md-8 control-label text-left" for="cont"><?php echo $passUser; ?></p>
+                <p class="con-xs-6 col-md-8 control-label text-left" for="cont">¡Es secreta!</p>
               </div>
               <div class = "row">
                       <label class="col-xs-6 col-md-4 control-label text-left" for="telf">Teléfono:</label>
@@ -158,7 +158,9 @@
                         <div class="tab-content">
                           <?php for($i = 0; $i< sizeof($actisVerifs); $i++)  { $unaActVerif = $actisVerifs[$i]; ?>
                             <div class="tab-pane fade" id="<?php echo $var="tab".$unaActVerif["cod"]?>">
-                              <div class="row col-xs-12"> <?php echo $unaActVerif["descripcion"] ?></div>
+                                <a <?php echo("href=\"http://localhost/Extraescolario/editarActividad.php?cod=". $unaActVerif["cod"] . "\""); ?>>
+                                  <div class="row col-xs-12"> <?php echo $unaActVerif["descripcion"] ?></div>
+                                </a>
                                 <div class="span4 offset4 text-center">
                                   <a class="btn btn-primary" href="<?php echo "http://localhost/Extraescolario/exportarXML.php?cod=".$unaActVerif["cod"] ?>">Exportar xml</a>
                                 </div>
@@ -197,7 +199,9 @@
                         <div class="tab-content">
                           <?php for($i = 0; $i< sizeof($actisNoVerifs); $i++)  { $unaActNoVerif = $actisNoVerifs[$i]; ?>
                             <div class="tab-pane fade" id="<?php echo $var="tab".$unaActNoVerif["cod"]?>">
-                              <div class="row col-xs-12"> <?php echo $unaActNoVerif["descripcion"] ?></div>
+                              <a <?php echo("href=\"http://localhost/Extraescolario/editarActividad.php?cod=". $unaActVerif["cod"] ); ?>>
+                                <div class="row col-xs-12"> <?php echo $unaActNoVerif["descripcion"] ?></div>
+                              </a>
                             </div>
                           <?php } ?>
                         </div>

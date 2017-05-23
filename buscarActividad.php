@@ -86,10 +86,10 @@
 
   //======================Filtro de página de búsqueda====================//
   // Añadimos filtro de precio
-    //$sqlFiltro.="AND ACTIVIDAD.precio >= 10 AND ACTIVIDAD.precio <=90 AND 1"
+    $sqlFiltro.="AND ACTIVIDAD.precio >= 10 AND ACTIVIDAD.precio <=90 AND 1"
 
   // Añadimos filtro de rango de edad
-    //$sqlFiltro.="AND ACTIVIDAD"
+    $sqlFiltro.="AND ACTIVIDAD "
 
 
 
@@ -161,123 +161,127 @@
             <!-- Form Name -->
             <legend>Filtros</legend>
 
-            <!-- Precio, con 2 casillas en una línea-->
-            <div class="form-group">
-              <label class="row-xs-12 control-label" for="Precio">Precio</label>
-                <div class= "row-xs-6">
-                  <div class="col-md-6">
-                    <input id="Precio" value="0" name="Precio" type="text" placeholder="0" class="form-control input-md">
-                    <span class="help-block">Mínimo</span>
-                  </div>
-                  <div class="col-md-6">
-                    <input id="idMaximo" value="9999" name="idMaximo" type="text" placeholder="9999" class="form-control input-md">
-                    <span class="help-block">Máximo</span>
-                  </div>
-                  <br><br><br><br>
+
+              <!-- Formulario con todos los campos, del INDEX y de la página-->
+              <div class ="form-group">
+                <!-- Precio, con 2 casillas en una línea-->
+                <div class="form-group">
+                  <label class="row-xs-12 control-label" for="Precio">Precio</label>
+                    <div class= "row-xs-6">
+                      <div class="col-md-6">
+                        <input id="Precio" value="0" name="Precio" type="text" placeholder="0" class="form-control input-md">
+                        <span class="help-block">Mínimo</span>
+                      </div>
+                      <div class="col-md-6">
+                        <input id="idMaximo" value="9999" name="idMaximo" type="text" placeholder="9999" class="form-control input-md">
+                        <span class="help-block">Máximo</span>
+                      </div>
+                      <br><br><br><br>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Checkboxes de selecciónd de edad -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="rangoEdad">Rango de Edad</label>
-              <div class="col-md-4">
-                <label class="checkbox" for="rangoEdad-0">
-                  <input type="checkbox" name="rangoEdad" id="rangoEdad-0" value="4-7 años">
-                  4-7 años
-                </label>
-                <label class="checkbox" for="rangoEdad-1">
-                  <input type="checkbox" name="rangoEdad" id="rangoEdad-1" value="8-12 años">
-                  8-12 años
-                </label>
-                <label class="checkbox" for="rangoEdad-2">
-                  <input type="checkbox" name="rangoEdad" id="rangoEdad-2" value="13-17 años">
-                  13-17 años
-                </label>
-                <label class="checkbox" for="rangoEdad-3">
-                  <input type="checkbox" name="rangoEdad" id="rangoEdad-3" value="+18 años">
-                  +18 años
-                </label>
-                <label class="checkbox" for="rangoEdad-4">
-                  <input type="checkbox" name="rangoEdad" id="rangoEdad-4" value="todos los publicos">
-                  Todos los públicos
-                  <br><br>
-                </label>
+                <!-- Checkboxes de selecciónd de edad -->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" for="rangoEdad">Rango de Edad</label>
+                  <div class="col-md-4">
+                    <label class="checkbox" for="rangoEdad-0">
+                      <input type="checkbox" name="rangoEdad" id="rangoEdad-0" value="4-7 años">
+                      4-7 años
+                    </label>
+                    <label class="checkbox" for="rangoEdad-1">
+                      <input type="checkbox" name="rangoEdad" id="rangoEdad-1" value="8-12 años">
+                      8-12 años
+                    </label>
+                    <label class="checkbox" for="rangoEdad-2">
+                      <input type="checkbox" name="rangoEdad" id="rangoEdad-2" value="13-17 años">
+                      13-17 años
+                    </label>
+                    <label class="checkbox" for="rangoEdad-3">
+                      <input type="checkbox" name="rangoEdad" id="rangoEdad-3" value="+18 años">
+                      +18 años
+                    </label>
+                    <label class="checkbox" for="rangoEdad-4">
+                      <input type="checkbox" name="rangoEdad" id="rangoEdad-4" value="todos los publicos">
+                      Todos los públicos
+                      <br><br>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Valoración mínima-->
+                <div class="form-group">
+                  <label class="col-xs-12 control-label" for="idValoracion">Valoración mínima</label>
+                  <div class="col-md-12">
+                    <input id="idValoracion" name="idValoracion" type="text" placeholder="0" class="form-control input-md">
+                    <span class="help-block">De 0 a 5 estrellas</span>
+                    <br><br><br>
+                  </div>
+                </div>
+
+                <!-- Cuadro para TAGS y Categorías -->
+                <div class="form-group">
+                  <label class="col-xs-12 control-label" for="idTags">Tags y categorías</label>
+                  <div class="col-md-12">
+                    <textarea class="form-control" id="idTags" name="idTags">Introduce aquí los tags y categorías buscados, separados por espacios (Por ejemplo: deportes cartas idiomas etc)</textarea>
+                  </div>
+
+                 <!-- Hidden inputs de la página de index -->
+                 <?php
+                   if(array_key_exists("lunes",$_GET)) {
+                      ?>
+                     <input type="hidden" name="lunes" id="lunes" value="1">
+                     <?php
+                   }
+                   if(array_key_exists("martes",$_GET)) {
+                      ?>
+                     <input type="hidden" name="martes" id="martes" value="2">
+                     <?php
+                   }
+                   if(array_key_exists("miercoles",$_GET)) {
+                      ?>
+                     <input type="hidden" name="miercoles" id="miercoles" value="3">
+                     <?php
+                   }
+                   if(array_key_exists("jueves",$_GET)) {
+                      ?>
+                     <input type="hidden" name="jueves" id="jueves" value="4">
+                     <?php
+                   }
+                   if(array_key_exists("viernes",$_GET)) {
+                      ?>
+                     <input type="hidden" name="viernes" id="viernes" value="5">
+                     <?php
+                   }
+                   if(array_key_exists("sabado",$_GET)) {
+                      ?>
+                     <input type="hidden" name="sabado" id="sabado" value="6">
+                     <?php
+                   }
+                   if(array_key_exists("domingo",$_GET)) {
+                      ?>
+                     <input type="hidden" name="domingo" id="domingo" value="7">
+                     <?php
+                   }
+                 ?>
+                 <input type="hidden" name="iniLunes" value="<?php echo $_GET["iniLunes"]; ?>">
+                 <input type="hidden" name="finLunes" value="<?php echo $_GET["finLunes"]; ?>">
+                 <input type="hidden" name="iniMartes" value="<?php echo $_GET["iniMartes"]; ?>">
+                 <input type="hidden" name="finMartes" value="<?php echo $_GET["finMartes"]; ?>">
+                 <input type="hidden" name="iniMiercoles" value="<?php echo $_GET["iniMiercoles"]; ?>">
+                 <input type="hidden" name="finMiercoles" value="<?php echo $_GET["finMiercoles"]; ?>">
+                 <input type="hidden" name="iniJueves" value="<?php echo $_GET["iniJueves"]; ?>">
+                 <input type="hidden" name="finJueves" value="<?php echo $_GET["finJueves"]; ?>">
+                 <input type="hidden" name="iniViernes" value="<?php echo $_GET["iniViernes"]; ?>">
+                 <input type="hidden" name="finViernes" value="<?php echo $_GET["finViernes"]; ?>">
+                 <input type="hidden" name="iniSabado" value="<?php echo $_GET["iniSabado"]; ?>">
+                 <input type="hidden" name="finSabado" value="<?php echo $_GET["finSabado"]; ?>">
+                 <input type="hidden" name="iniDomingo" value="<?php echo $_GET["iniDomingo"]; ?>">
+                 <input type="hidden" name="finDomingo" value="<?php echo $_GET["finDomingo"]; ?>">
+                 <input type="hidden" name="loc" value="<?php echo $_GET["loc"]; ?>">
+                 <input type="hidden" name="tag-cat" value="<?php echo $_GET["tag-cat"]; ?>">
+                  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
               </div>
-            </div>
-
-            <!-- Valoración mínima-->
-            <div class="form-group">
-              <label class="col-xs-12 control-label" for="idValoracion">Valoración mínima</label>
-              <div class="col-md-12">
-                <input id="idValoracion" name="idValoracion" type="text" placeholder="0" class="form-control input-md">
-                <span class="help-block">De 0 a 5 estrellas</span>
-                <br><br><br>
-              </div>
-            </div>
-
-            <!-- Cuadro para TAGS y Categorías -->
-            <div class="form-group">
-              <label class="col-xs-12 control-label" for="idTags">Tags y categorías</label>
-              <div class="col-md-12">
-                <textarea class="form-control" id="idTags" name="idTags">Introduce aquí los tags y categorías buscados, separados por espacios (Por ejemplo: deportes cartas idiomas etc)</textarea>
-              </div>
-
-             <!-- Hidden inputs de la página de index -->
-             <?php
-               if(array_key_exists("lunes",$_GET)) {
-                  ?>
-                 <input type="hidden" name="lunes" id="lunes" value="1">
-                 <?php
-               }
-               if(array_key_exists("martes",$_GET)) {
-                  ?>
-                 <input type="hidden" name="martes" id="martes" value="2">
-                 <?php
-               }
-               if(array_key_exists("miercoles",$_GET)) {
-                  ?>
-                 <input type="hidden" name="miercoles" id="miercoles" value="3">
-                 <?php
-               }
-               if(array_key_exists("jueves",$_GET)) {
-                  ?>
-                 <input type="hidden" name="jueves" id="jueves" value="4">
-                 <?php
-               }
-               if(array_key_exists("viernes",$_GET)) {
-                  ?>
-                 <input type="hidden" name="viernes" id="viernes" value="5">
-                 <?php
-               }
-               if(array_key_exists("sabado",$_GET)) {
-                  ?>
-                 <input type="hidden" name="sabado" id="sabado" value="6">
-                 <?php
-               }
-               if(array_key_exists("domingo",$_GET)) {
-                  ?>
-                 <input type="hidden" name="domingo" id="domingo" value="7">
-                 <?php
-               }
-             ?>
-             <input type="hidden" name="iniLunes" value="<?php echo $_GET["iniLunes"]; ?>">
-             <input type="hidden" name="finLunes" value="<?php echo $_GET["finLunes"]; ?>">
-             <input type="hidden" name="iniMartes" value="<?php echo $_GET["iniMartes"]; ?>">
-             <input type="hidden" name="finMartes" value="<?php echo $_GET["finMartes"]; ?>">
-             <input type="hidden" name="iniMiercoles" value="<?php echo $_GET["iniMiercoles"]; ?>">
-             <input type="hidden" name="finMiercoles" value="<?php echo $_GET["finMiercoles"]; ?>">
-             <input type="hidden" name="iniJueves" value="<?php echo $_GET["iniJueves"]; ?>">
-             <input type="hidden" name="finJueves" value="<?php echo $_GET["finJueves"]; ?>">
-             <input type="hidden" name="iniViernes" value="<?php echo $_GET["iniViernes"]; ?>">
-             <input type="hidden" name="finViernes" value="<?php echo $_GET["finViernes"]; ?>">
-             <input type="hidden" name="iniSabado" value="<?php echo $_GET["iniSabado"]; ?>">
-             <input type="hidden" name="finSabado" value="<?php echo $_GET["finSabado"]; ?>">
-             <input type="hidden" name="iniDomingo" value="<?php echo $_GET["iniDomingo"]; ?>">
-             <input type="hidden" name="finDomingo" value="<?php echo $_GET["finDomingo"]; ?>">
-             <input type="hidden" name="loc" value="<?php echo $_GET["loc"]; ?>">
-             <input type="hidden" name="tag-cat" value="<?php echo $_GET["tag-cat"]; ?>">
-              <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-            </div>
 
             <!-- Button -->
             <div class="form-group">

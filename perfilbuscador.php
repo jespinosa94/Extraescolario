@@ -280,7 +280,9 @@
         <!-- Row con los botones-->
         <div class= "row col-xs-12">
           <div class="span4 offset4 text-center">
-            <button class="btn btn-primary">Editar Perfil</button>
+            <a <?php echo("href=\"http://localhost/Extraescolario/editarBUS.php"); ?>>
+              <button class="btn btn-primary">Editar Perfil</button>
+            </a>
             <button class="btn btn-default">Volver</button>
           </div>
         </div>
