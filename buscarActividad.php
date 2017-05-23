@@ -85,11 +85,11 @@
     $sqlFiltro.="AND ACTIVIDAD.Nombre LIKE '%".$_GET["tag-cat"]."%' AND 1";
 
   //======================Filtro de página de búsqueda====================//
-  // Añadimos filtro de precio
-    $sqlFiltro.="AND ACTIVIDAD.precio >= 10 AND ACTIVIDAD.precio <=90 AND 1"
+  /* Añadimos filtro de precio
+  // $sqlFiltro.="AND ACTIVIDAD.precio >= 10 AND ACTIVIDAD.precio <=90 AND 1"
 
   // Añadimos filtro de rango de edad
-    $sqlFiltro.="AND ACTIVIDAD "
+  //  $sqlFiltro.="AND ACTIVIDAD "
 
 
 
@@ -98,14 +98,14 @@
 
 
 
-  // Cerramos inicio y horas y cerramos
+  // Cerramos inicio y horas y cerramos*/
   $sqlTotal=$sqlBase.$sqlWhere.$sqlHorario.$sqlFiltro;
-  var_dump($sqlTotal);
+  //var_dump($sqlTotal);
 
   //Montamos la secuencia en función de los parámetros
   $actividades=consulta($sqlTotal);
 
-  var_dump($_GET);
+  //var_dump($_GET);
 
 ?>
 
