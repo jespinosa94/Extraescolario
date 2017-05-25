@@ -3,7 +3,6 @@
 <?php
 
 session_start();
-require_once ("conexion.php");
 require_once ("funciones.php");
 $logeado = isset($_SESSION['cod']);
 

@@ -13,5 +13,5 @@
   $sqlAñadirTag = "call añadirTagActividad($codTag, $codActividad)";
   $añadirTag = consulta($sqlAñadirTag);
 
-  header('Location: /Extraescolario/editarActividad.php');
+header("Location: /Extraescolario/editarActividad.php?cod=" . $codActividad);
 ?>

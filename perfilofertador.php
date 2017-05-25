@@ -199,7 +199,7 @@
                         <div class="tab-content">
                           <?php for($i = 0; $i< sizeof($actisNoVerifs); $i++)  { $unaActNoVerif = $actisNoVerifs[$i]; ?>
                             <div class="tab-pane fade" id="<?php echo $var="tab".$unaActNoVerif["cod"]?>">
-                              <a <?php echo("href=\"http://localhost/Extraescolario/editarActividad.php?cod=". $unaActVerif["cod"] ); ?>>
+                              <a <?php echo("href=\"http://localhost/Extraescolario/editarActividad.php?cod=". $unaActNoVerif["cod"] . "\""); ?>
                                 <div class="row col-xs-12"> <?php echo $unaActNoVerif["descripcion"] ?></div>
                               </a>
                             </div>

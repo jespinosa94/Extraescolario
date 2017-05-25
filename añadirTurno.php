@@ -29,5 +29,5 @@
   var_dump($sqlAñadirTurno);
   $añadirTurno = consulta($sqlAñadirTurno);
   var_dump($añadirTurno);
-  header("Location: /Extraescolario/editarActividad.php");
+  header("Location: /Extraescolario/editarActividad.php?cod=" . $codActividad);
  ?>

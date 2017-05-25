@@ -39,5 +39,5 @@
 
 
 
-  header("Location: /Extraescolario/editarActividad.php");
+header("Location: /Extraescolario/editarActividad.php?cod=" . $_POST['codigoActividad']);
 ?>

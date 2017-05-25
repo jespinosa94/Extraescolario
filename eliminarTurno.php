@@ -8,5 +8,5 @@
   $sqlBorrarTurno = "call borrarTurno(".$_POST['codTurno'].",".$_POST['codDia'].",".$_POST['codFranja'].");";
   $borrarTurno = consulta($sqlBorrarTurno);
 
-  header("Location: /Extraescolario/editarActividad.php");
+  header("Location: /Extraescolario/editarActividad.php?cod=" . $_POST['codigoActividad']);
  ?>
